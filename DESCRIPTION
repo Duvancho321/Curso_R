@@ -3,7 +3,7 @@ Type: Package
 Title: Un Curso Amigable Para R
 Version: 0.1.0
 Author: Leonardo Lopez & Duvan Nieves
-Maintainer: The package maintainer <yourself@somewhere.net>
+Maintainer:  <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: What license is it under?
