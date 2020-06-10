@@ -9,11 +9,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 # Un curso amigable sobre R
 
-<!-- badges: start -->
-
-<!-- badges: end -->
-
-Este paquete contiene un Un curso amigable sobre R
+Este paquete contiene un un curso amigable sobre R
 
 ## Instalación
 
@@ -24,22 +20,36 @@ install.packages("remotes")
 remotes::install_github("Duvancho321/Curso_R")
 ```
 
-## Prerrequisitos
+## Requisitos
+
+Para ejecutar el curso debe contar con la última versión de los paquetes
+del tidyverse, para ello ejecute:
 
 ``` r
-library(learnr)
 library(tidyverse)
+tidyverse::tidyverse_update()
 ```
 
-## Uso
+Además deberá instalar los siguientes paquetes:
 
-Para tener acceso al curso y trabajar con él debe ejecutar la siguiente
-línea de código en R:
+``` r
+install.packages("rlang")
+install.packages("learnr")
+remotes::install_github("garrettgman/DSR")
+remotes::install_github("rstudio/fontawesome")
+remotes::install_github("rstudio-education/gradethis")
+```
+
+## Guia de uso
+
+Para tener acceso al curso y trabajar con él debe ejecutar las
+siguientes líneas de código en R:
 
 ``` r
 library(CursoR)
+library(learnr)
 ```
 
 ``` r
-learnr::run_tutorial("Un_curso_amigable_sobre_R", package = "CursoR")
+learnr::run_tutorial("Curso_R1", package = "CursoR")
 ```
