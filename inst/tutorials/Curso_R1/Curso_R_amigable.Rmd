@@ -9,6 +9,7 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 
 library(learnr)
+library(CursoR)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
