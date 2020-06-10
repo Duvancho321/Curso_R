@@ -7,9 +7,7 @@
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
-# Un curso amigable sobre R
-
-Este paquete contiene un un curso amigable sobre R
+Este paquete contiene un curso amigable sobre R
 
 ## Instalación
 
