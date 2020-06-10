@@ -41,5 +41,5 @@ library(CursoR)
 ```
 
 ``` r
-learnr::run_tutorial("Curso_R", package = "CursoR")
+learnr::run_tutorial("Un_curso_amigable_sobre_R", package = "CursoR")
 ```
