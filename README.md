@@ -1,5 +1,5 @@
 
-# Curso\_R
+# Curso\_R <img src="https://github.com/Duvancho321/Curso_R/blob/master/inst/tutorials/Curso_R1/images/Mi_practica-octocat.png" align="right" width="310" height="320" />
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -8,7 +8,6 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 Este paquete contiene un curso amigable sobre R
-<img src="https://github.com/Duvancho321/Curso_R/blob/master/inst/tutorials/Curso_R1/images/Mi_practica-octocat.png" align="right" width="310" height="320" />
 
 ## Instalación
 
