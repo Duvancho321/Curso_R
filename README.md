@@ -8,6 +8,7 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 Este paquete contiene un curso amigable sobre R
+<img src="https://raw.githubusercontent.com/Leo4Luffy/Un_curso_amigable_sobre_R/master/images/Mi_practica-octocat.png" align="right" width="110" height="120" />
 
 ## Instalación
 
