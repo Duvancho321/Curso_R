@@ -7,9 +7,8 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
-
-library(learnr)
 library(CursoR)
+library(learnr)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
@@ -20,9 +19,7 @@ library(fontawesome)
 library(gradethis)
 library(kableExtra)
 library(patchwork)
-library(flair)
 library(showtext)
-library(DT)
 font_add_google('Gochi Hand', 'gochi')
 tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = FALSE)
@@ -607,9 +604,9 @@ Antes de realizar operaciones sobre algunos objetos en `R`, veamos cuales de est
 
 ### Indexación
 
-Dentro de los múltiples objetos de `R` sean estos simples como un vector o compuestos como un dataframe debemos tener claro el manejo de nuestra información, por lo cual es necesario saber cómo acceder a ella, segmentarla, seleccionarla y/o cambiarla. Para cualquiera de los casos utilizamos la indexación, lo cual significa que los elementos de nuestros objetos están identificados usualmente mediante un índice entero que inicia con el número uno `[1]`.
+Dentro de los múltiples objetos de `R` sean estos simples como un vector o compuestos como un dataframe debemos tener claro el manejo de nuestra información, por lo cual es necesario saber cómo acceder a ella, segmentarla, seleccionarla y/o cambiarla. Para cualquiera de los casos se utiliza la indexación, lo cual significa que los elementos de nuestros objetos están identificados usualmente mediante un índice entero que inicia con el número uno `[1]`.
 
-En las secciones posteriores exploraremos cada objeto con detalle, abordando las distintas operaciones que podemos realizar sobre cada uno de ellos incluyendo la segmentación, selección y Modificación.
+En las secciones posteriores se explorará cada objeto con detalle, abordando las distintas operaciones que se pueden realizar sobre cada uno de ellos incluyendo la segmentación, selección y modificación.
 
 
 <div class="row">
@@ -627,7 +624,8 @@ matrix(1:25,nrow = 5)
 </div>
 
 ### Coerción
-Existe una forma de convertir el tipo de un vectoro matriz a otro tipo y para ello contamos con funciones base del tipo `as.*`
+
+Existe una forma de convertir el tipo de un vector o matriz a otro tipo y para ello se cuentan con funciones base del tipo `as.*`
 
 +------------------+--------------------------------------+
 | Función          | Acción                               |
@@ -661,7 +659,7 @@ Existe una forma de convertir el tipo de un vectoro matriz a otro tipo y para el
 
 ### Funciones de prueba 
 
-En algunos casos diferenciar o reconocer el tipo de un vector o matriz que se tiene no es tan simple, en estos casos utilizamos la función `typeof()`, sin embargo existe también la opción de utilizar funciones que devuelvan valores de `TRUE` o `FALSE`.  En las funciones base de `R` se encuentran funciones del tipo `is.*`. Una alternativa a las funciones base de `R` son las del paquete **purr** las cuales son del tipo `is_*`
+En algunos casos diferenciar o reconocer el tipo de un vector o matriz que se tiene no es tan simple, en estos casos se utiliza la función `typeof()`, sin embargo existe también la opción de utilizar funciones que devuelvan valores de `TRUE` o `FALSE`.  En las funciones base de `R` se encuentran funciones del tipo `is.*`. Una alternativa a las funciones base de `R` son las del paquete **purr** los cuales son del tipo `is_*`
 
 +------------------+-----------------+
 | R base           | purr            |
@@ -683,7 +681,7 @@ En algunos casos diferenciar o reconocer el tipo de un vector o matriz que se ti
 
 ### Funciones útiles
 
-En `R` contamos con las conocidas funciones base, muchas con utilidades matemáticas o estadísticas, veamos algunas de ellas que pueden ser muy útiles en cualquier proyecto de análisis. 
+En `R` se cuenta con las conocidas funciones base, muchas con utilidades matemáticas o estadísticas. A continuación podra ver algunas de ellas los cuales pueden ser muy útiles en cualquier proyecto de análisis. 
 
 +-------------+-------------------------------------------------------------------+
 | Función     | Acción                                                            |
@@ -727,9 +725,9 @@ En `R` contamos con las conocidas funciones base, muchas con utilidades matemát
 
 <details><summary>2.1 Operaciones con vectores</summary> 
 
-Antes de iniciar con ejemplos y ejercicios debemos tener presente que un vector es una colección de elementos de la misma clase atómica, es decir que un vector puede contener n elementos del mismo tipo, ya sean estos números, caracteres, factores o lógicos, nunca podrán ser de dos o más tipos. A medida que veamos ejemplos y realicemos ejercicios aprenderemos distintas formas de crear vectores.
+Antes de iniciar con ejemplos y ejercicios se debe tener presente que un vector es una colección de elementos de la misma clase atómica, es decir que un vector puede contener `n` elementos del mismo tipo, ya sean estos números, caracteres, factores o lógicos, y nunca podrán ser de dos o más tipos. A medida que vea los ejemplos y realice los ejercicios aprenderá distintas formas de crear vectores.
 
-A continuación veremos vectores con las distintas clases atómicas y qué sucede si intentamos mezclarlas.
+A continuación podra observar vectores con distintas clases atómicas y qué sucede si intenta mezclarlas.
 
 :::example
 #### Ejemplo 2.1.1
@@ -737,25 +735,25 @@ A continuación veremos vectores con las distintas clases atómicas y qué suced
 
 ```{r addition_211, exercise = TRUE}
 #Vector numérico
-num <- c(1,2,3,4,5)
+num <- c(1, 2, 3, 4, 5)
 num
 #Vector de caracteres
-let <- c("a","b","c","d","e","f")
+let <- c("a", "b", "c", "d", "e", "f")
 let
 #Vector de Factores
-fac <- factor(c("f1","f2","f3","f2","f1"))
+fac <- factor(c("f1", "f2", "f3", "f2", "f1"))
 fac
 #Vector logico
-log <- c(T,F,T,T,T,F)
+log <- c(TRUE, FALSE, TRUE, TRUE, TRUE, FALSE)
 log
 #mezcla de clases atomicas
-c(num,let)
-c(num,log)
+c(num, let)
+c(num, log)
 ```
 
-Como vimos en la última parte al mezclar dos clases atómicas no obtenemos un error, sin embargo los vectores mezclados toman la clase solo de uno de ellos (la más compleja), en el primero vemos como los números de `num` quedan entre comillas, lo cual implica que ahora son caracteres, de igual forma en el vector dos vemos que los valores lógicos de `log` son convertidos a su equivalente numérico.
+Como vio en la última parte, al mezclar dos clases atómicas no se obtiene un error. Sin embargo los vectores mezclados toman la clase solo de uno de ellos (la más compleja). En el primero, los números de `num` quedan entre comillas, lo cual implica que ahora son caracteres, de igual forma en el vector de valores lógicos `log`, los elementos son convertidos a su equivalente numérico.
 
-Ahora vamos con uno ejemplos en los cuales generaremos un vector de prueba y realicemos algunas operaciones aritméticas básicas.Sean estas suma, resta, división, multiplicación y exponenciación.
+A continuación se plantea un ejemplo en el cual se genera un vector de prueba, y con el mismo se realizará algunas operaciones aritméticas básicas como suma, resta, división, multiplicación y exponenciación.
 
 Operaciones de suma.
 
@@ -768,32 +766,32 @@ Operaciones de suma.
 x <- c(1:8)
 x
 #Suma sobre cada elemento del vector de prueba
-test_1 <- x+2
+test_1 <- x + 2
 test_1
 #Suma repetitiva sobre los elementos del vector de prueba
-test_2 <- x + c(10,20)
+test_2 <- x + c(10, 20)
 test_2
 #Suma uno a uno sobre nuestro vector de prueba 
 test_3 <- x + c(8:1) 
 test_3
 ```
 
-De igual forma podemos utilizar la resta, te invito a que restablezcas el vector de prueba `x` a partir de los vectores test_1, test_2, test_3. Para ello copia los vectores que realizamos en el fragmento de código anterior y crear de nuevo el vector `x`. Vamos confio en que podrás hacerlo.
+De igual forma se puede utilizar la resta. Te invito a que restablezcas el vector de prueba `x` a partir de los vectores test_1, test_2, test_3. Para ello copia los vectores del fragmento de código anterior y crear de nuevo el vector `x`. __¡Vamos confio en que podrás hacerlo!__
 
 :::exercise
 #### Ejercicio 2.1.1
 :::
 
 ```{r exe_211, exercise = TRUE}
-test_1 <- c(1:8)+ 2
-test_2 <- c(1:8) + c(10,20)
+test_1 <- c(1:8) + 2
+test_2 <- c(1:8) + c(10, 20)
 test_3 <- c(1:8) + 8:1
 # Ahora es tu turno
 ```
 
 ```{r exe_211-solution}
 test_1 - 2
-test_2 - c(10,20)
+test_2 - c(10, 20)
 test_3 - 8:1
 ```
 
@@ -801,7 +799,7 @@ test_3 - 8:1
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Vamos ahora con operación de producto. 
+Vamos ahora con la operación de producto. 
 
 :::example
 #### Ejemplo 2.1.3
@@ -809,35 +807,35 @@ Vamos ahora con operación de producto.
 
 ```{r addition_213, exercise = TRUE}
 #Vector de prueba
-y <- seq(2,20,2)
+y <- seq(2, 20, 2)
 y
 #Producto sobre cada elemento del vector de prueba
 test_1 <- y*2
 test_1
 #Producto repetitivo sobre los dos elementos del vector de prueba
-test_2 <- y * c(5,7)
+test_2 <- y * c(5, 7)
 test_2
 #Producto uno a uno sobre nuestro vector de prueba 
 test_3 <- y * 10:1 
 test_3
 ```
 
-Ya que vimos cómo funciona el producto en `R`, te propongo que utilizando la operación inversa restablezcas el vector de prueba `y`. Intentalo, se que podrás hacerlo.
+Ya que vimos cómo funciona el producto en `R`, te propongo que utilizando la operación inversa restablezcas el vector de prueba `y`. __¡Intentalo, se que podrás hacerlo!__
 
 :::exercise
 #### Ejercicio 2.1.2
 :::
 
 ```{r exe_212, exercise = TRUE}
-test_1 <- seq(2,20,2) * 2
-test_2 <- seq(2,20,2) * c(5,7)
-test_3 <- seq(2,20,2) * 10:1 
+test_1 <- seq(2, 20, 2) * 2
+test_2 <- seq(2, 20, 2) * c(5, 7)
+test_3 <- seq(2, 20, 2) * 10:1 
 # Ahora es tu turno
 ```
 
 ```{r exe_212-solution}
 test_1 / 2
-test_2 / c(10,20)
+test_2 / c(10, 20)
 test_3 / 10:1
 ```
 
@@ -845,7 +843,7 @@ test_3 / 10:1
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Hagamos un ejercicio un poco más corto para la potenciación y su operación inversa. Halla la séptima potencia del 4 y la raíz cúbica del 27, te dejamos un par de ejemplos para que puedas guiarte. 
+Hagamos un ejercicio un poco más corto para la potenciación y su operación inversa. Para esto, calcule la séptima potencia del 4 y la raíz cúbica del 27. Te dejamos un par de ejemplos para que puedas guiarte. 
 
 :::exercise
 #### Ejercicio 2.1.3
@@ -874,7 +872,7 @@ Ahora hagamos un par de ejercicios de operaciones lógicas, los cuales son muy �
 
 ```{r addition_214, exercise = TRUE}
 #Vector de prueba
-vec <- seq(1,100,length.out = 20)
+vec <- seq(1, 100, length.out = 20)
 vec
 #Condición
 filt_1 <- vec < 20
@@ -892,7 +890,7 @@ Encontremos ahora dentro de un vector de prueba los números diferentes de los p
 
 ```{r exe_214, exercise = TRUE}
 #Vector de prueba
-vec <- seq(1,150,3)
+vec <- seq(1, 150, 3)
 vec
 #Condición y selección
 vec[vec%%2 != 0]
@@ -917,7 +915,7 @@ Veamos ahora una ejercicio con dos condiciones simultáneas y deberás realizar 
 
 ```{r exe_215, exercise = TRUE}
 #Vector de prueba
-vec <- seq(1,100,length.out = 20)
+vec <- seq(1, 100, length.out = 20)
 vec
 #Condición y selección
 vec[vec>90 | vec<45]
@@ -932,9 +930,9 @@ vec[vec>15 &  vec<80]
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Trabajemos ahora algunos ejercicios de indexación que nos permitan segmentar y modificar nuestros vectores. veamos cómo tomar una sección de nuestro vector de prueba y además modificar algunos de sus valores.
+Trabajemos ahora algunos ejercicios de indexación que nos permitan segmentar y modificar nuestros vectores. Veamos cómo tomar una sección de nuestro vector de prueba y además modificar algunos de sus valores.
 
-* `r fa("far fa-sticky-note")`Recuerda que la indexación en R inicia con uno `[1]`
+* `r fa("far fa-sticky-note")`Recuerda que la indexación en `R` inicia con uno `[1]`
 
 :::example
 #### Ejemplo 2.1.5
@@ -950,18 +948,18 @@ vec[-16:-1] # ultimas 10 letras
 #Modificación
 vec[1] = "letra.a" #solo la primera posición
 vec
-vec[c(1,26)] = c("la.letra.a","la.letra.z") #multiples posiciones
+vec[c(1, 26)] = c("la.letra.a","la.letra.z") #multiples posiciones
 vec
 ```
 
-Exclusivamente para los ejemplos de selección de los primeros y los últimos elementos de un objeto podemos utilizar las funciones `head()`  y `tail()` respectivamente. 
+Exclusivamente para los ejemplos de selección de los primeros y los últimos elementos de un objeto se pueden utilizar las funciones `head()`  y `tail()`, respectivamente. 
 
 ```{r addition_2151, exercise = TRUE}
 #Vector de prueba
 vec <- letters
 #Seleccion
-head(vec,10)#primeras 10 letras
-tail(vec,10)#ultimas 10 letras 
+head(vec, 10)#primeras 10 letras
+tail(vec, 10)#ultimas 10 letras 
 ```
 
 Observemos un ejemplo en el que se acceda a elementos de un vector para hacer operaciones con estos.
@@ -975,9 +973,9 @@ Observemos un ejemplo en el que se acceda a elementos de un vector para hacer op
 vec1 <- 20:40
 vec2 <- letters
 #Operaciones
-vec1[5]+vec1[21] #operaciones aritmeticas uno a uno
-vec1[c(5,10)]+vec1[c(18,21)] #operaciones aritmeticas 
-paste0(vec2[3],vec2[18],vec2[1],vec2[14]) #concatenar caracteres 
+vec1[5] + vec1[21] #operaciones aritmeticas uno a uno
+vec1[c(5, 10)] + vec1[c(18, 21)] #operaciones aritmeticas 
+paste0(vec2[3], vec2[18], vec2[1], vec2[14]) #concatenar caracteres 
 ```
 
 Como último ejemplo de esta sección visualicemos las conversiones y veamos su efectividad utilizando las funciones de prueba.
@@ -990,7 +988,7 @@ Como último ejemplo de esta sección visualicemos las conversiones y veamos su 
 #Vectores de prueba
 vec1 <- 20:40
 vec2 <- letters
-vec3 <- c(T,F,T,T,T,F)
+vec3 <- c(TRUE, FALSE, TRUE, TRUE, TRUE, FALSE)
 #conversiones
 test_1 <- as.character(vec1)
 test_2 <- as.factor(vec2)
@@ -1001,8 +999,7 @@ is.factor(test_2)
 is.numeric(test_3)
 ```
 
-Como último ejercicio de esta sección deberás generar dos vectores uno que corresponda a la secuencia de números de de 50 a 75 con una longitud de 20 elementos y otro vector con los números del 35 al -8, estos vectores tendrán el nombre de vec1 y vec2 respectivamente. filt1 será un vector que cumpla la condición de números mayores a 64 de vec1, mientras que filt2 será la selección de los números pares de vec2. para filt1 calcularemos la media y para filt2 obtendremos la suma de los valores absolutos de las posiciones  2,3,7,19,20,21 y 22. 
-
+Como último ejercicio de esta sección deberás generar dos vectores uno que corresponda a la secuencia de números de 50 a 75 con una longitud de 20 elementos y otro vector con los números del 35 al -8. Estos vectores tendrán el nombre de `vec1` y `vec2`, respectivamente. `filt1` será un vector que cumpla la condición de números mayores a 64 de `vec1`, mientras que `filt2` será la selección de los números pares de `vec2`. Para `filt1` calcularemos la media y para `filt2` obtendremos la suma de los valores absolutos de las posiciones 2, 3, 7, 19, 20, 21 y 22. 
 
 * `r fa("far fa-sticky-note")` Recuerda lo aprendido anteriormente y ten presente las funciones útiles nombradas al inicio de esta sección. 
 
@@ -1019,12 +1016,12 @@ filt_2 <-
 ```
 
 ```{r exe_216-solution}
-vec1 <- seq(50,75,length.out = 20)
+vec1 <- seq(50, 75, length.out = 20)
 vec2 <- 35:-8
 filt_1 <- vec1 > 64
-filt_2 <- vec2[vec2 %% 2 ==0 ]
+filt_2 <- vec2[vec2 %% 2 == 0 ]
 mean(filt1)
-sum(abs(filt_2[c(2,3,7,19:22)]))
+sum(abs(filt_2[c(2, 3, 7, 19:22)]))
 ```
 
 ```{r exe_216-check}
@@ -1035,19 +1032,19 @@ grade_code("Excelente lo lograste, sigamos adelante")
 
 <details><summary>2.2 Operaciones con matrices </summary> 
 
-Ahora trabajaremos con las matrices, que desde la perspectiva de R son vectores con el atributo `dim` definido como un vector entero de dos elementos (número de filas y número de columnas). Las matrices son útiles para almacenar muchos datos y son bastante similares a las hojas de cálculo de Excel, puede pensar en ellas como  un conjunto de n vectores de la misma longitud.
+Ahora trabajaremos con las matrices, que desde la perspectiva de `R` son vectores con el atributo `dim` definido como un vector entero de dos elementos: número de filas y número de columnas. Las matrices son útiles para almacenar muchos datos y son bastante similares a las hojas de cálculo de Excel, puede pensar en ellas como un conjunto de `n` vectores de la misma longitud.
 
-En lo que se refiere a matrices la indexación funciona nombrando primero las filas y después las columnas, de tal forma que teniendo una matriz M de dimensiones mxn tendremos m filas y n columnas. Si utilizamos el comando `M[1,]` obtendremos la primera fila  y al utilizar `M[,1]`obtendremos la primera columna. Más adelante abordaremos ejercicios que nos permitan manejar e identificar las columnas y filas de una matriz.
+En lo que se refiere a matrices, la indexación funciona nombrando primero las filas y después las columnas, de tal forma que teniendo una matriz `M` de dimensiones `mxn` se tendran `m` filas y `n` columnas. Si utiliza el comando `M[1,]` obtendra la primera fila  y al utilizar `M[,1]` obtendra la primera columna. Más adelante abordaremos ejercicios que nos permitan manejar e identificar las columnas y filas de una matriz.
 
 <div class="row">
   <div class="col-md-6" markdown="1">
 ```{r,echo=F, comment=""}
-matrix(1:25,nrow = 5)
+matrix(1:25, nrow = 5)
 ```
   </div>
   <div class="col-md-6" markdown="1">
 ```{r,echo=F,comment=""}
-m <- matrix(1:25,nrow = 5)
+m <- matrix(1:25, nrow = 5)
 print("M[1,]")
 m[1,]
 print("M[,1]")
@@ -1056,7 +1053,7 @@ m[,1]
   </div>
 </div>
 
-Generalmente las matrices en R tienen connotación matemática y pese a ser utilizadas para almacenar información, debemos recordar que todos sus elementos sólo pueden pertenecer a un solo tipo ya sea este numérico, lógico o caracter. Teniendo presente esto veamos operadores y funciones que pueden resultarnos útiles en el contexto matemático y operativo de R. 
+Generalmente las matrices en `R` tienen connotación matemática y pese a ser utilizadas para almacenar información, debe recordar que todos sus elementos sólo pueden pertenecer a un solo tipo ya sea numérico, lógico o caracter. Teniendo presente esto veamos los operadores y funciones que pueden resultarnos útiles en el contexto matemático y operativo de `R`. 
 
 +---------------+---------------------------------+
 | Función       | Acción                          |
@@ -1094,16 +1091,16 @@ Generemos una matriz de prueba y realicemos algunas operaciones sobre esta, reco
 
 ```{r addition_221, exercise = TRUE}
 #Matriz de prueba
-m <- matrix(11:30,nrow = 5)
+m <- matrix(11:30, nrow = 5)
 m
 #Producto sobre cada elemento de la matriz de prueba
 test_1 <- m*3
 test_1
 #Potencia repetitiva sobre los elementos de la matriz de prueba (columna)
-test_2 <- m **c(2,3)
+test_2 <- m **c(2, 3)
 test_2
 #Suma sobre la matriz de prueba (columna)
-test_3 <- m + seq(7,1,length.out=20) 
+test_3 <- m + seq(7, 1, length.out = 20) 
 test_3
 ```
 
@@ -1116,9 +1113,9 @@ Ahora veamos cómo funcionan las operaciones entre matrices.
 ```{r addition_222, exercise = TRUE}
 #Matriz de prueba 1
 m1 <- 21:40
-dim(m1) <- c(5,4)
+dim(m1) <- c(5, 4)
 #Matriz de prueba 2
-m2 <- cbind(1:5,6:10,11:15,16:20)
+m2 <- cbind(1:5, 6:10, 11:15, 16:20)
 #suma de matrices
 m1 + m2
 #Producto uno a uno
@@ -1127,7 +1124,7 @@ m1*m2
 m1 %*% t(m2)
 ```
 
-Tratemos de ver otras operaciones directamente con ejercicios. Te invito a que generes `m1` del ejercicio anterior utilizando la función `rbind()`, `m2` utilizando la función `matrix()` y calcules el producto matricial de m1 traspuesta con m2 nombrandolo `m3`. Por último calcula la suma de la diagonal de `m3`.
+Tratemos de ver otras operaciones directamente con ejercicios. Te invito a que generes la matrices `m1` del ejercicio anterior utilizando la función `rbind()` y `m2` utilizando la función `matrix()`, y posteriormente calcules el producto matricial de `m1` traspuesta con `m2` nombrandolo `m3`. Por último calcula la suma de la diagonal de `m3`.
 
 :::exercise
 #### Ejercicio 2.2.1
@@ -1145,13 +1142,13 @@ m3 <-
 
 ```{r exe_221-solution}
 #Matriz de prueba 1
-m1 <- rbind(seq(21,36,5),
-            seq(22,37,5),
-            seq(23,38,5),
-            seq(24,39,5),
-            seq(25,40,5))
+m1 <- rbind(seq(21, 36, 5),
+            seq(22, 37, 5),
+            seq(23, 38, 5),
+            seq(24, 39, 5),
+            seq(25, 40, 5))
 #Matriz de prueba 2
-m2 <- matrix(1:20,nrow = 5)
+m2 <- matrix(1:20, nrow = 5)
 #Producto Matricial
 m3 <- t(m1) %*% m2 
 #suma de la diagonal
@@ -1162,7 +1159,7 @@ sum(diag(m3))
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-En el siguiente ejemplo, calcularemos la suma de los valores de cada columna y determinaremos su representación en porcentaje de la suma calculada. El porcentaje lo aproximáremos  a dos cifras decimales y haremos un ejercicio de indexación con este resultado imprimiendo un vector con los resultados de la diagonal.
+En el siguiente ejemplo, calcularemos la suma de los valores de cada columna y determinaremos su representación en porcentaje de la suma calculada. El porcentaje lo aproximáremos a dos cifras decimales y haremos un ejercicio de indexación con este resultado, imprimiendo un vector con los resultados de la diagonal.
 
 :::example
 #### Ejemplo 2.2.3
@@ -1170,7 +1167,7 @@ En el siguiente ejemplo, calcularemos la suma de los valores de cada columna y d
 
 ```{r addition_223, exercise = TRUE}
 #Matriz de prueba 1
-m <- matrix(seq(18,2,length.out = 16),ncol = 4,byrow = T)
+m <- matrix(seq(18, 2, length.out = 16), ncol = 4, byrow = TRUE)
 m
 #suma de cada columnas
 tcol <- colSums(m)
@@ -1180,7 +1177,7 @@ pm <- cbind(m[,1]/tcol[1],
             m[,2]/tcol[2],
             m[,3]/tcol[3],
             m[,4]/tcol[4])
-pm <- round(pm*100,2)
+pm <- round(pm*100, 2)
 pm
 #Diagonal con funcion
 diag(pm)
@@ -1188,7 +1185,7 @@ diag(pm)
 c(pm[1,1],pm[2,2],pm[3,3],pm[4,4])
 ```
 
-Hagamos un ejercicio similar al ejemplo anterior,  para ello usaremos la matriz `m` y calcularemos en `pm` el porcentaje aproximado a tres cifras decimales que cada elemento representa de la suma de cada fila; con él debemos imprimir un vector con los resultados de la diagonal secundaria.
+Hagamos un ejercicio similar al ejemplo anterior. Para ello usaremos la matriz `m` y calcularemos en `pm` el porcentaje aproximado a tres cifras decimales que cada elemento representa de la suma de cada fila. Con él debemos imprimir un vector con los resultados de la diagonal secundaria.
 
 :::exercise
 #### Ejercicio 2.2.2
@@ -1196,7 +1193,7 @@ Hagamos un ejercicio similar al ejemplo anterior,  para ello usaremos la matriz 
 
 ```{r exe_222, exercise = TRUE}
 #Matriz de prueba
-m <- matrix(seq(42,2,length.out = 16),ncol = 4,byrow = T)
+m <- matrix(seq(42, 2, length.out = 16), ncol = 4, byrow = TRUE)
 #Suma de cada fila
 tfil <-
 #Porcenatje de cada fila 
@@ -1207,7 +1204,7 @@ c()
 
 ```{r exe_222-solution}
 #Matriz de prueba
-m <- matrix(seq(42,2,length.out = 16),ncol = 4,byrow = T)
+m <- matrix(seq(42, 2, length.out = 16),ncol = 4, byrow = TRUE)
 #Suma de cada fila
 tfil <- rowSums(m)
 #Porcenatje de cada fila 
@@ -1228,7 +1225,7 @@ Veamos otra forma de solucionar el ejercicio anterior.
 
 ```{r exe_2221, exercise = TRUE}
 #Matriz de prueba
-m <- matrix(seq(42,2,length.out = 16),ncol = 4,byrow = T)
+m <- matrix(seq(42, 2, length.out = 16), ncol = 4, byrow = TRUE)
 #matriz transpuesta
 tm <- t(m)
 #suma de cada columnas,
@@ -1244,7 +1241,7 @@ c(pm[4,1],pm[3,2],pm[2,3],pm[1,4])
 
 ```
 
-Ahora trabajemos lo que se denomina estandarización sobre una matriz, para ello calcula la media y la desviación estándar por columnas y a cada elemento de la columna correspondiente deberas restarle la media y dividir por la desviación estándar. 
+Ahora trabajemos lo que se denomina como estandarización sobre una matriz. Para ello, calcule la media y la desviación estándar por columnas y a cada elemento de la columna correspondiente deberas restarle la media y dividir por la desviación estándar. 
 
 :::exercise
 #### Ejercicio 2.2.3
@@ -1256,7 +1253,7 @@ set.seed(10)
 
 ```{r exe_223, exercise = TRUE}
 #Matriz de prueba
-m <- matrix(sample(1:8,16,replace = T),ncol = 4,byrow = T)
+m <- matrix(sample(1:8, 16, replace = TRUE), ncol = 4, byrow = TRUE)
 #Media
 mmean <- 
 #Desviación estandar
@@ -1273,7 +1270,7 @@ set.seed(20)
 
 ```{r exe_223-solution}
 #Matriz de prueba
-m <- matrix(sample(1:8,16,replace = T),ncol = 4,byrow = T)
+m <- matrix(sample(1:8, 16, replace = TRUE), ncol = 4, byrow = TRUE)
 #Media
 mmean <- colMeans(m)
 #Desviación estandar
@@ -1294,7 +1291,7 @@ sm
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Para tener una mayor comprensión de la indexación en las matrices nombremos cada una de las filas y de las columnas de un matriz `m`, llamemos filas y columnas individualmente; tambien elementos individuales y por último modifiquemos algunos valores.
+Para tener una mayor comprensión de la indexación en las matrices, nombremos cada una de las filas y de las columnas de un matriz `m`, y llamemos las filas y las columnas individualmente, tambien los elementos individuales y por último modifiquemos algunos valores.
 
 :::example
 #### Ejemplo 2.2.4
@@ -1302,25 +1299,25 @@ Para tener una mayor comprensión de la indexación en las matrices nombremos ca
 
 ```{r addition_224, exercise = TRUE}
 #Matriz de prueba 1
-m <- matrix(letters[1:25],ncol = 5,byrow = T)
+m <- matrix(letters[1:25], ncol = 5, byrow = TRUE)
 m
 #nombre de filas y columnas
-rownames(m) <- c("fila1","fila2","fila3","fila4","fila5")
-colnames(m) <- c("columna1","columna2","columna3","columna4","columna5")
+rownames(m) <- c("fila1", "fila2", "fila3", "fila4", "fila5")
+colnames(m) <- c("columna1", "columna2", "columna3", "columna4", "columna5")
 m
 #llamado filas y columnas
 m["fila2",]
 m[,"columna3"]
 #llamado letra "r"
-m["fila4","columna3"]
+m["fila4", "columna3"]
 m[4,3]
 #modificaciones
-m["fila2","columna5"] <- "letraj"
+m["fila2", "columna5"] <- "letraj"
 m[5,2] <- "letrav"
 m
 ```
 
-Para afianzar algunos conceptos trabajaremos sobre la matriz `m` , tendrás que calcular la suma y la media tanto por filas como por columnas, añadirlas a la matriz original utilizando `cbind`  y `rbind` y por último nombra cada una de las filas y de las columnas añadiendo  los nombres contenidos en los vectores `rname` y `cname`
+Para afianzar algunos conceptos trabajaremos sobre la matriz `m`. Para esto, tendrás que calcular la suma y la media tanto por filas como por columnas, añadirlas a la matriz original utilizando `cbind`  y `rbind`, y por último nombrar cada una de las filas y de las columnas añadiendo los nombres contenidos en los vectores `rname` y `cname`
 
 :::exercise
 #### Ejercicio 2.2.4
@@ -1332,10 +1329,10 @@ set.seed(25)
 
 ```{r exe_224, exercise = TRUE}
 #Matriz de prueba
-m <- matrix(sample(1:16,16),ncol = 4,byrow = T)
+m <- matrix(sample(1:16, 16), ncol = 4, byrow = TRUE)
 #vectores
-rname <- c("fila1","fila2","fila3","fila4","csum","cmean")
-cname <- c("columna1","columna2","columna3","columna4","fsum","fmean")
+rname <- c("fila1", "fila2", "fila3", "fila4", "csum", "cmean")
+cname <- c("columna1", "columna2", "columna3", "columna4", "fsum", "fmean")
 #Nueva matriz
 
 #nombres para la matriz 
@@ -1348,13 +1345,13 @@ set.seed(25)
 
 ```{r exe_224-solution}
 #Matriz de prueba
-m <- matrix(sample(1:16,16),ncol = 4,byrow = T)
+m <- matrix(sample(1:16, 16), ncol = 4, byrow = TRUE)
 #vectores
-rname <- c("fila1","fila2","fila3","fila4","csum","cmean")
-cname <- c("columna1","columna2","columna3","columna4","fsum","fmean")
+rname <- c("fila1", "fila2", "fila3", "fila4", "csum", "cmean")
+cname <- c("columna1", "columna2", "columna3", "columna4", "fsum", "fmean")
 #Nueva matriz
-m <- rbind(m,colSums(m),colMeans(m))
-m <- cbind(m,rowSums(m),rowMeans(m))
+m <- rbind(m, colSums(m), colMeans(m))
+m <- cbind(m, rowSums(m), rowMeans(m))
 #nombres para la matriz 
 rownames(m) <- rname
 colnames(m) <- cname
@@ -1364,7 +1361,7 @@ colnames(m) <- cname
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Para finalizar esta sección te invito a que trabajes con la matriz `M` , primero suma `vec1` a la primera columna de la matriz de prueba, después multiplica el elemento de la primera columna y tercera fila  por 1.375 y por último multiplica la tercera columna por `vec2`. Estas operaciones deben hacerse sobre la matriz, de tal forma que al terminar las operaciones y llamar M está guarde las operaciones realizadas.
+Para finalizar esta sección te invito a que trabajes con la matriz `M`. Primero suma `vec1` a la primera columna de la matriz de prueba, después multiplica el elemento de la primera columna y tercera fila por 1.375, y por último multiplica la tercera columna por `vec2`. Estas operaciones deben hacerse sobre la matriz, de tal forma que al terminar las operaciones y llamar a `M`, está guarde las operaciones realizadas.
 
 :::exercise
 #### Ejercicio 2.2.5
@@ -1372,21 +1369,19 @@ Para finalizar esta sección te invito a que trabajes con la matriz `M` , primer
 
 ```{r exe_225, exercise = TRUE}
 #Objetos de prueba
-M <- matrix(seq(100,700,length.out = 9),3)
-vec1 <- c(3,1.5,3)*100
-vec2 <- c(1,.76,1/1.75)
+M <- matrix(seq(100, 700, length.out = 9), 3)
+vec1 <- c(3, 1.5, 3)*100
+vec2 <- c(1, .76, 1/1.75)
 #Operaciones
-
-
 
 M
 ```
 
 ```{r exe_225-solution}
 #Objetos de prueba
-M <- matrix(seq(100,700,length.out = 9),3)
-vec1 <- c(3,1.5,1.5)*100
-vec2 <- c(1,.76,1/1.75)
+M <- matrix(seq(100, 700, length.out = 9), 3)
+vec1 <- c(3, 1.5, 1.5)*100
+vec2 <- c(1, .76, 1/1.75)
 #Operaciones
 M[,1] <- M[,1] + vec1
 M[3,1] <- M[3,1] * 1.375
@@ -1400,9 +1395,9 @@ grade_code("Excelente lo lograste, sigamos adelante")
 
 </details>
 
-<details><summary>2.3 Operaciones con marcos de datos</summary> 
+<details><summary>2.3 Operaciones con conjuntos de datos</summary> 
 
-Los marcos de datos  `dataframe` son muy similares a las matrices en lo que se refiere a indexación, sin embargo su principal diferencia radica en el tipo de datos que albergan, en las matrices todos sus elementos pertenecen al mismo tipo de dato, en los dataframe cada columna puede tener un tipo de dato diferente siempre que las columnas tengan la misma longitud.  Ahora creemos un dataframe a partir vectores de diferentes tipos utilizando la función `data.frame()`.
+Los conjuntos de datos, dataframe, son muy similares a las matrices en lo que se refiere a la indexación. Sin embargo, su principal diferencia radica en el tipo de datos que albergan. En las matrices, todos sus elementos pertenecen al mismo tipo de dato, mientras que en los dataframe cada columna puede tener un tipo de dato diferente siempre que las columnas tengan la misma longitud. Ahora creemos un dataframe a partir vectores de diferentes tipos utilizando la función `data.frame()`.
 
 :::example
 #### Ejemplo 2.3.1
@@ -1411,33 +1406,39 @@ Los marcos de datos  `dataframe` son muy similares a las matrices en lo que se r
 ```{r addition_231, exercise = TRUE}
 #vectores de prueba
 letras <- letters[1:15]
-numeros <- seq(1,100, length.out = 15)
-logicos <- c(T,T,F,F,T,T,T,F,F,F,F,T,T,F,F)
+numeros <- seq(1, 100, length.out = 15)
+logicos <- c(TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE)
 #Dataframe
-df <- data.frame(letras,numeros,logicos)
+df <- data.frame(letras, numeros, logicos)
 df
 #Estructura
 str(df)
 ```
 
-Podemos notar que al utilizar la función `data.frame()` el vector de letras es convertido a factor, lo que en algunos casos puede no ser conveniente, para evitar este problema podemos utilizar el argumento `stringsAsFactors = F`.
+Puede notar que al utilizar la función `data.frame()`, el vector de letras es convertido a factor, lo que en algunos casos puede no ser conveniente. Para evitar este problema se puede utilizar el argumento `stringsAsFactors = FALSE`.
 
 ```{r,eval=TRUE,message=FALSE,echo=FALSE}
 #vectores de prueba
 letras <- letters[1:15]
-numeros <- seq(1,100, length.out = 15)
-logicos <- c(T,T,F,F,T,T,T,F,F,F,F,T,T,F,F)
+numeros <- seq(1, 100, length.out = 15)
+logicos <- c(TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE)
+```
+
+```{r,eval=FALSE}
+save(letras,file = "data_pkg/letras.rda")
+save(numeros,file = "data_pkg/numeros.rda")
+save(logicos,file = "data_pkg/logicos.rda")
 ```
 
 ```{r addition_2311, exercise = TRUE}
 #Dataframe
-df <- data.frame(letras,numeros,logicos,stringsAsFactors = F)
+df <- data.frame(letras, numeros, logicos, stringsAsFactors = FALSE)
 df
 #Estructura
 str(df)
 ```
 
-También podemos crear dataframe a partir de matrices y vectores utilizando la coerción. En el siguiente ejercicio debes convertir los objetos de prueba a marcos de datos conservado sus propiedades originales, no olvides verificar su estructura.
+También puede crear un dataframe a partir de matrices y vectores utilizando la coerción. En el siguiente ejercicio debes convertir los objetos de prueba a conjuntos de datos conservando sus propiedades originales. No olvides verificar su estructura.
 
 * `r fa("far fa-sticky-note")` Recuerda la sección de coerción y las funciones allí nombradas.
 
@@ -1447,7 +1448,7 @@ También podemos crear dataframe a partir de matrices y vectores utilizando la c
 
 ```{r exe_231, exercise = TRUE}
 #Objetos de prueba
-m <- matrix(seq(100,700,length.out = 9),3)
+m <- matrix(seq(100, 700, length.out = 9), 3)
 letras <- letters[1:15]
 #conversión
 mdf <- 
@@ -1461,12 +1462,12 @@ str()
 
 ```{r exe_231-solution}
 #Objetos de prueba
-m <- matrix(seq(100,700,length.out = 9),3)
+m <- matrix(seq(100, 700, length.out = 9), 3)
 letras <- letters[1:5]
 #conversión
 mdf <- as.data.frame(m)
 mdf
-letrasdf <- as.data.frame(letras,stringsAsFactors = F)
+letrasdf <- as.data.frame(letras, stringsAsFactors = FALSE)
 letrasdf
 #estructura
 str(mdf)
@@ -1477,13 +1478,18 @@ str(letrasdf)
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Recordemos que los dataframe son similares a las matrices en cuanto a indexación, para probarlo trabajaremos el siguiente ejercicio con la base de datos `Starwars`.
+Recordemos que los dataframe son similares a las matrices en cuanto a indexación. Para probarlo trabajaremos el siguiente ejercicio con la base de datos `Starwars`.
 
-```{r,eval=TRUE,message=FALSE,echo=FALSE}
+```{r, eval = TRUE, message = FALSE, echo = FALSE}
+
 data("starwars")
 Starwars <- starwars %>% 
-  select(-c(12:14))
+  select(-c(11:14))
 Starwars
+```
+
+```{r,eval=FALSE}
+save(Starwars, file="data_pkg/Starwars.rda")
 ```
 
 El ejercicio consiste en seleccionar las primeras 5 columnas de nuestra base de datos, seleccionar las primeras 20 filas de la columna name y por último  seleccionar las filas entre 20 y 40 para las columnas height y mass.
@@ -1503,11 +1509,11 @@ Starwars[]
 
 ```{r exe_232-solution}
 #Primeras 5 columnas
-Starwars[,1:5]
+Starwars[, 1:5]
 #primeras 20 filas de name
 Starwars[1:20,"name"]
 #filas entre 20:40 para height y mass.
-Starwars[20:40,c(2,3)]
+Starwars[20:40, c(2, 3)]
 ```
 
 ```{r exe_232-check}
@@ -1518,14 +1524,14 @@ Otra posible solución a este ejercicio seria la siguiente.
 
 ```{r exe_2321, exercise = TRUE}
 #Primeras 5 columnas
-Starwars[,c("name","height","mass","hair_color","skin_color")]
+Starwars[, c("name", "height", "mass", "hair_color", "skin_color")]
 #primeras 20 filas de name
-Starwars[1:20,1]
+Starwars[1:20, 1]
 #filas entre 20:40 para height y mass.
-Starwars[20:40,c("height","mass")]
+Starwars[20:40, c("height","mass")]
 ```
 
-Como vimos en el ejercicio anterior podemos acceder a una columna de un dataframe utilizando expresiones del tipo `Starwars[,1]` o `Starwars[,”name”]`, sin embargo la forma más popular y simple es utilizar la expresión `Starwars$name`. Esta última no solo nos permite acceder a una columna de nuestro set de datos, también permite crear nuevas variables. Veamos un ejemplo en el que seleccionemos la columna `species` y creemos una nueva columna que enumere nuestros datos.
+Como vimos en el ejercicio anterior podemos acceder a una columna de un dataframe utilizando expresiones del tipo `Starwars[, 1]` o `Starwars[, ”name”]`, sin embargo la forma más popular y simple es utilizar la expresión `Starwars$name`. Esta última no solo permite acceder a una columna de nuestro conjunto de datos, sino que también permite crear nuevas variables. Veamos un ejemplo en el que seleccionemos la columna `species` y creemos una nueva columna que enumere nuestros datos.
 
 :::example
 #### Ejemplo 2.3.2
@@ -1550,22 +1556,17 @@ Veamos en acción la función `table()` para conocer el numero de individuos por
 table(Starwars$species)
 ```
 
-
-
-
-
 ```{r}
-tibble(x=1:3, y = list(1:3,2:4,3:5))
-data.frame(x=1:3, y = list(1:3,2:4,3:5))
-tibble(x=1:3, y = x*3)
-#data.frame(x=1:3, y = x*3)
+tibble(x=1:3, y = list(1:3, 2:4, 3:5))
+data.frame(x = 1:3, y = list(1:3, 2:4, 3:5))
+tibble(x = 1:3, y = x*3)
+#data.frame(x = 1:3, y = x*3)
 #merge
 #subset
 #aggregate()
 #order
 # colMEans para matrices
 ```
-
 
 </details>
 
@@ -2014,7 +2015,7 @@ La función `pivot_wider()` es usada cuando se tiene una observación dispersa e
 
 ```{r, echo = FALSE, eval = TRUE, message = FALSE}
 
-datos_2 <- table2 %>%
+datos_2 <- DSR::table2 %>%
   rename('País' = country, 'Año' = year, 'Variables' = key, 'Valor' = value) %>%
   mutate(País = case_when(
     País == 'Afghanistan' ~ 'Afganistán',
@@ -2026,8 +2027,12 @@ datos_2 <- table2 %>%
     )
 ```
 
-```{r addition_4_3_1_a, exercise = TRUE}
+```{r,eval=FALSE}
+save(datos_2,file = "data_pkg/datos_2.rda")
+```
 
+
+```{r addition_4_3_1_a, exercise = TRUE}
 datos_2
 ```
 
@@ -2240,7 +2245,7 @@ La función `pivot_longer()` permite resolver las situaciones en donde se tienen
 
 ```{r, echo = FALSE, eval = TRUE, message = FALSE}
 
-datos_4_a <- table4 %>%
+datos_4_a <- DSR::table4 %>%
   rename('País' = country) %>%
   mutate(País = case_when(
     País == 'Afghanistan' ~ 'Afganistán',
@@ -2249,8 +2254,11 @@ datos_4_a <- table4 %>%
     ))
 ```
 
-```{r addition_4_3_2_a, exercise = TRUE}
+```{r,eval=FALSE}
+save(datos_4_a,file = "data_pkg/datos_4_a.rda")
+```
 
+```{r addition_4_3_2_a, exercise = TRUE}
 datos_4_a
 ```
 
@@ -2354,10 +2362,6 @@ datos_4_a_largo <- pivot_longer(
 datos_4_a_largo
 ```
 
-:::caution
-Como se observó, la función `pivot_longer()` hace lo opuesto a `pivot_wider()`. Por lo tanto, ambas funciones son complementarias, es decir, si al resultado de aplicar la función `pivot_wider()` se le aplica la función `pivot_longer()` se llega al conjunto de datos original. Otra observación interesante es que `pivot_longer()` __alarga__ los conjuntos de datos, mientras que `pivot_wider()` los hace más __anchos__.
-:::
-
 :::exercise
 #### Ejercicio 4.3.1
 Teniendo en cuenta el ejemplo planteado anteriormente con la función `pivot_longer()`, por favor intente hacer lo mismo con el siguiente conjunto de datos llamado __datos_4_b__ con el fin obtener la estructura de datos ordenados presentada en la imagen a continuación.
@@ -2365,7 +2369,7 @@ Teniendo en cuenta el ejemplo planteado anteriormente con la función `pivot_lon
 
 ```{r, echo = FALSE, eval = TRUE, message = FALSE}
 
-datos_4_b <- table5 %>%
+datos_4_b <- DSR::table5 %>%
   rename('País' = country) %>%
   mutate(País = case_when(
     País == 'Afghanistan' ~ 'Afganistán',
@@ -2374,8 +2378,11 @@ datos_4_b <- table5 %>%
     ))
 ```
 
-```{r addition_4_3_2_c, exercise = TRUE}
+```{r,eval=FALSE}
+save(datos_4_b,file = "data_pkg/datos_4_b.rda")
+```
 
+```{r addition_4_3_2_c, exercise = TRUE}
 datos_4_b
 ```
 
@@ -2489,13 +2496,360 @@ datos_4_b_largo
 grade_code("¡Muy bien!, a partir de este cambio cada variable se coloco en su propia columna, cada observación en su propia fila y cada valor en su propia celda.")
 ```
 
-+ `_join()`
+:::caution
+Como se observó, la función `pivot_longer()` hace lo opuesto a `pivot_wider()`. Por lo tanto, ambas funciones son complementarias, es decir, si al resultado de aplicar la función `pivot_wider()` se le aplica la función `pivot_longer()` se llega al conjunto de datos original. Otra observación interesante es que `pivot_longer()` __alarga__ los conjuntos de datos, mientras que `pivot_wider()` los hace más __anchos__.
+:::
+
++ `separate()` y `unite()`
+
+La función `separate()` lo que hace es dividir una columna en múltiples columnas, tomando como separador algún símbolo, mientras que la función `unite()` toma múltiples columnas y las une en una única columna, separando los elementos mediante un separador.
+
+:::example
+#### Ejemplo 4.3.3
+:::
+
+```{r, echo = FALSE, eval = TRUE, message = FALSE}
+
+datos_3 <- DSR::table3 %>%
+  rename('País' = country, 'Año' = year, 'Tasa' = rate) %>%
+  mutate(País = case_when(
+    País == 'Afghanistan' ~ 'Afganistán',
+    País == 'Brazil' ~ 'Brasil',
+    País == 'China' ~ 'China'
+    ))
+```
+
+```{r,eval=FALSE}
+save(datos_3,file = "data_pkg/datos_3.rda")
+```
+
+```{r addition_4_3_3_a, exercise = TRUE}
+datos_3
+```
+
+```{r, echo = FALSE, eval = TRUE, message = FALSE, fig.align = 'center', fig.showtext = TRUE, out.width = '500'}
+
+combinando_separando <- data.frame(
+  x = c(1:21), y = c(1:21)
+) %>%
+  ggplot(aes(x, y)) +
+  geom_blank() +
+  annotate(geom = 'rect', xmin = 12.0, xmax = 14.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 13.0, y = 7.75, label = 'País', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 12.0, xmax = 14.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 13.0, y = 7.25, label = 'Afganistán', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 12.0, xmax = 14.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 13.0, y = 6.75, label = 'Afganistán', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 12.0, xmax = 14.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 13.0, y = 6.25, label = 'Brasil', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 12.0, xmax = 14.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 13.0, y = 5.75, label = 'Brasil', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 12.0, xmax = 14.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 13.0, y = 5.25, label = 'China', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 12.0, xmax = 14.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 13.0, y = 4.75, label = 'China', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 14.0, xmax = 16.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 15.0, y = 7.75, label = 'Año', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 14.0, xmax = 16.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 15.0, y = 7.25, label = '1999', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 14.0, xmax = 16.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 15.0, y = 6.75, label = '2000', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 14.0, xmax = 16.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 15.0, y = 6.25, label = '1999', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 14.0, xmax = 16.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 15.0, y = 5.75, label = '2000', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 14.0, xmax = 16.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 15.0, y = 5.25, label = '1999', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 14.0, xmax = 16.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 15.0, y = 4.75, label = '2000', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 16.0, xmax = 18.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 17.0, y = 7.75, label = 'Casos', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 16.0, xmax = 18.0, ymin = 7.0, ymax = 7.5, colour = 'yellow', fill = 'yellow', alpha = 0.2) +
+  annotate(geom = 'text', x = 17.0, y = 7.25, label = '745', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 16.0, xmax = 18.0, ymin = 6.5, ymax = 7.0, colour = 'yellow', fill = 'yellow', alpha = 0.2) +
+  annotate(geom = 'text', x = 17.0, y = 6.75, label = '2666', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 16.0, xmax = 18.0, ymin = 6.0, ymax = 6.5, colour = 'yellow', fill = 'yellow', alpha = 0.2) +
+  annotate(geom = 'text', x = 17.0, y = 6.25, label = '37737', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 16.0, xmax = 18.0, ymin = 5.5, ymax = 6.0, colour = 'yellow', fill = 'yellow', alpha = 0.2) +
+  annotate(geom = 'text', x = 17.0, y = 5.75, label = '80488', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 16.0, xmax = 18.0, ymin = 5.0, ymax = 5.5, colour = 'yellow', fill = 'yellow', alpha = 0.2) +
+  annotate(geom = 'text', x = 17.0, y = 5.25, label = '212258', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 16.0, xmax = 18.0, ymin = 4.5, ymax = 5.0, colour = 'yellow', fill = 'yellow', alpha = 0.2) +
+  annotate(geom = 'text', x = 17.0, y = 4.75, label = '213766', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 18.0, xmax = 21.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 19.5, y = 7.75, label = 'Población', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 18.0, xmax = 21.0, ymin = 7.0, ymax = 7.5, colour = 'red', fill = 'red', alpha = 0.2) +
+  annotate(geom = 'text', x = 19.5, y = 7.25, label = '19987071', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 18.0, xmax = 21.0, ymin = 6.5, ymax = 7.0, colour = 'red', fill = 'red', alpha = 0.2) +
+  annotate(geom = 'text', x = 19.5, y = 6.75, label = '20595360', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 18.0, xmax = 21.0, ymin = 6.0, ymax = 6.5, colour = 'red', fill = 'red', alpha = 0.2) +
+  annotate(geom = 'text', x = 19.5, y = 6.25, label = '172006362', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 18.0, xmax = 21.0, ymin = 5.5, ymax = 6.0, colour = 'red', fill = 'red', alpha = 0.2) +
+  annotate(geom = 'text', x = 19.5, y = 5.75, label = '174504896', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 18.0, xmax = 21.0, ymin = 5.0, ymax = 5.5, colour = 'red', fill = 'red', alpha = 0.2) +
+  annotate(geom = 'text', x = 19.5, y = 5.25, label = '1272915272', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 18.0, xmax = 21.0, ymin = 4.5, ymax = 5.0, colour = 'red', fill = 'red', alpha = 0.2) +
+  annotate(geom = 'text', x = 19.5, y = 4.75, label = '1280428583', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 9.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 7.0, y = 7.75, label = 'Tasa', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 9.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 7.0, y = 7.25, label = '745/19987071', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 9.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 7.0, y = 6.75, label = '2666/20595360', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 9.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 7.0, y = 6.25, label = '37737/172006362', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 9.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 7.0, y = 5.75, label = '80488/174504898', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 9.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 7.0, y = 5.25, label = '212258/1272915272', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 9.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 7.0, y = 4.75, label = '213766/1280428583', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 4.0, y = 7.75, label = 'Año', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 4.0, y = 7.25, label = '1999', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 4.0, y = 6.75, label = '2000', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 4.0, y = 6.25, label = '1999', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 4.0, y = 5.75, label = '2000', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 4.0, y = 5.25, label = '1999', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 4.0, y = 4.75, label = '2000', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 2.0, y = 7.75, label = 'País', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 2.0, y = 7.25, label = 'Afganistán', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 2.0, y = 6.75, label = 'Afganistán', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 2.0, y = 6.25, label = 'Brasil', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 2.0, y = 5.75, label = 'Brasil', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 2.0, y = 5.25, label = 'China', family = 'gochi', size = 7.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 2.0, y = 4.75, label = 'China', family = 'gochi', size = 7.0, colour = 'black') +
+  geom_curve(x = 9.0, xend = 16.0, y = 7.25, yend = 7.25, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  geom_curve(x = 9.0, xend = 18.0, y = 7.25, yend = 7.25, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  geom_curve(x = 9.0, xend = 16.0, y = 6.75, yend = 6.75, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  geom_curve(x = 9.0, xend = 18.0, y = 6.75, yend = 6.75, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  geom_curve(x = 9.0, xend = 16.0, y = 6.25, yend = 6.25, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  geom_curve(x = 9.0, xend = 18.0, y = 6.25, yend = 6.25, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  geom_curve(x = 9.0, xend = 16.0, y = 5.75, yend = 5.75, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  geom_curve(x = 9.0, xend = 18.0, y = 5.75, yend = 5.75, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  geom_curve(x = 9.0, xend = 16.0, y = 5.25, yend = 5.25, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  geom_curve(x = 9.0, xend = 18.0, y = 5.25, yend = 5.25, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  geom_curve(x = 9.0, xend = 16.0, y = 4.75, yend = 4.75, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  geom_curve(x = 9.0, xend = 18.0, y = 4.75, yend = 4.75, arrow = arrow(length = unit(0.1, 'inch')), size = 0.5, color = 'black', curvature = -0.4) +
+  scale_y_continuous(limits = c(4.0, 8.0)) +
+  #scale_x_continuous(limits = c(8, 5.0)) +
+  theme_void() +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank())
+combinando_separando
+```
+
+```{r addition_4_3_3_b, exercise = TRUE}
+
+datos_3_separado <- separate(
+  data = datos_3, # El nombre del conjunto de datos a ordenar.
+  col = Tasa, # Argumento donde se indica el nombre de la columna que se quiere dividir.
+  into =  c('Casos', 'Población'), # Argumento donde se indica los nombres de las nuevas variables.
+  sep  =  '/'#, # Argumento donde se indica el símbolo que separa las dos variables en una misma columna.
+  #convert = TRUE # Opción que permite hacer la conversión de tipo caracter a numérico.
+  )
+
+datos_3_separado
+```
 
 <!--
 Esto puede parecer un lugar extraño para comenzar, pero ordenar datos es la habilidad más fructífera que puedes aprender como científico de datos. Le ahorrará horas de tiempo y hará que sus datos sean mucho más fáciles de visualizar, manipular y modelar con R.
 -->
 
-<!--Hay muchos otros paquetes excelentes que no forman parte del tidyverse, porque están diseñados con un conjunto diferente de principios subyacentes. Esto no los hace mejores o peores, solo diferentes.-->
+:::exercise
+#### Ejercicio de repaso
+:::
 
+El siguiente conjunto de datos contiene casos de tuberculosis registrados en distintos años. Dichos datos se encuentran en el _Informe Gobal de Tuberculosis_ de la Organización Mundial de la Salud, disponible para descargar [aquí](https://www.who.int/tb/country/data/download/en/). Este conjunto de datos proporciona un ejemplo realista de datos desordenados.
+
+```{r,eval=TRUE,message=FALSE,echo=FALSE}
+
+data('who')
+
+Tuberculosis <- DSR::who
+Tuberculosis
+```
+
+La característica más peculiar del anterior conjunto de datos es su sistema de codificación. Las columnas cinco a sesenta codifican cuatro partes de información que separadas significan lo siguiente:
+
+1) Las primeras tres letras de cada columna indican si los casos de tuberculosis corresponden a casos nuevos o antiguos. En este conjunto de datos, cada columna contiene solo nuevos casos.
+
+2) Las siguientes dos letras describen el tipo de caso de tuberculosis:
+- `rel` significa casos de recaída,
+- `ep` significa casos de tuberculosis extrapulmonar,
+- `sn` significa casos de tuberculosis pulmonar que no pudieron ser diagnosticados por un frotis pulmonar (frotis negativo),
+- `sp` significa casos de tuberculosis pulmonar que podrían diagnosticarse por un frotis pulmonar (frotis positivo).
+  
+3) La sexta parte describe el sexo de los pacientes con tuberculosis: `m` para hombres y `f` para mujeres.
+  
+4) La última parte describe el grupo de edad de los pacientes con tuberculosis. El conjunto de datos agrupa los casos en siete grupos de edad:
+- `014` significa pacientes de 0 a 14 años de edad,
+- `1524` significa pacientes de 15 a 24 años de edad,
+- `2534` representa pacientes de 25 a 34 años de edad,
+- `3544` significa pacientes que tienen entre 35 y 44 años,
+- `4554` significa pacientes de 45 a 54 años de edad,
+- `5564` significa pacientes de 55 a 64 años de edad,
+- `65` significa pacientes que tienen 65 años o más.
+
+El ejercicio de repaso propuesto consiste en que haciendo uso de las funciones mecionadas del paquete `tidyr` trate de ordenar el conjunto de datos `Tuberculosis`, e intente obtener un conjunto de datos similar a como se observa en la imagen a continuación.
+
+```{r, echo = FALSE, eval = TRUE, message = FALSE, fig.align = 'center', fig.showtext = TRUE, out.width = '520'}
+
+ejercicio <- data.frame(
+  x = c(1:23), y = c(1:23)
+) %>%
+  ggplot(aes(x, y)) +
+  geom_blank() +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 2.0, y = 7.75, label = 'country', family = 'gochi', size = 7.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 4.0, ymax = 4.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 3.0, ymin = 3.5, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 4.0, y = 7.75, label = 'iso2', family = 'gochi', size = 7.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 7.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 4.0, ymax = 4.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 3.0, xmax = 5.0, ymin = 3.5, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'text', x = 6.0, y = 7.75, label = 'iso3', family = 'gochi', size = 7.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 7.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 7.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 7.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 7.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 7.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 7.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 7.0, ymin = 4.0, ymax = 4.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 5.0, xmax = 7.0, ymin = 3.5, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 7.0, xmax = 9.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 8.0, y = 7.75, label = 'year', family = 'gochi', size = 7.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 7.0, xmax = 9.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 7.0, xmax = 9.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 7.0, xmax = 9.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 7.0, xmax = 9.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 7.0, xmax = 9.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 7.0, xmax = 9.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 7.0, xmax = 9.0, ymin = 4.0, ymax = 4.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 7.0, xmax = 9.0, ymin = 3.5, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 9.0, xmax = 11.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 10.0, y = 7.75, label = 'new', family = 'gochi', size = 7.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 9.0, xmax = 11.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 9.0, xmax = 11.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 9.0, xmax = 11.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 9.0, xmax = 11.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 9.0, xmax = 11.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 9.0, xmax = 11.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 9.0, xmax = 11.0, ymin = 4.0, ymax = 4.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 9.0, xmax = 11.0, ymin = 3.5, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 11.0, xmax = 13.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 12.0, y = 7.75, label = 'sex', family = 'gochi', size = 7.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 11.0, xmax = 13.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 11.0, xmax = 13.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 11.0, xmax = 13.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 11.0, xmax = 13.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 11.0, xmax = 13.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 11.0, xmax = 13.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 11.0, xmax = 13.0, ymin = 4.0, ymax = 4.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 11.0, xmax = 13.0, ymin = 3.5, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 13.0, xmax = 15.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 14.0, y = 7.75, label = 'age', family = 'gochi', size = 7.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 13.0, xmax = 15.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 13.0, xmax = 15.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 13.0, xmax = 15.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 13.0, xmax = 15.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 13.0, xmax = 15.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 13.0, xmax = 15.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 13.0, xmax = 15.0, ymin = 4.0, ymax = 4.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 13.0, xmax = 15.0, ymin = 3.5, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 15.0, xmax = 17.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 16.0, y = 7.75, label = 'ep', family = 'gochi', size = 7.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 15.0, xmax = 17.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 15.0, xmax = 17.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 15.0, xmax = 17.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 15.0, xmax = 17.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 15.0, xmax = 17.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 15.0, xmax = 17.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 15.0, xmax = 17.0, ymin = 4.0, ymax = 4.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 15.0, xmax = 17.0, ymin = 3.5, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 17.0, xmax = 19.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 18.0, y = 7.75, label = 'rel', family = 'gochi', size = 7.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 17.0, xmax = 19.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 17.0, xmax = 19.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 17.0, xmax = 19.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 17.0, xmax = 19.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 17.0, xmax = 19.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 17.0, xmax = 19.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 17.0, xmax = 19.0, ymin = 4.0, ymax = 4.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 17.0, xmax = 19.0, ymin = 3.5, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 19.0, xmax = 21.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 20.0, y = 7.75, label = 'sn', family = 'gochi', size = 7.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 19.0, xmax = 21.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 19.0, xmax = 21.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 19.0, xmax = 21.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 19.0, xmax = 21.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 19.0, xmax = 21.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 19.0, xmax = 21.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 19.0, xmax = 21.0, ymin = 4.0, ymax = 4.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 19.0, xmax = 21.0, ymin = 3.5, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 21.0, xmax = 23.0, ymin = 7.5, ymax = 8.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 22.0, y = 7.75, label = 'sp', family = 'gochi', size = 7.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 21.0, xmax = 23.0, ymin = 7.0, ymax = 7.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 21.0, xmax = 23.0, ymin = 6.5, ymax = 7.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 21.0, xmax = 23.0, ymin = 6.0, ymax = 6.5, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 21.0, xmax = 23.0, ymin = 5.5, ymax = 6.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'rect', xmin = 21.0, xmax = 23.0, ymin = 5.0, ymax = 5.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 21.0, xmax = 23.0, ymin = 4.5, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 21.0, xmax = 23.0, ymin = 4.0, ymax = 4.5, colour = 'black', fill = 'white', alpha = 0.4) +
+  annotate(geom = 'rect', xmin = 21.0, xmax = 23.0, ymin = 3.5, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.4) +
+  scale_y_continuous(limits = c(3.5, 8.0)) +
+  #scale_x_continuous(limits = c(3, 5.0)) +
+  theme_void() +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank())
+ejercicio
+```
+
+```{r, eval = FALSE}
+
+save(Tuberculosis, file = 'data_pkg/Tuberculosis.rda')
+```
+
+
+```{r addition_ejercicio, exercise = TRUE}
+
+Tuberculosis
+```
+
+## 5. Limpieza y manipulación de datos
+
+
+
+<!--
++ `_join()`
+-->
 
 
