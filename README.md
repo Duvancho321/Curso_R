@@ -1,6 +1,4 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # Curso\_R <img src="./inst/tutorials/Curso_R1/images/Mi_practica-octocat.png" align="right" width="310" height="320" />
 
 [![Project Status: Active – The project has reached a stable, usable

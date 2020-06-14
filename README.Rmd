@@ -2,8 +2,6 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -63,7 +61,6 @@ learnr::run_tutorial("Curso_R1", package = "CursoR")
 
 ## Sobre los autores
 
-
 <div class="row">
   <div class="col-md-6" markdown="1">
   __Jorge Leonardo López Martínez__ es zootecnista con interés en el uso de la programación y la bioestadística aplicada al campo de la genética animal.
@@ -80,4 +77,3 @@ learnr::run_tutorial("Curso_R1", package = "CursoR")
   <i class="fa fa-github"></i> 	⌲ [Duvancho321](https://github.com/Duvancho321)
   </div>
 </div>
-

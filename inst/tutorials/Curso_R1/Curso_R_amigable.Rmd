@@ -154,7 +154,7 @@ Aquí se indican ejercicios prácticos de codificación donde se le pedirá que 
 
 ```{r exercise_ejercicios-solution}
 
-Ejercicio_código
+#Ejercicio_código
 ```
 
 También se encontrara con el siguiente bloque informativo:
