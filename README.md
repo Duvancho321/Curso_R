@@ -5,7 +5,7 @@
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
-Este paquete contiene un curso amigable sobre R
+Este paquete contiene un curso amigable sobre R.
 
 ## Instalación
 
@@ -19,7 +19,7 @@ remotes::install_github("Duvancho321/Curso_R")
 ## Requisitos
 
 Para ejecutar el curso debe contar con la última versión de los paquetes
-del tidyverse, para ello ejecute:
+del tidyverse. Para ello ejecute:
 
 ``` r
 install.packages("tidyverse")
@@ -42,13 +42,13 @@ remotes::install_github("allisonhorst/palmerpenguins")
 
 ## Recomendaciones
 
-  - En algunos casos el curso presenta inconvenientes con la última
-    versión de R, se recomienda utilizar la versión 3.6.3
+  - En algunos casos, el curso presenta inconvenientes con la última
+    versión de R. Se recomienda utilizar la versión 3.6.3.
 
   - En sistemas operativos diferentes de Linux, puede presentarse
-    errores en la ejecución del curso, si tiene problemas le
-    recomendamos utilizar [rcloud](https://rstudio.cloud/) con versión
-    de R 3.6.3, puede registrarse con cuentas google o Github
+    errores en la ejecución del curso. Si tiene problemas, le
+    recomendamos utilizar [rscloud](https://rstudio.cloud/) con versión
+    de R 3.6.3. Puede registrarse usando su cuenta de google o de GitHub
     [Aquí](https://login.rstudio.cloud/register?redirect=https%3A%2F%2Fclient.login.rstudio.cloud%2Foauth%2Flogin%3Fshow_auth%3D0%26show_login%3D1%26show_setup%3D1)
 
 ## Guia de uso
@@ -67,7 +67,7 @@ library(learnr)
 learnr::run_tutorial("Curso_R1", package = "CursoR")
 ```
 
-  - Si cuenta con la última versión de Rstudio puede encontrar el curso
+  - Si cuenta con la última versión de RStudio, puede encontrar el curso
     como “Un curso amigable sobre R” en la sección de `Tutorial` y
     ejecutarlo con un click en **Start Tutorial ▷**
 
