@@ -322,7 +322,7 @@ knitr::include_graphics("images/consola_R_base.jpg")
   <div class="col-md-6" markdown="1">
 ```{r, echo = FALSE, eval = TRUE, out.width = "34%", fig.align = "center"}
 
-knitr::include_graphics("images/RStudio.jpg")
+knitr::include_graphics("images/RStudio_2.jpg")
 ```
   <section style="text-align: center;"><small>Ilustracíon hecha por <font color = "black"><u>@allison_horst</u></font>.</small></section>
   </div>
@@ -548,7 +548,7 @@ Además de usar proyectos, también es una buena práctica estructurar el direct
 carpeta <- readJPEG('images/imagen_carpeta.jpg', native = TRUE)
 carpeta <- rasterGrob(carpeta, interpolate = FALSE)
 
-rstudio_imagen <- readJPEG('images/rstudio.jpg', native = TRUE)
+rstudio_imagen <- readJPEG('images/rstudio_1.jpg', native = TRUE)
 rstudio_imagen <- rasterGrob(rstudio_imagen, interpolate = FALSE)
 
 data.frame(
@@ -2305,7 +2305,312 @@ grade_code("Excelente lo lograste, sigamos adelante")
 
 </details>
 
-## 3. Bucles, funciones y condiciones 
+## 3. Condiciones, bucles y funciones
+
+En esta sección aprenderemos a crear y utilizar funciones de usuario, bucles y condicionales que nos permitan automatizar nuestra manipulación y análisis de datos. Además esta sección nos permitirá entender cómo trabajan algunas de las funciones que conocemos, dejándonos entender y manipular mejor el `R` como lenguaje de programación. Cuando utilizamos programación para resolver algún problema académico, laboral u de otra índole es común encontrarnos con particularidades que corresponde únicamente a nuestro problema, por ello en muchos casos funciones generales o procesos generales no aplican para nuestra situación, es allí donde entran las famosas funciones de usuario que conoceremos a lo largo de la sección. La sección cuenta con cuatro subsecciones 1) Condicionales, 2) Bucles, 3) Funciones y 4) Colección, donde la última posee una recapitulación de ejercicios y ejemplos de  las subsecciones anteriores.
+
+* Algunas de las funciones nuevas que utilizaremos en esta sección deberás consultar en la ayuda de `R` , cada vez que no entiendas un función que utilicemos puedes ejecutar un comando de la forma `?mean()` 
+
+* Para los ejercicios de esta sección existen muchas posibles soluciones que realicen la misma tarea planteada, sin embargo en `Solution` encontrarás solo una de todas las posibles.
+
+<details><summary>3.1 Condicionales </summary> 
+
+Son conocidos como construcciones y se articulan con los operadores lógicos, de conjunción y de disyunción. Utilizan expresiones lógicas para denotar diferentes alternativas, es decir, funcionan como una condición a partir de la expresión lógica.La primera función que utilizaremos será `if(){}` acompañada de `print()`. Para ello recordemos con un ejemplo expresiones lógicas que ya conocemos y agreguemos la sintaxis de una condición para utilizar estas nuevas funciones. 
+
+:::example
+#### Ejemplo 3.1.1
+:::
+
+```{r addition_311, exercise = TRUE}
+#Expresiones logicas
+35 > 20
+35 != 35.4
+#Condiciones
+if(35>20) {print("Es mayor a 20")}
+if(35 != 35.4) {print("Son diferentes")}
+```
+
+Como vimos con el ejemplo la condición evalúa la expresión lógica correspondiente, en el primer caso, si 35 es mayor a 20 imprime “Es mayor”, en el segundo si 35 es diferente a 35.4 imprime “Son diferentes”. Esta sintaxis aplica para cualquier condición `si la expresión lógica se cumple realice determinada acción`, en nuestro caso la acción es imprimir, pero podemos ejecutar cualquier acción que necesitemos.
+
+Veamos qué acciones podemos ejecutar si nuestra expresión lógica no se cumple, para esto nos valdremos del argumento `else{}`. Utilicemos uno de los ejemplos anteriores para visualizarlo.
+
+:::example
+#### Ejemplo 3.1.2
+:::
+
+```{r addition_312, exercise = TRUE}
+#Se cumple la expresion logica
+if(35>20) {
+  print("Es mayor a 20")
+} else {
+  print("Es menor a 20")
+}
+#No se cumple la expresion logica
+if(10>20) {
+  print("Es mayor a 20")
+} else {
+  print("Es menor a 20")
+}
+```
+
+La sintaxis para este caso tendría una modificación, siendo expresada por `si expresión lógica se cumple realice determinada acción, de lo contrario realice otra acción`, en este caso en especifico seria, si determinado numero es mayor a 20 imprima es mayor de lo contrario imprima es menor. Podríamos además agregar una condición extra en la que verifiquemos si el número es igual a 20, para ello podemos valernos del argumento `else if{}`. Para evidenciar su funcionamiento te invito a que cambies el valor de `x` por distintos números incluyendo el 20.
+
+```{r addition_3121, exercise = TRUE}
+#para cada modificacion de x ejecute "Run code"
+x = 18
+if(x>20) {
+  print("Es mayor a 20")
+} else if (x==20){
+  print("Es igual a 20")
+}else {
+  print("Es menor a 20")
+}
+```
+
+A continuación trabajaremos con acciones diferentes a `print()` y utilizaremos conceptos de operaciones básicas que manejamos anteriormente, usando además una función nueva denominada `paste()`. Para este ejemplo `x` es el número de rosas compradas en una floristería, en la cual se tiene una oferta, si se compran más de 10 rosas se regalan 3 rosas, si se compran exactamente 10 se regala una rosa, de lo contrario el cliente solo se lleva las rosas que compro. Para evidenciar su funcionamiento te invito a que cambies el valor de `x` por distintos números.
+
+:::example
+#### Ejemplo 3.1.3
+:::
+
+```{r addition_313, exercise = TRUE}
+#para cada modificacion de x ejecute "Run code"
+x = -13
+if(x<=0) {
+  paste(x,"no es un número de compra valido")
+} else if (x==10){
+  print("Llevarás una rosa extra")
+  paste("Total de Rosas:",x+1)
+} else if(x>10){
+  print("Llevarás tres rosas extra")
+  paste("Total de Rosas:",x+3)
+}else {
+  print("Llevarás las rosas que compraste")
+  paste("Total de Rosas:",x)
+}
+```
+
+Trabajemos ahora un ejercicio similar, en el cual hay una oferta del 50% en bolsas de comida de perro y un descuento del 10% adicional si se compran por lo menos 10 bolsas de comida. El precio normal de una bolsa de comida son 6800 pesos, `x` corresponde al número de bolsas de comida. Si se ejecuta el código con `x=0` se debe imprimir en pantalla "No es un número de compra válido" , con `x=8` "Total a pagar: 27200" y con `x=20` "Total a pagar: 54400".
+
+:::exercise
+#### Ejercicio 3.1.1
+:::
+
+```{r exe_311, exercise = TRUE}
+#para cada modificacion de x ejecute "Run code"
+x <- 0
+precio = 6800
+```
+
+```{r exe_311-solution}
+#para cada modificacion de x ejecute "Run code"
+x <- 0
+precio = 6800
+if(x<= 0){
+  paste("No es un número de compra válido")
+} else if (x<10){
+  cobro = x*.5*precio
+  paste("Total a pagar:",cobro)
+} else{
+  cobro = x*.4*precio
+  paste("Total a pagar:",cobro)
+}
+```
+
+```{r exe_311-check}
+grade_code("Excelente lo lograste, sigamos adelante")
+```
+
+Ya vimos como trabajar con condiciones numéricas y algunos operadores lógicos, veamos cómo trabajar con coincidencias exactas con caracteres. Retomemos el ejercicio anterior, añadiendo que los descuentos solo aplican en dias especificos, para diferenciar cuando se aplica o no el descuento se creo la variable `des` que puede ser “Hay descuento” o “No hay descuento”, veamos como funcionaria con esta nueva condición al variar los valores de `x` y cambiar los valores de `des` por las dos opciones válidas.
+
+:::example
+#### Ejemplo 3.1.4
+:::
+
+```{r addition_314, exercise = TRUE}
+#para cada modificacion de x y/o des ejecute "Run code"
+x <- 10
+precio = 6800
+des = "Hay descuento"
+#Cuando no hay descuento
+if(des == "No hay descuento"){
+  if(x<= 0){
+  paste("No es un número de compra válido")
+  } else{
+  cobro = x * precio
+  paste("Total a pagar:",cobro)  
+  }
+#Cuando hay descuento
+} else if(des == "Hay descuento"){
+  if(x<= 0){
+  paste("No es un número de compra válido")
+} else if (x<10){
+  cobro = x*.5*precio
+  paste("Total a pagar:",cobro)
+} else{
+  cobro = x*.4*precio
+  paste("Total a pagar:",cobro)
+}
+#Opcion de clasificación no valida
+} else {
+  paste(des,"No es un opción válida de clasificación de descuento")
+}
+```
+
+Este ejemplo contiene una condición principal, que es si hay descuento o no;  dependiendo de ella se despliega el cobro con o sin descuento con condiciones para cada caso, esta forma de incluir condiciones dentro de otras condiciones se conoce como __anidar__ y aplica también para funciones, procesos y bucles. Para solucionar problemas con condicionales podemos apoyarnos de los diagramas de flujo como el siguiente, que simplifica el proceso cuando las entradas son correctas.
+
+![](./images/comida_perro.png)
+
+Vamos con un ejercicio similar, en el que una heladería ofrece descuentos del 25% sobre  el total de la compra los días lunes, martes y miércoles, adicionalmente si la compra supera el valor de 50.000 ofrece un 10% adicional de descuento, los otros días de la semana ofrece un 15% de descuento sobre el total de la compra si esta supera el valor de 60.000.  el programa debe arrojar el total, el descuento y el total con descuento en cualquiera de los casos. Si se hacen las siguientes compras el programa debe dar las salidas enunciadas:
+
+* Domingo total de la compra 69500:
+  * "Total: 69500"
+  * "Descuento: 10425"
+  * "Total con descuento: 59075"
+
+* Lunes total de la compra 71350
+  * "Total: 71350"
+  * "Descuento: 24972.5"
+  * "Total con descuento: 46377.5"
+  
+* Miercoles total de la compra 33700
+  * "Total: 33700"
+  * "Descuento: 8425"
+  * "Total con descuento: 25275"
+
+:::exercise
+#### Ejercicio 3.1.2
+:::
+
+```{r exe_312, exercise = TRUE}
+#para cada modificacion del dia y del valor total de la compra ejecute "Run code"
+
+```
+
+```{r exe_312-solution}
+#para cada modificacion del dia y del valor total de la compra ejecute "Run code"
+#Recuerda esta es solo una posible solucion 
+dia = "Miercoles"
+total_compra = 33700
+if(dia =="Lunes" | dia =="Martes" | dia =="Miercoles" ){
+  if(total_compra<=0){
+    print("No es un valor de compra válido")
+  } else if(total_compra>50000){
+    descuento = total_compra * .35
+    nuevo_total = total_compra - descuento
+    print(paste("Total:", total_compra))
+    print(paste("Descuento:", descuento))
+    print(paste("Total con descuento:",nuevo_total))
+  } else{
+    print(paste("Total:", total_compra))
+    print(paste("Descuento:", total_compra * .25))
+    print(paste("Total con descuento:",total_compra*.75))
+  }
+} else if(dia =="Jueves" | dia =="Viernes" | dia =="Sabado" | dia =="Domingo"){
+  if(total_compra<=0){
+    print("No es un valor de compra válido")
+  } else if (total_compra>60000){
+    print(paste("Total:", total_compra))
+    print(paste("Descuento:", total_compra * .15))
+    print(paste("Total con descuento:",total_compra*.85)) 
+  } else{
+    print(paste("Total:", total_compra))
+    print(paste("Descuento:", total_compra * 0))
+    print(paste("Total con descuento:",total_compra))     
+  }
+} else{
+  print("No es una dia de la semana valido")
+}
+```
+
+```{r exe_312-check}
+grade_code("Excelente lo lograste, sigamos adelante")
+```
+
+En los anteriores ejemplos debíamos cambiar los valores para cada caso, ahora veamos cómo utilizar el código ágilmente sobre un o unos vectores para obtener resultados en simultaneo para cada caso. Retomemos entonces el ejemplo 3.1.2 para utilizar la función `ifelse()` y comparar varios números al mismo tiempo.
+
+:::example
+#### Ejemplo 3.1.5
+:::
+
+```{r addition_315, exercise = TRUE}
+#vector de prueba
+numeros <- c(35,10,18,70,80,5,18,34,19)
+#comparacion
+ifelse(test = numeros>20,yes = paste("Es mayor a 20"),no = paste("Es menor a 20"))
+```
+
+Veamos la adaptación para el ejemplo con la condición de igualdad con el numero 20.
+
+```{r addition_3151, exercise = TRUE}
+#vector de prueba
+numeros <- c(35,10,18,20,70,80,5,18,34,19,20)
+#comparacion
+ifelse(test = numeros==20,yes = paste("Es igual a 20"),no = 
+         ifelse(numeros>20,paste("Es mayor a 20"),paste("Es menor a 20")))
+```
+
+En ejemplos simples como este es fácil adaptar, la función `ifelse()` para usarla con vectores, sin embargo ya hemos trabajado ejemplos un poco más elaborados en los que modificamos las variables y obtenemos unas nuevas, para estos últimos esta función es difícil de adaptar y tenemos que valernos de los bucles que aprenderemos en la siguiente subsección.
+
+Para seguir con los condicionales realiza el siguiente ejercicio usando `ifelse()`, en él debes encontrar los números pares de un vector de prueba, imprimiendo en pantalla la afirmación “Es par” cuando cumpla la condición, y “No es par” cuando no lo haga.
+
+:::exercise
+#### Ejercicio 3.1.3
+:::
+
+```{r exe_313, exercise = TRUE}
+#vector de prueba
+vec <- c(20,17,48,03,95,47,97,65,46,24,98,14,86,93,75,200,350,257,301,1,3,5,12,2)
+#condicion
+```
+
+```{r exe_313-solution}
+#vector de prueba
+vec <- c(20,17,48,03,95,47,97,65,46,24,98,14,86,93,75,200,350,257,301,1,3,5,12,2)
+#condicion
+ifelse(vec%%2==0,paste("Es par"),paste("No es par"))
+```
+
+```{r exe_313-check}
+grade_code("Excelente lo lograste, sigamos adelante")
+```
+
+Como último ejercicio de esta subsección debes utilizar `ifelse()` para clasificar los números en determinado rango, de tal manera que para los números en entre 20 y 60 en el vector de prueba se imprima “Están en el intervalo” y para los que no estén entre 20 y 60 se imprima “No están en el intervalo”.
+
+:::exercise
+#### Ejercicio 3.1.4
+:::
+
+```{r exe_314, exercise = TRUE}
+#vector de prueba
+vec <- seq(1,100,length.out = 20)
+#condicion
+```
+
+```{r exe_314-solution}
+#vector de prueba
+vec <- seq(1,100,length.out = 20)
+#condicion
+ifelse(vec>20 & vec<60,paste("Está en el intervalo"),paste("No está en el intervalo"))
+```
+
+```{r exe_314-check}
+grade_code("Excelente lo lograste, sigamos adelante")
+```
+
+</details>
+
+<details><summary>3.2 Bucles </summary> 
+
+</details>
+
+<details><summary>3.3 Funciones </summary> 
+
+</details>
+
+<details><summary>3.4 Colección </summary> 
+
+</details>
 
 ## 4. Datos ordenados y el tidyverse
 
@@ -3661,19 +3966,9 @@ Cita de datos: Gorman KB, Williams TD, Fraser WR (2014) Dimorfismo sexual ecoló
 
 Estructura general de lo datos: A continuación podrá hechar un vistazo de la estructura del conjunto de datos `penguins`:
 
-```{r, echo = FALSE, eval = FALSE, message = FALSE}
-
-penguins <- palmerpenguins::penguins
-penguins
-```
-
-```{r,eval=FALSE}
-save(penguins, file = "data_pkg/penguins.rda")
-```
-
 ```{r datos_pinguinos, exercise = TRUE}
 
-penguins
+palmerpenguins::penguins
 ```
 
   1) En `species`podrá encontrar las tres especies existentes del genéro de pingüinos _Pygoscelis_.
@@ -6510,6 +6805,193 @@ Si deseas ver un resumen de las posibilidades que ofrece el paquete `dplyr` y pr
 
 ## 6. Visualización de datos
 
+### 6.1 
 
+```{r, echo = FALSE, eval = TRUE, message = FALSE, fig.align = 'center', out.width = '440', fig.showtext = TRUE}
 
+Diamante_1 <- data.frame(
+  x = c(3.0, 5.0, 7.0, 5.0), y = c(2.0, 4.0, 2.0, 0.0)
+)
 
+Diamante_2 <- data.frame(
+  x = c(3.0, 5.0, 7.0, 5.0), y = c(4.5, 6.5, 4.5, 2.5)
+)
+
+Diamante_3 <- data.frame(
+  x = c(3.0, 5.0, 7.0, 5.0), y = c(7.0, 9.0, 7.0, 5.0)
+)
+
+punto <- data.frame(
+  x = 5.0, y = 7.8 
+)
+
+triangulo <- data.frame(
+  x = 4.6, y = 7.3 
+)
+
+cuadrado <- data.frame(
+  x = 5.4, y = 6.5
+)
+
+Diamante_4 <- data.frame(
+  x = c(3.0, 5.0, 7.0, 5.0), y = c(9.5, 11.5, 9.5, 7.5)
+)
+
+rombo_1 <- data.frame(
+  x = c(3.8, 4.2, 4.6, 4.2), y = c(9.5, 9.9, 9.5, 9.1)
+)
+
+rombo_2 <- data.frame(
+  x = c(4.2, 4.6, 5.0, 4.6), y = c(9.9, 10.3, 9.9, 9.5)
+)
+
+rombo_3 <- data.frame(
+  x = c(4.6, 5.0, 5.4, 5.0), y = c(10.3, 10.7, 10.3, 9.9)
+)
+
+rombo_4 <- data.frame(
+  x = c(4.2, 4.6, 5.0, 4.6), y = c(9.1, 9.5, 9.1, 8.7)
+)
+
+rombo_5 <- data.frame(
+  x = c(4.6, 5.0, 5.4, 5.0), y = c(9.5, 9.9, 9.5, 9.1)
+)
+
+rombo_6 <- data.frame(
+  x = c(5.0, 5.4, 5.8, 5.4), y = c(9.9, 10.3, 9.9, 9.5)
+)
+
+rombo_7 <- data.frame(
+  x = c(4.6, 5.0, 5.4, 5.0), y = c(8.7, 9.1, 8.7, 8.3)
+)
+
+rombo_8 <- data.frame(
+  x = c(5.0, 5.4, 5.8, 5.4), y = c(9.1, 9.5, 9.1, 8.7)
+)
+
+rombo_9 <- data.frame(
+  x = c(5.4, 5.8, 6.2, 5.8), y = c(9.5, 9.9, 9.5, 9.1)
+)
+
+Diamante_5 <- data.frame(
+  x = c(3.0, 5.0, 7.0, 5.0), y = c(12.0, 14.0, 12.0, 10.0)
+)
+
+barras_1 <- data.frame(
+  x = c(3.4, 5.0, 5.4, 3.8), y = c(12.0, 13.6, 13.2, 11.6)
+)
+
+barras_2 <- data.frame(
+  x = c(3.8, 5.0, 5.4, 4.2), y = c(11.6, 12.8, 12.4, 11.2)
+)
+
+barras_3 <- data.frame(
+  x = c(4.2, 5.0, 5.4, 4.6), y = c(11.2, 12.0, 11.6, 10.8)
+)
+
+barras_4 <- data.frame(
+  x = c(4.6, 5.0, 5.4, 5.0), y = c(10.8, 11.2, 10.8, 10.4)
+)
+
+Diamante_6 <- data.frame(
+  x = c(3.0, 5.0, 7.0, 5.0), y = c(14.5, 16.5, 14.5, 12.5)
+)
+
+Diamante_7 <- data.frame(
+  x = c(3.0, 5.0, 7.0, 5.0), y = c(17.0, 19.0, 17.0, 15.0)
+)
+
+rombo_10 <- data.frame(
+  x = c(3.8, 4.4, 5.0, 4.4), y = c(17.0, 17.6, 17.0, 16.4)
+)
+
+rombo_11 <- data.frame(
+  x = c(4.4, 5.0, 5.6, 5.0), y = c(17.6, 18.2, 17.6, 17.0)
+)
+
+rombo_12 <- data.frame(
+  x = c(4.4, 5.0, 5.6, 5.0), y = c(16.4, 17.0, 16.4, 15.8)
+)
+
+rombo_13 <- data.frame(
+  x = c(5.0, 5.6, 6.4, 5.6), y = c(17.0, 17.6, 17.0, 16.4)
+)
+
+data.frame(
+  x = c(0.0:10.0), y = c(0.0:10.0)
+) %>%
+  ggplot(aes(x, y)) +
+  geom_blank() +
+  geom_polygon(data = Diamante_1, aes(x = x, y = y), fill = 'yellow', colour = 'yellow', alpha = 0.2) +
+  annotate(geom = 'text', x = 5.25, y = 3.2, label = '192.45', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 5.695, y = 2.715, label = '0.245', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 6.1, y = 2.25, label = '6.223', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 5.0, y = 2.95, label = '263.21', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 5.445, y = 2.465, label = '0.444', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 5.85, y = 2.0, label = '8.224', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 4.75, y = 2.70, label = '532.34', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 5.195, y = 2.215, label = '0.348', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 5.60, y = 1.75, label = '1.229', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 4.50, y = 2.45, label = '643.09', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 4.945, y = 1.965, label = 'NA', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 5.35, y = 1.50, label = '0.983', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 4.25, y = 2.20, label = '325.11', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 4.695, y = 1.715, label = '0.356', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 5.10, y = 1.25, label = '3.205', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 4.0, y = 1.95, label = '867.42', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 4.445, y = 1.465, label = 'NA', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  annotate(geom = 'text', x = 4.85, y = 1.0, label = '3.017', family = 'gochi', size = 8.0, colour = 'black', angle = -7) +
+  geom_polygon(data = Diamante_2, aes(x = x, y = y), fill = 'cyan', colour = 'cyan', alpha = 0.2) +
+  annotate(geom = 'text', x = 4.9, y = 5.4, label = 'A', family = 'gochi', size = 16.0, colour = 'black', angle = -32) +
+  annotate(geom = 'text', x = 5.75, y = 4.45, label = 'X', family = 'gochi', size = 16.0, colour = 'black', angle = -32) +
+  geom_curve(x = 5.0, xend = 5.65, y = 5.4, yend = 4.45, arrow = arrow(length = unit(0.1, 'inch')), size = 1.0, color = 'black', curvature = 0.0) +
+  annotate(geom = 'text', x = 4.1, y = 4.6, label = 'B', family = 'gochi', size = 16.0, colour = 'black', angle = -60) +
+  annotate(geom = 'text', x = 4.95, y = 3.65, label = 'Y', family = 'gochi', size = 16.0, colour = 'black', angle = -60) +
+  geom_curve(x = 4.2, xend = 4.85, y = 4.6, yend = 3.65, arrow = arrow(length = unit(0.1, 'inch')), size = 1.0, color = 'black', curvature = 0.0) +
+  geom_polygon(data = Diamante_3, aes(x = x, y = y), fill = 'red', colour = 'red', alpha = 0.2) +
+  geom_point(data = punto, aes(x = x, y = y), pch = 21, colour = 'black', fill = 'black', alpha = 1.2, size = 6.8) +
+  geom_point(data = triangulo, aes(x = x, y = y), pch = 25, colour = 'black', fill = 'black', alpha = 1.2, size = 6.2) +
+  geom_point(data = cuadrado, aes(x = x, y = y), pch = 22, colour = 'black', fill = 'black', alpha = 1.2, size = 6.8) +
+  annotate(geom = 'segment', x = 4.8, xend = 5.6, y = 6.6, yend = 7.6, colour = 'black', size = 1.2) +
+  geom_polygon(data = Diamante_4, aes(x = x, y = y), fill = 'green', colour = 'green', alpha = 0.2) +
+  geom_polygon(data = rombo_1, aes(x = x, y = y), fill = 'white', colour = 'black', alpha = 1.2) +
+  geom_polygon(data = rombo_2, aes(x = x, y = y), fill = 'white', colour = 'black', alpha = 1.2) +
+  geom_polygon(data = rombo_3, aes(x = x, y = y), fill = 'white', colour = 'black', alpha = 1.2) +
+  geom_polygon(data = rombo_4, aes(x = x, y = y), fill = 'white', colour = 'black', alpha = 1.2) +
+  geom_polygon(data = rombo_5, aes(x = x, y = y), fill = 'white', colour = 'black', alpha = 1.2) +
+  geom_polygon(data = rombo_6, aes(x = x, y = y), fill = 'white', colour = 'black', alpha = 1.2) +
+  geom_polygon(data = rombo_7, aes(x = x, y = y), fill = 'white', colour = 'black', alpha = 1.2) +
+  geom_polygon(data = rombo_8, aes(x = x, y = y), fill = 'white', colour = 'black', alpha = 1.2) +
+  geom_polygon(data = rombo_9, aes(x = x, y = y), fill = 'white', colour = 'black', alpha = 1.2) +
+  geom_polygon(data = Diamante_5, aes(x = x, y = y), fill = 'gray48', colour = 'gray48', alpha = 0.2) +
+  geom_polygon(data = barras_1, aes(x = x, y = y), fill = 'black', colour = 'black', alpha = 0.6) +
+  geom_polygon(data = barras_2, aes(x = x, y = y), fill = 'black', colour = 'black', alpha = 0.6) +
+  geom_polygon(data = barras_3, aes(x = x, y = y), fill = 'black', colour = 'black', alpha = 0.6) +
+  geom_polygon(data = barras_4, aes(x = x, y = y), fill = 'black', colour = 'black', alpha = 0.6) +
+  geom_polygon(data = Diamante_6, aes(x = x, y = y), fill = 'yellow', colour = 'yellow', alpha = 0.2) +
+  geom_curve(x = 3.8, xend = 5.0, y = 14.45, yend = 13.30, arrow = arrow(length = unit(0.1, 'inch')), size = 1.2, color = 'black', curvature = 0.0) +
+  geom_curve(x = 3.8, xend = 5.2, y = 14.45, yend = 15.35, arrow = arrow(length = unit(0.1, 'inch')), size = 1.2, color = 'black', curvature = 0.0) +
+  geom_polygon(data = Diamante_7, aes(x = x, y = y), fill = 'cyan', colour = 'cyan', alpha = 0.2) +
+  geom_polygon(data = rombo_10, aes(x = x, y = y), fill = 'red', colour = 'red', alpha = 0.6) +
+  geom_polygon(data = rombo_11, aes(x = x, y = y), fill = 'yellow', colour = 'yellow', alpha = 0.6) +
+  geom_polygon(data = rombo_12, aes(x = x, y = y), fill = 'green', colour = 'green', alpha = 0.6) +
+  geom_polygon(data = rombo_13, aes(x = x, y = y), fill = 'cyan', colour = 'cyan', alpha = 0.6) +
+  annotate(geom = 'text', x = 6.8, y = 1.2, label = 'Datos', angle = 10, family = 'gochi', size = 12.0, colour = 'black') +
+  annotate(geom = 'text', x = 6.6, y = 3.6, label = 'Estética', angle = 10, family = 'gochi', size = 12.0, colour = 'black') +
+  annotate(geom = 'text', x = 6.5, y = 6.1, label = 'Geometrías', angle = 10, family = 'gochi', size = 12.0, colour = 'black') +
+  annotate(geom = 'text', x = 6.6, y = 8.6, label = 'Facetas', angle = 10, family = 'gochi', size = 12.0, colour = 'black') +
+  annotate(geom = 'text', x = 6.4, y = 11.1, label = 'Estadísticas', angle = 10, family = 'gochi', size = 12.0, colour = 'black') +
+  annotate(geom = 'text', x = 6.5, y = 13.6, label = 'Coordenadas', angle = 10, family = 'gochi', size = 12.0, colour = 'black') +
+  annotate(geom = 'text', x = 6.8, y = 16.2, label = 'Tema', angle = 10, family = 'gochi', size = 12.0, colour = 'black') +
+  #scale_y_continuous(limits = c(-5.8, 6.0)) +
+  scale_x_continuous(limits = c(3.0, 7.0)) +
+  theme_void() +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank())
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
+
+knitr::include_graphics("images/ggplot2_3.png")  
+```

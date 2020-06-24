@@ -3,7 +3,7 @@
 \docType{data}
 \name{carlos_fam}
 \alias{carlos_fam}
-\title{Lista con datos erróneos para corregir}
+\title{Lista con datos erróneos de la familia de Carlos}
 \format{
 Una lista que contiene 3 listas (grupos) cada una con las tres mismas variables
 con inofrmación de la familia de carlos:

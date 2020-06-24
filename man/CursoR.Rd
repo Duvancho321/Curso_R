@@ -5,7 +5,12 @@
 \alias{CursoR}
 \title{Un Curso Amigable Para R}
 \description{
-Contiene un Curso amigable para R enfocado especialmente en el tidyverse
+Contiene un Curso amigable para R enfocado especialmente en el tidyverse.
+}
+\details{
+Para su uso ejecute:
+
+learnr::run_tutorial("Curso_R1", package = "CursoR")
 }
 \author{
 Leonardo Lopez \email{jollopezma@unal.edu.co} & Duvan Nieves \email{dnieves@unal.edu.co}
