@@ -28,7 +28,6 @@ Imports:
     knitr (>= 1.28),
     shiny (>= 1.4.0.2),
     rmarkdown (>= 2.3),
-    CursoR (>= 0.1.0),
     DSR (>= 0.1),
     fontawesome (>= 0.1.0),
     gradethis (>= 0.1.0.9002),
