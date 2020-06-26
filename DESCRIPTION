@@ -12,12 +12,13 @@ Authors@R:
              role = "aut",
              email = "jollopezma@unal.edu.co"))
 URL: https://github.com/Duvancho321/Curso_R
+Date: 2020-06-30 23:59:03 UTC
 Depends: 
     R (>= 3.5.0)
 Imports: 
     learnr,
     showtext,
-    patchwork,
+    patchwork (>= 1.0.0),
     kableExtra,
     magrittr (>= 1.5),
     rlang (>= 0.4.6),
@@ -54,3 +55,5 @@ Remotes:
     rstudio/fontawesome,
     rstudio-education/gradethis,
     allisonhorst/palmerpenguins
+Suggests: 
+    testthat
