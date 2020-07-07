@@ -18,8 +18,6 @@ remotes::install_github("Duvancho321/Curso_R")
 
 ## Recomendaciones
 
-  - En algunos casos, el curso presenta inconvenientes con la última  versión de R relacionados con la ubicación de los archivos, en estos caso recomendamos utilice `R` versión 3.6.3.
-    
   - Para usuarios de __Windows__ recomendamos instalar `Rtools` para mayor compatibilidad. Podrá encontrar la versión correspondiente a su versión de `R` [Aquí](https://cran.r-project.org/bin/windows/Rtools/history.html).
   
   - Si es usuario de __Windows__ y tiene problemas instalando el paquete del curso, es probable que se deba al paquete `backports`, para solucionarlo elimine la carpeta con el nombre "backports", de modo que para una versión de `R` 3.6  elimine la carpeta que se encuentra en `C:\Users\<su usuario>\Documents\R\win-library\3.6\`, después ejecute:
@@ -28,6 +26,8 @@ remotes::install_github("Duvancho321/Curso_R")
       install.packages("backports")
       remotes::install_github("Duvancho321/Curso_R")
       ```
+
+  - En algunos casos, el curso presenta inconvenientes con la última  versión de R relacionados con la ubicación de los archivos, en estos caso recomendamos utilice `R` versión 3.6.3.
 
   - Si los problemas persisten y no encuentra solución en las anteriores recomendaciones le recomendamos utilizar [rstudiocloud](https://rstudio.cloud/). Puede registrarse usando su cuenta de google o de GitHub
     [Aquí](https://login.rstudio.cloud/register?redirect=https%3A%2F%2Fclient.login.rstudio.cloud%2Foauth%2Flogin%3Fshow_auth%3D0%26show_login%3D1%26show_setup%3D1)
