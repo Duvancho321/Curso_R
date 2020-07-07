@@ -26,10 +26,10 @@ descuento_perros <- function(bolsas,descuentos,to_vector = FALSE){
   for( i in seq_along(bolsas)){
     cobro = 6800*bolsas[i]
     if(bolsas[i]<=0){
-      stop(paste("El número de bolsas en la posición",i,"no es válido"))
+      stop(paste("El numero de bolsas en la posicion",i,"no es valido"))
     }
     if(descuentos[i]!=0 &descuentos[i]!=1){
-      stop(paste("El código de descuento en la posición",i,"no es válido"))
+      stop(paste("El codigo de descuento en la posicion",i,"no es valido"))
     }
     if(descuentos[i]==1 & bolsas[i]<10){
       cobro = cobro *.5

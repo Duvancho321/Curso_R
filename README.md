@@ -47,8 +47,7 @@ remotes::install_github("allisonhorst/palmerpenguins")
 
   - En sistemas operativos diferentes de Linux, puede presentarse
     errores en la ejecución del curso. Si tiene problemas, le
-    recomendamos utilizar [rscloud](https://rstudio.cloud/) con versión
-    de R 3.6.3. Puede registrarse usando su cuenta de google o de GitHub
+    recomendamos utilizar [rstudiocloud](https://rstudio.cloud/). Puede registrarse usando su cuenta de google o de GitHub
     [Aquí](https://login.rstudio.cloud/register?redirect=https%3A%2F%2Fclient.login.rstudio.cloud%2Foauth%2Flogin%3Fshow_auth%3D0%26show_login%3D1%26show_setup%3D1)
 
 ## Guia de uso
@@ -71,7 +70,7 @@ learnr::run_tutorial("Curso_R1", package = "CursoR")
     como “Un curso amigable sobre R” en la sección de `Tutorial` y
     ejecutarlo con un click en **Start Tutorial ▷**
 
-![](vignettes/Run.png)
+![](man/figures/Run.png)
 
 ## Sobre los autores
 

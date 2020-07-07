@@ -29,10 +29,10 @@ descuento_helados <- function(dias,totales){
   for (i in seq_along(dias)){
     descuento = 0
     if(totales[i]<=0){
-      stop(paste("El valor proporcionado en la posición",i,"no es válido"))
+      stop(paste("El valor proporcionado en la posicion",i,"no es valido"))
     }
     if(!dias[i] %in% dias_semana ){
-      stop(paste("El día proporcionado en la posición",i,"no es válido"))
+      stop(paste("El dia proporcionado en la posicion",i,"no es valido"))
     }else if(dias[i] %in% dias_semana[1:3]){
       descuento = descuento + .25
       if (totales[i]>50000){

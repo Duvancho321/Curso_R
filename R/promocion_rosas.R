@@ -18,12 +18,12 @@ promocion_rosas <- function(rosas){
   for (i in seq_along(rosas)){
     rosas_total = rosas[i]
     if (rosas[i]<=0){
-      stop(paste("El número de rosas en la posición",i,"no es válido"))
+      stop(paste("El numero de rosas en la posicion",i,"no es valido"))
     }else if(rosas[i]==10){
       rosas_total = rosas[i] + 1
     }else if(rosas[i]>10){
       rosas_total = rosas[i] +3
     }
-    print(paste("levarás",rosas_total - rosas[i], "rosas extra, total de rosas",rosas_total))
+    print(paste("levaras",rosas_total - rosas[i], "rosas extra, total de rosas",rosas_total))
   }
 }
