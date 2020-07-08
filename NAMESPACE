@@ -3,3 +3,4 @@
 export(descuento_helados)
 export(descuento_perros)
 export(promocion_rosas)
+import(tidyverse)

@@ -11,4 +11,6 @@
 #' @author Leonardo Lopez \email{jollopezma@unal.edu.co} & Duvan Nieves \email{dnieves@unal.edu.co}
 #'
 #' @name CursoR
+#'
+#' @import tidyverse
 NULL
