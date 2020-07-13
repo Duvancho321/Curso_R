@@ -229,3 +229,99 @@
 #' Datos originales en R obtenidos en DSR::who
 #'
 "Tuberculosis"
+
+
+#' Datos sobre Pokémon
+#'
+#' Los datos fueron obtenidos desde Kaggle y la Pokémon Database.
+#' El dataset fue propuesto, traducido y editado por Gonzalo Fichero para
+#' datos de miércoles semana 14 y se adapto al paquete.El dataset contiene
+#' datos sobre las características de 800 pokémon.
+#'
+#'
+#' @format Conjunto de información de 800 pokémon
+#'
+#' \describe{
+#'   \item{id}{ID de cada pokémon (numérica)}
+#'   \item{nombre}{Nombre en español (caracter)}
+#'   \item{tipo}{Tipo de pokémon (caracter)}
+#'   \item{tipo_2}{Algunos pokémon son de dos tipos. Para el resto, esta variable aparece como NA (caracter)}
+#'   \item{ataque}{Daño en ataques normales (numérica)}
+#'   \item{defensa}{Resistencia al daño ante ataques normales (numérica)}
+#'   \item{velocidad}{Determina qué pokémon ataca primero en cada ronda (numérica)}
+#'   \item{puntos_vida}{Cantidad de daño que puede resistir (numérica)}
+#' }
+#'
+#'
+#' @source \url{https://github.com/cienciadedatos/datos-de-miercoles/tree/master/datos/2019/2019-07-10}
+#'
+#' @aliases pokemon_2
+#'
+"pokemon"
+
+
+#' Datos de polígono para estados de USA
+#'
+#'
+#' Este conjunto de datos contiene estadísticas sobre arrestos por cada 100,000
+#' residentes por asalto, asesinato y violación en cada uno de los 50 estados
+#' de EE. UU. En 1973. También se da el porcentaje de la población que
+#' vive en áreas urbanas y se proporciona información de polígono para
+#' gráfico.
+#'
+#' @format Conjunto de información de homicidios en Colombia año 2013
+#'
+#' \describe{
+#'   \item{region}{nombre del estado}
+#'   \item{murder}{Detenciones por asesinato (por cada 100,000)}
+#'   \item{Assault}{Detenciones de asalto (por 100,000)}
+#'   \item{UrbanPop}{porcentaje de población urbana}
+#'   \item{Rape}{Detenciones por violación (por 100,00)}
+#'   \item{long}{valores de longitud para polígono}
+#'   \item{lat}{valores de latitud para polígono}
+#'   \item{group}{código indicativo de departamento}
+#'   \item{order}{orden de las lineas del poligono por grupo}
+#'   \item{subregion}{subregion}
+#' }
+#'
+#'
+#' @source
+#'
+#' Datos originales en R obtenidos en datasets::USArrests y ggplot2::map_data("state")
+#'
+"USArrests"
+
+
+#' Datos de polígono para departamentos de Colombia
+#'
+#'
+#'Los datos fueron obtenidos de dos paquetes `colmaps` y `homicidios` de
+#'Daniel Moreno, contiene datos de homicidios en colombia del año
+#'2013 para cada departamento incluyendo su población para la fecha.
+#'
+#' @format Conjunto de información de homicidios en Colombia año 2013
+#'
+#' \describe{
+#'   \item{long}{valores de longitud para polígono}
+#'   \item{lat}{valores de latitud para polígono}
+#'   \item{order}{orden de las lineas del poligono por grupo}
+#'   \item{hole}{TRUE:hueco; FALSE: no hueco}
+#'   \item{piece}{código de pieza en el dataset}
+#'   \item{group}{código indicativo de departamento}
+#'   \item{id}{id de departamento}
+#'   \item{depto}{nombre del departamento}
+#'   \item{lab_long}{valor de longitud para etiqueta de departamento}
+#'   \item{lab_lat}{valor de latitud para etiqueta de departamento}
+#'   \item{poblacion}{población de cada departamento en 2013}
+#'   \item{homicidios}{número de homicidios en 2013 para cada departamento}
+#'   \item{tasa}{número de homicidios por cada 100.000 habitantes}
+#' }
+#'
+#'
+#' @source \url{https://github.com/nebulae-co/colmaps}
+#' \url{https://github.com/nebulae-co/homicidios}
+#'
+#' Datos originales en R obtenidos en colmaps::departamentos y homicidios::homicidios
+#'
+#'
+"departamentos"

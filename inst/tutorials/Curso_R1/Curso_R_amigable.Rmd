@@ -19,13 +19,16 @@ require(kableExtra)
 require(palmerpenguins)
 require(tibble)
 require(timevis)
+require(ggplot2)
+require(patchwork)
 require(fontawesome)
+#PARA COMENTAR AL FINALIZAR
 #require(jpeg)
 #require(grid)
 #require(gridGraphics)
-#require(patchwork)
 #require(showtext)
 #font_add_google('Gochi Hand', 'gochi')
+#PARA COMENTAR AL FINALIZAR
 tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = F,
                       warning = F,
@@ -642,6 +645,10 @@ test_3 <- c(1:8) + 8:1
 ```
 
 ```{r exe_211-solution}
+test_1 <- c(1:8) + 2
+test_2 <- c(1:8) + c(10, 20)
+test_3 <- c(1:8) + 8:1
+# Ahora es tu turno
 test_1 - 2
 test_2 - c(10, 20)
 test_3 - 8:1
@@ -686,6 +693,10 @@ test_3 <- seq(2, 20, 2) * 10:1
 ```
 
 ```{r exe_212-solution}
+test_1 <- seq(2, 20, 2) * 2
+test_2 <- seq(2, 20, 2) * c(5, 7)
+test_3 <- seq(2, 20, 2) * 10:1 
+# Ahora es tu turno
 test_1 / 2
 test_2 / c(10, 20)
 test_3 / 10:1
@@ -750,6 +761,12 @@ vec[vec%%2 != 0]
 ```
 
 ```{r exe_214-solution}
+#Vector de prueba
+vec <- seq(1, 150, 3)
+vec
+#Condición y selección
+vec[vec%%2 != 0]
+# Ahora es tu turno
 vec[vec%%2 == 0]
 ```
 
@@ -775,6 +792,12 @@ vec[vec>90 | vec<45]
 ```
 
 ```{r exe_215-solution}
+#Vector de prueba
+vec <- seq(1, 100, length.out = 20)
+vec
+#Condición y selección
+vec[vec>90 | vec<45]
+# Ahora es tu turno
 vec[vec>15 &  vec<80]
 ```
 
@@ -1100,7 +1123,7 @@ Ahora trabajemos lo que se denomina como estandarización sobre una matriz. Para
 :::
 
 ```{r}
-set.seed(10)
+set.seed(20)
 ```
 
 ```{r exe_223, exercise = TRUE}
@@ -1277,9 +1300,9 @@ logicos <- c(TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FA
 ```
 
 ```{r,eval=FALSE}
-save(letras,file = "data_pkg/letras.rda")
-save(numeros,file = "data_pkg/numeros.rda")
-save(logicos,file = "data_pkg/logicos.rda")
+save(letras,file = "data_pkg/letras.rda", compress='xz')
+save(numeros,file = "data_pkg/numeros.rda", compress='xz')
+save(logicos,file = "data_pkg/logicos.rda", compress='xz')
 ```
 
 ```{r addition_231_1, exercise = TRUE}
@@ -1341,7 +1364,7 @@ Starwars <- as.data.frame(Starwars)
 ```
 
 ```{r,eval=FALSE}
-save(Starwars, file="data_pkg/Starwars.rda")
+save(Starwars, file="data_pkg/Starwars.rda", compress='xz')
 ```
 
 El ejercicio consiste en seleccionar las primeras 5 columnas de nuestra base de datos, seleccionar las primeras 20 filas de la columna name y por último  seleccionar las filas entre 20 y 40 para las columnas height y mass.
@@ -1686,9 +1709,9 @@ mtcars_3 <- mtcars %>% mutate(cars = rownames(mtcars)) %>% relocate(cars)%>%
 ```
 
 ```{r,eval=FALSE}
-save(mtcars_1, file="data_pkg/mtcars_1.rda")
-save(mtcars_2, file="data_pkg/mtcars_2.rda")
-save(mtcars_3, file="data_pkg/mtcars_3.rda")
+save(mtcars_1, file="data_pkg/mtcars_1.rda", compress='xz')
+save(mtcars_2, file="data_pkg/mtcars_2.rda", compress='xz')
+save(mtcars_3, file="data_pkg/mtcars_3.rda", compress='xz')
 ```
 
 Trabajaremos ahora con tres bases de datos modificadas para cierta cantidad de autos de la revista Motor Trend US de 1974 que comprenden 5 variables, `mpg` millas por galón, `hp` potencia bruta, `wt` peso, `am` transmisión y `carb` número de carburadores. A diferencia del ejemplo anterior en el que todas bases de datos separadas tenían exactamente los mismos nombre en esta solo coinciden algunos nombres de carros.  En el siguiente ejemplo veremos en la primera parte cómo unir solo las coincidencias, en la segunda parte veremos cómo unir conservando inclusive los carros que no coinciden.
@@ -1907,7 +1930,7 @@ my_lista <- list(vector = 1:10,
 ```
 
 ```{r,eval=FALSE}
-save(my_lista, file="data_pkg/my_lista.rda")
+save(my_lista, file="data_pkg/my_lista.rda", compress='xz')
 ```
 
 Como se puede ver crear listas es relativamente sencillo, se recomienda nombrar los objetos para facilitar el acceso a estos, sin embargo no es estrictamente necesario.
@@ -1996,7 +2019,7 @@ carlos_fam <- list(Padres = list(Relacion=c("Padre","Madre"),
 ```
 
 ```{r,eval=FALSE}
-save(carlos_fam, file="data_pkg/carlos_fam.rda")
+save(carlos_fam, file="data_pkg/carlos_fam.rda", compress='xz')
 ```
 
 Debes modificar la lista `carlos_fam` de modo que coincida con los datos proporcionados en la tabla. Pueden existir múltiples formas de lograr este objetivo, en la solución encontraras solo una de ellas.
@@ -2064,7 +2087,7 @@ carlos_fam_g <- list(Padres = list(Relacion=c("Padre","Madre"),
 ```
 
 ```{r,eval=FALSE}
-save(carlos_fam_g, file="data_pkg/carlos_fam_g.rda")
+save(carlos_fam_g, file="data_pkg/carlos_fam_g.rda", compress='xz')
 ```
 
 :::exercise
@@ -2108,7 +2131,7 @@ amigos <- tribble(
 ```
 
 ```{r,eval=FALSE}
-save(amigos, file="data_pkg/amigos.rda")
+save(amigos, file="data_pkg/amigos.rda", compress='xz')
 ```
 
 :::example
@@ -2302,13 +2325,9 @@ if(des == "No hay descuento"){
 Este ejemplo contiene una condición principal, que es si hay descuento o no;  dependiendo de ella se despliega el cobro con o sin descuento con condiciones para cada caso, esta forma de incluir condiciones dentro de otras condiciones se conoce como __anidar__ y aplica también para funciones, procesos y bucles. Para solucionar problemas con condicionales podemos apoyarnos de los diagramas de flujo como el siguiente, que simplifica el proceso cuando las entradas son correctas.
 
 ```{r, echo = FALSE, eval = TRUE, out.width = "74%", fig.align = "center"}
-
 knitr::include_graphics("images/3ra_imagen.png")  
 ```
 
-<!--
-![](./images/comida_perro.png)
--->
 Vamos con un ejercicio similar, en el que una heladería ofrece descuentos del 25% sobre  el total de la compra los días lunes, martes y miércoles, adicionalmente si la compra supera el valor de 50.000 ofrece un 10% adicional de descuento, los otros días de la semana ofrece un 15% de descuento sobre el total de la compra si esta supera el valor de 60.000.  el programa debe arrojar el total, el descuento y el total con descuento en cualquiera de los casos. Si se hacen las siguientes compras el programa debe dar las salidas enunciadas:
 
 * Domingo total de la compra 69500:
@@ -3596,6 +3615,347 @@ fun_5("Hola","Soy una función","con",ar=4,"argumentos")
 
 </details>
 
+<details><summary>3.4 Familia apply </summary> 
+
+Se conoce como familia `apply` al conjunto de funciones usadas para aplicar funciones en matrices, dataframe, arreglos y listas, corresponden a una de las características distintivas de R como lenguaje de programación y se utilizan frecuentemente para automatizar tareas complejas. Las funciones de la familia `apply` se caracterizan por recibir como argumentos a un objeto y al menos una función. Las funciones pertenecientes a esta familia son las siguientes:
+
+* `apply()`
+* `lapply()`
+* `sapply()`
+* `eapply()`
+* `mapply()`
+* `rapply()`
+* `tapply()`
+* `vapply()`
+
+Algunas de estas funciones tienen aplicaciones sumamente específicas y profundizar en ellas no resulta apropiado para un curso corto; por esta razón se profundizará solo en algunas de ellas iniciando con la función `apply()`.
+
+```{r, echo=TRUE,eval=FALSE}
+apply(X,MARGIN,FUN,...)
+```
+
+Esta función recibe 3 argumentos esenciales y argumentos adicionales inherentes a una función específica, donde:
+
+* `X` : Una matriz o un objeto que pueda coercionarse a una matriz.
+* `MARGIN` : 1 para operar sobre filas, 2 para operar sobre columnas.
+* `FUN` : Operador o función aplicada.
+* `...` : Argumentos adicionales de la función aplicada.
+
+`apply()` devuelve generalmente un vector y en los casos donde la función devuelve un vector de longitud n devuelve una matriz. Veamos algunos ejemplos.
+
+:::example
+#### Ejemplo 3.4.1
+:::
+
+```{r addition_341, exercise = TRUE}
+#objetos de prueba
+df = data.frame(x=1:10,y=11:20,z=21:30)
+m = matrix(1:25,ncol = 5)
+#producto de elementos por filas
+apply(X = df,MARGIN = 1,FUN = prod)
+apply(X = m,MARGIN = 1,FUN = prod)
+#producto de elementos por columna
+apply(X = df,MARGIN = 2,FUN = prod)
+apply(X = m,MARGIN = 2,FUN = prod)
+#raiz cuadrada orientacíon filas
+apply(df,1,sqrt)
+```
+
+También podemos usar `apply()` con funciones de usuario e incluso con funciones anónimas. Para ilustrar un ejemplo con estas funciones recordemos el ejemplo de la floristería, tomando como objeto de prueba un dataset que contiene la venta de tres días en la semana. 
+
+:::example
+#### Ejemplo 3.4.2
+:::
+
+```{r addition_342, exercise = TRUE}
+#objetos de prueba
+rosas <-  data.frame(lunes=c(2,5,10,21,17,10,2,8,3),
+                     martes=c(5,10,8,19,21,16,9,3,19),
+                     miercoles=c(10,4,8,19,29,1,2,10,2))
+#apply por columna
+apply(rosas,2,promocion_rosas)
+#funcion anonima filas
+apply(rosas,1, function(x) ifelse(x<10,x,ifelse(x==10,x+1,x+3)))
+#funcion anonima columnas
+apply(rosas,2, function(x) ifelse(x<10,x,ifelse(x==10,x+1,x+3)))
+```
+
+Para entender cómo funcionan los argumentos adicionales al usar `apply()` utilizaremos la función `quantile()`, sobre los tres días de ventas de rosas. Primero utilizaremos la función sin argumentos adicionales, de la siguiente forma:
+
+:::example
+#### Ejemplo 3.4.3
+:::
+
+```{r addition_343, exercise = TRUE}
+#objetos de prueba
+rosas <-  data.frame(lunes=c(2,5,10,21,17,10,2,8,3),
+                     martes=c(5,10,8,19,21,16,9,3,19),
+                     miercoles=c(10,4,8,19,29,1,2,10,2))
+#apply por dias
+apply(rosas,2,quantile)
+```
+
+Recuerda para conocer los argumentos de una función y la ayuda de la misma puedes ejecutar `?quantile`. Ahora usemos los argumentos adicionales para seleccionar cuantiles de interés diferentes a los que están por defecto.
+
+```{r addition_343_1, exercise = TRUE}
+#objetos de prueba
+rosas <-  data.frame(lunes=c(2,5,10,21,17,10,2,8,3),
+                     martes=c(5,10,8,19,21,16,9,3,19),
+                     miercoles=c(10,4,8,19,29,1,2,10,2))
+#apply por dias
+apply(rosas,2,quantile,probs=c(.33,.66,.99))
+```
+
+Recordemos el ejemplo 2.2.3 en el cual determinamos la representación en porcentual de cada elemento de la columna sobre la suma total de la misma, en aquella ocasión determinar esa representación porcentual nos tomó aproximadamente 8 líneas de código, ahora con `apply()` debes lograrlo en una sola línea.
+
+:::exercise
+#### Ejercicio 3.4.1
+:::
+
+```{r exe_341, exercise = TRUE}
+#Matriz de prueba 1
+m <- matrix(seq(18, 2, length.out = 16), ncol = 4, byrow = TRUE)
+m
+#porcentaje columna
+```
+
+```{r exe_341-solution}
+#Matriz de prueba 1
+m <- matrix(seq(18, 2, length.out = 16), ncol = 4, byrow = TRUE)
+m
+#porcentaje columna
+apply(m,2,function(x) round(100*x/sum(x),2))
+```
+
+```{r exe_341-check}
+grade_code("Excelente lo lograste, sigamos adelante")
+```
+
+Intenta ahora la estandarización por columnas de la siguiente matriz. Recuerda que la estandarización para este caso corresponde a restar la media de la columna y dividir por la desviación estándar a cada elemento de la misma columna.
+
+:::exercise
+#### Ejercicio 3.4.2
+:::
+
+```{r}
+set.seed(20)
+```
+
+```{r exe_342, exercise = TRUE}
+#Matriz de prueba 1
+m <- matrix(seq(8, 2, length.out = 16), ncol = 4, byrow = TRUE)
+m
+#estandarización
+```
+
+```{r}
+set.seed(20)
+```
+
+```{r exe_342-solution}
+#Matriz de prueba 1
+m <- matrix(sample(1:8, 16, replace = TRUE), ncol = 4, byrow = TRUE)
+m
+#estandarización
+apply(m,2,function(x) (x-mean(x))/sd(x))
+```
+
+```{r exe_342-check}
+grade_code("Excelente lo lograste, sigamos adelante")
+```
+
+La siguiente función de la familia `apply` en la que profundizaremos es `lapply()`
+
+```{r, echo=TRUE,eval=FALSE}
+lapply(X,FUN,...)
+```
+
+Esta función recibe 2 argumentos esenciales y argumentos adicionales inherentes a una función específica, donde:
+
+* `X` : Es una lista o un objeto que pueda coercionarse a una lista.
+* `FUN` : Operador o función aplicada.
+* `...` : Argumentos adicionales de la función aplicada.
+
+`lapply()` devuelve una lista. Veamos algunos ejemplos, iniciando con la adaptación del ejemplo 3.4.1
+
+:::example
+#### Ejemplo 3.4.4
+:::
+
+```{r addition_344, exercise = TRUE}
+#objetos de prueba
+df = data.frame(x=1:10,y=11:20,z=21:30)
+m = matrix(1:25,ncol = 5)
+#producto de elementos por columnas
+lapply(X = df,FUN = prod)
+lapply(X = as.data.frame(m),FUN = prod)
+#raiz cuadrada de cada elemento
+lapply(df,sqrt)
+```
+
+Al igual que `apply()`, `lapply()` admite funciones anónimas, usemos el ejemplo 3.4.2 para verlo.  
+
+:::example
+#### Ejemplo 3.4.5
+:::
+
+```{r addition_345, exercise = TRUE}
+#venta de rosas
+rosas <-  data.frame(lunes=c(2,5,10,21,17,10,2,8,3),
+                     martes=c(5,10,8,19,21,16,9,3,19),
+                     miercoles=c(10,4,8,19,29,1,2,10,2))
+#promoción 
+lapply(rosas, function(x) ifelse(x<10,x,ifelse(x==10,x+1,x+3)))
+```
+
+Veamos un ejemplo involucrando el descuento en comida de perro, en el cual se registraron ventas en tres días de la semana en una lista `ventas`, cada una con una lista contiene el número de bolsas compradas y el código de descuento. En este ejemplo usaremos además una función anónima que llama una función de usuario.
+
+:::example
+#### Ejemplo 3.4.6
+:::
+
+```{r addition_346, exercise = TRUE}
+#ventas
+ventas = list(lunes=list(bolsas=c(10,2,15,18,16),des=c(1,0,0,1,0)),
+              martes=list(bolsas=c(11,13,1,4,6,9),des=c(0,0,1,1,0,1)),
+              miercoles=list(bolsas=c(3,10,4,1),des=c(1,1,0,1)))
+#descuento comida de perros
+lapply(ventas,function(x) descuento_perros(x[[1]],x[[2]],to_vector = T))
+```
+
+Tratemos un ejemplo más familiar recordando el dataset `amigos` y calculemos el IMC de cada individuo utilizando `lapply()`.
+
+:::example
+#### Ejemplo 3.4.7
+:::
+
+```{r addition_347, exercise = TRUE}
+#datos 
+amigos$fisico
+#Calculo IMC
+lapply(amigos$fisico,function(list) unname(list[3]/(list[2]/100)**2))
+```
+
+Para terminar con la función `lapply()` veamos un ejemplo en el que utilicemos una función anónima para llamar la función `apply()` y aplicarla sobre tres matrices tal cual como se hizo en el ejercicio 3.4.2.
+
+:::example
+#### Ejemplo 3.4.8
+:::
+
+```{r addition_348, exercise = TRUE}
+#Matrices de prueba 
+m1 <- matrix(seq(18, 2, length.out = 16), ncol = 4, byrow = TRUE)
+m2 <- matrix(1:16, ncol = 4)
+m3 <- matrix(seq(10, 74, length.out = 16), ncol = 4, byrow = TRUE)
+#lista de matrices
+mm <- list(m1,m2,m3)
+#porcentaje
+lapply(mm,function(m) apply(m,2,function(x) round(100*x/sum(x),2)))
+```
+
+La última función de la familia `apply` que trataremos será `sappply()`, la cual es muy similar a `lapply()` salvo por la devolución, ya que `sapply()` devuelve, cuando es posible un objeto mas simple (vector o matriz) en lugar de una lista.
+
+```{r, echo=TRUE,eval=FALSE}
+sapply(X,FUN,...,simplify = TRUE)
+```
+
+Esta función recibe 2 argumentos esenciales, y argumentos adicionales inherentes a una función específica, además permite modificar dos argumentos por defecto,donde:
+
+* `X` : Es una lista o un objeto que pueda coercionarse a una lista.
+* `FUN` : Operador o función aplicada.
+* `...` : Argumentos adicionales de la función aplicada.
+* `simplify` : TRUE, devuelve un vector cuando sea posible; FALSE, cumple la misma función que `lapply()`
+
+Para entender los casos en los que `sapply()` funciona debes adaptar los ejemplo de `lapply()`, iniciando con el ejemplo 3.4.4.
+
+:::exercise
+#### Ejercicio 3.4.3
+:::
+
+```{r exe_343, exercise = TRUE}
+#objetos de prueba
+df = data.frame(x=1:10,y=11:20,z=21:30)
+m = matrix(1:25,ncol = 5)
+#producto de elementos por columnas
+sapply()
+sapply()
+#raiz cuadrada de cada elemento
+sapply()
+```
+
+```{r exe_343-solution}
+#objetos de prueba
+df = data.frame(x=1:10,y=11:20,z=21:30)
+m = matrix(1:25,ncol = 5)
+#producto de elementos por columnas
+sapply(X = df,FUN = prod)
+sapply(X = as.data.frame(m),FUN = prod)
+#raiz cuadrada de cada elemento
+sapply(df,sqrt)
+```
+
+```{r exe_343-check}
+grade_code("Excelente lo lograste, sigamos adelante")
+```
+
+Intenta ahora con el ejemplo 3.4.5 de la promoción de rosas.
+
+:::exercise
+#### Ejercicio 3.4.4
+:::
+
+```{r exe_344, exercise = TRUE}
+#venta de rosas
+rosas <-  data.frame(lunes=c(2,5,10,21,17,10,2,8,3),
+                     martes=c(5,10,8,19,21,16,9,3,19),
+                     miercoles=c(10,4,8,19,29,1,2,10,2))
+#promoción 
+```
+
+```{r exe_344-solution}
+#venta de rosas
+rosas <-  data.frame(lunes=c(2,5,10,21,17,10,2,8,3),
+                     martes=c(5,10,8,19,21,16,9,3,19),
+                     miercoles=c(10,4,8,19,29,1,2,10,2))
+#promoción 
+sapply(rosas, function(x) ifelse(x<10,x,ifelse(x==10,x+1,x+3)))
+```
+
+```{r exe_344-check}
+grade_code("Excelente lo lograste, sigamos adelante")
+```
+
+Por último para evidenciar un caso en el que la simplificación no es posible intenta la adaptación del ejemplo 3.4.6.
+
+:::exercise
+#### Ejercicio 3.4.5
+:::
+
+```{r exe_345, exercise = TRUE}
+#ventas
+ventas = list(lunes=list(bolsas=c(10,2,15,18,16),des=c(1,0,0,1,0)),
+              martes=list(bolsas=c(11,13,1,4,6,9),des=c(0,0,1,1,0,1)),
+              miercoles=list(bolsas=c(3,10,4,1),des=c(1,1,0,1)))
+#descuento comida de perros
+```
+
+```{r exe_345-solution}
+#ventas
+ventas = list(lunes=list(bolsas=c(10,2,15,18,16),des=c(1,0,0,1,0)),
+              martes=list(bolsas=c(11,13,1,4,6,9),des=c(0,0,1,1,0,1)),
+              miercoles=list(bolsas=c(3,10,4,1),des=c(1,1,0,1)))
+#descuento comida de perros
+sapply(ventas,function(x) descuento_perros(x[[1]],x[[2]],to_vector = T))
+```
+
+```{r exe_345-check}
+grade_code("Excelente lo lograste, sigamos adelante")
+```
+
+A partir de las funciones de la familia `apply` nombradas anteriormente se obtiene una noción básica del funcionamiento de la familia completa, para abordar y conocer mejor las otras funciones de la familia te recomendamos revisar la documentación de `R`.
+
+</details>
+
 ## 4. Datos ordenados y el tidyverse
 
 ```{r, echo = FALSE, eval = TRUE, out.width = "74%", fig.align = "center"}
@@ -3850,7 +4210,7 @@ datos_2 <- DSR::table2 %>%
 ```
 
 ```{r,eval=FALSE}
-save(datos_2,file = "data_pkg/datos_2.rda")
+save(datos_2,file = "data_pkg/datos_2.rda", compress='xz')
 ```
 
 ```{r addition_4_3_1_a, exercise = TRUE}
@@ -3891,7 +4251,7 @@ datos_4_a <- DSR::table4 %>%
 ```
 
 ```{r,eval=FALSE}
-save(datos_4_a,file = "data_pkg/datos_4_a.rda")
+save(datos_4_a,file = "data_pkg/datos_4_a.rda", compress='xz')
 ```
 
 ```{r addition_4_3_2_a, exercise = TRUE}
@@ -3930,7 +4290,7 @@ datos_4_b <- DSR::table5 %>%
 ```
 
 ```{r,eval=FALSE}
-save(datos_4_b,file = "data_pkg/datos_4_b.rda")
+save(datos_4_b,file = "data_pkg/datos_4_b.rda", compress='xz')
 ```
 
 ```{r addition_4_3_2_c, exercise = TRUE}
@@ -3986,7 +4346,7 @@ datos_3 <- DSR::table3 %>%
 ```
 
 ```{r,eval=FALSE}
-save(datos_3,file = "data_pkg/datos_3.rda")
+save(datos_3,file = "data_pkg/datos_3.rda", compress='xz')
 ```
 
 ```{r addition_4_3_3_a, exercise = TRUE}
@@ -4055,7 +4415,7 @@ knitr::include_graphics("images/11va_imagen.png")
 
 ```{r, eval = FALSE}
 
-save(Tuberculosis, file = 'data_pkg/Tuberculosis.rda')
+save(Tuberculosis, file = 'data_pkg/Tuberculosis.rda', compress='xz')
 ```
 
 ```{r addition_ejercicio, exercise = TRUE}
@@ -4874,8 +5234,8 @@ Datos_b <- tribble(
 
 ```{r, eval = FALSE}
 
-save(Datos_a, file = 'data_pkg/Datos_a.rda')
-save(Datos_b, file = 'data_pkg/Datos_b.rda')
+save(Datos_a, file = 'data_pkg/Datos_a.rda', compress='xz')
+save(Datos_b, file = 'data_pkg/Datos_b.rda', compress='xz')
 ```
 
 <div class="row">
@@ -4907,7 +5267,7 @@ Esta unión retorna todas las columnas del primer y segundo conjunto de datos, p
 #### Ejemplo 5.2.1.11.1
 :::
 
-```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+```{r, echo = FALSE, eval = TRUE, out.width = "48%", fig.align = "center"}
 knitr::include_graphics("images/22va_imagen.png")  
 ```
 
@@ -4932,7 +5292,7 @@ Esta unión retorna todas las columnas del primer y segundo conjunto de datos, p
 #### Ejemplo 5.2.1.11.2
 :::
 
-```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+```{r, echo = FALSE, eval = TRUE, out.width = "48%", fig.align = "center"}
 knitr::include_graphics("images/23va_imagen.png")  
 ```
 
@@ -4953,7 +5313,7 @@ Esta función es opuesta a la función `left_join()`, en el sentido de que solo 
 #### Ejemplo 5.2.1.11.3
 :::
 
-```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+```{r, echo = FALSE, eval = TRUE, out.width = "48%", fig.align = "center"}
 knitr::include_graphics("images/24va_imagen.png")  
 ```
 
@@ -4974,7 +5334,7 @@ Esta unión retorna toda las columnas y filas de ambos conjunto de datos. De est
 #### Ejemplo 5.2.1.11.4
 :::
 
-```{r, echo = FALSE, eval = FALSE, out.width = "54%", fig.align = "center"}
+```{r, echo = FALSE, eval = TRUE, out.width = "48%", fig.align = "center"}
 knitr::include_graphics("images/25va_imagen.png")  
 ```
 
@@ -4993,22 +5353,734 @@ Si deseas ver un resumen de las posibilidades que ofrece el paquete `dplyr` y pr
 
 ## 6. Visualización de datos
 
-### 6.1 ¿Que es la visualización de datos? Definición e historia
+### 6.1 ¿Que es la visualización de datos? Definición e importancia
 
 La __visualización de datos__ es la práctica de convertir datos en una representación gráfica. Para comprender cuán significativa es la visualización de los datos, un hecho simple es que a los cerebros humanos les resulta más difícil comprender datos complejos cuando están codificados en números y texto en comparación con los gráficos.
 
-Es impensable cualquier sector profesional sin el uso de elementos de visualización, pues estos facilitan la transmisión de información. Es erróneo considerar a la visualización de datos como un recurso secundario o adicional, finalmente prescindible.
+Es impensable cualquier sector profesional sin el uso de elementos de visualización, pues estos facilitan la transmisión de información. De las misma forma, es erróneo considerar a la visualización de datos como un recurso secundario o adicional, finalmente prescindible.
 
-La representación gráfica de la información tiene [raíces profundas](https://jorge-leonardo-lopez-martinez.shinyapps.io/historia_visualizacion/?_ga=2.152978873.160297420.1593535028-503089247.1593365860). Estas raíces alcanzan historias de cartografía temática, gráficos estadísticos y visualización de datos, que se entrelazan entre sí. También se conectan con el auge del pensamiento estadístico del siglo XIX y el desarrollo tecnológico en el siglo XX.
+:::caution
+El concepto de visualización de datos no es nuevo. De hecho, la visualización de datos ha [existido durante siglos](https://jorge-leonardo-lopez-martinez.shinyapps.io/historia_visualizacion/?_ga=2.152978873.160297420.1593535028-503089247.1593365860).
+:::
 
-### 6.2 La gramática de los gráficos
+<div class="row">
+  <div class="col-md-6" markdown="1">
+### 6.2 Visualización de datos con `ggplot2`
 
-```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
-knitr::include_graphics("images/26va_imagen.png")  
-```
+`ggplot2` es un paquete de `R` dedicado a la visualización de datos. Mediante su uso es posible construir casi cualquier tipo de gráfico.
 
+Si bien `ggplot2` es un paquete de `R` que permite producir gráficos estadísticos como muchos otros paquetes, es diferente a la mayoría de estos paquetes de gráficos debido a que tiene una gramárica subyacente profunda: la __gramática de los gráficos__.
+  </div>
+  <div class="col-md-6" markdown="1">
 ```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
 knitr::include_graphics("images/ggplot2_3.png")  
 ```
+
+<section style="text-align: center;"><small>Ilustracíon hecha por <font color = "black"><u>\@allison_horst</u></font>.</small></section>
+  </div>
+</div>
+
+#### 6.2.1 Una gramática para la visualización de datos
+
+Una gramática de gráficos es un marco que sigue un enfoque en capas para describir y construir visualizaciones o gráficos de manera estructurada.
+
+```{r, echo = FALSE, eval = TRUE, out.width = "48%", fig.align = "center"}
+
+knitr::include_graphics("images/26va_imagen.png")  
+```
+
+Para explicar el concepto de la gramática de gráficos en capas implementado en el paquete `ggplot2` se empleara el conjunto de datos [`pokemon`](https://github.com/cienciadedatos/datos-de-miercoles/tree/master/datos/2019/2019-07-10). Estos datos es uno de los muchos conjuntos de datos del proyecto [_Datos de miércoles_](https://github.com/cienciadedatos/datos-de-miercoles) cuyo propósito consiste en buscar que lo ususraios de `R` desarrollen habilidades de visualización y procesado de datos usando las herramientas del `tidyverse`.
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/27va_imagen.png")  
+```
+
+Como puedes ver, este conjunto de datos contiene siete variables:
+
+1. En `id` se describe la identificación de cada pokémon.
+2. En `nombre` podrá encontrar el nombre del pokémon.
+3. En `tipo` se describe el tipo de pokémon (eléctrico, agua, veneno, fantasma, hielo, psíquico, entre otros).
+4. En `ataque` podrá encontrar el daño que el pokémon puede causar en ataques.
+5. En `defensa` podrá encontrar la resistencia del pokémon al daño ante ataques.
+6. En `velocidad` se describe la velocidad del pokémon al atacar en cada ronda.
+7. En `puntos_vida` se describe la cantidad de daño que puede resistir cada pokémon.
+
+```{r, eval = FALSE}
+
+pokemon <- readr::read_csv("https://raw.githubusercontent.com/cienciadedatos/datos-de-miercoles/master/datos/2019/2019-07-10/pokemon.csv")
+
+pokemon <- pokemon %>%
+  mutate(ataque = ataque + fuerza_especial_ataque, defensa = defensa + fuerza_especial_defensa) %>%
+  select(ID_poke, nombre_ingles, tipo_1, ataque, defensa, velocidad, puntos_vida) %>%
+  rename('id' = ID_poke, 'nombre' = nombre_ingles, 'tipo' = tipo_1) 
+  #filter(nombre %in% c('Charmander', 'Bulbasaur', 'Butterfree', 'Pikachu', 'Squirtle'))
+
+save(pokemon, file = 'data_pkg/pokemon.rda', compress='xz')
+
+pokemon_2 <- pokemon %>%
+  select(nombre_ingles, tipo_2) %>%
+  rename('nombre' = nombre_ingles, 'tipo_2' = tipo_2)
+
+save(pokemon_2, file = 'data_pkg/pokemon_2.rda', compress='xz')
+```
+
+##### 6.2.1.1 Capas 1-2-3: datos-estética-geometrías
+
+Para asociar el gráfico a un conjunto de datos en específico se emplea el argumento `data`. Luego se define un mapeo haciendo uso de la función `aes()` dentro de `ggplot()` para seleccionar las variables a graficar. Por último, con `geoms` se indica cómo se representaran los datos en el gráfico.
+
+:::example
+#### Ejemplo 6.2.1.1.1
+:::
+
+```{r ejemplo_6_2_1_1_1, exercise = TRUE, fig.align = "center"}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+
+ggplot(
+  data = pokemon,
+  aes(x = ataque, y = fuerza_total)
+  ) +
+  geom_point()
+
+#ggplot(
+  #data = pokemon,
+  #aes(x = ataque, y = fuerza_total)
+  #) +
+  #geom_point(
+    #size = 3.4,
+    #colour = 'yellow',
+    #fill = 'yellow',
+    #alpha = 0.4,
+    #shape = 'square filled'
+    #)
+```
+
+<details><summary>Lista de colores en `R` y formas de puntos</summary>
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/colores_1.png")  
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/colores_2.png")  
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/colores_3.png")  
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/colores_4.png")  
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/colores_5.png")  
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/colores_6.png")  
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/colores_7.png")  
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/puntos.png")  
+```
+
+</details>
+
+:::exercise
+#### Ejercicio 6.2.1.1.1
+En el ejemplo anterior se uso la función `aes()` para indicarle al `geom_point()` cuáles serían las posiciones `x` y `y` para cada punto. Sin embargo otra propiedad estetica que se puede modificar es el color de los puntos por medio del argumento `colour`. Intente por favor modificar el código anterior de modo que se coloreen los puntos de acuerdo al tipo de pokemon.
+:::
+
+```{r ejercicio_6_2_1_1_1, exercise = TRUE, fig.align = "center"}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+```
+
+```{r ejercicio_6_2_1_1_1-solution, message = FALSE}
+
+ggplot( # Primera forma
+  data = pokemon,
+  aes(x = ataque, y = fuerza_total, colour = tipo)
+  ) +
+  geom_point()
+  
+ggplot( # Segunda forma
+  data = pokemon,
+  aes(x = ataque, y = fuerza_total)
+  ) +
+  geom_point(aes(colour = tipo))
+```
+
+:::caution
+Las asignaciones estéticas, definidas con la función `aes()`, describen cómo las variables se asignan a propiedades visuales o estéticas. Además de una posición horizontal (`x`) y vertical (`y`), cada punto puede tener también un tamaño (`size`), un color (`colour` y `fill`) y una forma (`shape`).
+:::
+
+:::caution
+<!--Colocar aqui las otras opciones de geom_-->
+:::
+
+:::example
+#### Ejemplo 6.2.1.1.2
+:::
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
+```{r ejemplo_6_2_1_1_2, exercise = TRUE, fig.align = "center", out.width='340'}
+
+pokemon %>%
+  group_by(tipo) %>%
+  summarise(Total_puntos_vida = sum(puntos_vida)) %>%
+  ggplot(
+    data = .,
+    aes(x = tipo, y = Total_puntos_vida)
+    ) +
+  geom_bar(stat = 'identity')
+```
+  </div>
+  <div class="col-md-6" markdown="1">
+```{r ejemplo_6_2_1_1_3, exercise = TRUE, fig.align = "center", out.width='340'}
+
+pokemon %>%
+  filter(tipo == 'Fuego') %>%
+  ggplot(
+    data = .,
+    aes(x = velocidad)
+    ) +
+  geom_density()
+```
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
+```{r ejemplo_6_2_1_1_4, exercise = TRUE, fig.align = "center", out.width='340'}
+
+pokemon %>%
+  filter(tipo == 'Fuego') %>%
+  ggplot(
+    data = .,
+    aes(x = velocidad)
+    ) +
+  geom_histogram()
+```
+  </div>
+  <div class="col-md-6" markdown="1">
+```{r ejemplo_6_2_1_1_5, exercise = TRUE, fig.align = "center", out.width='340'}
+
+pokemon %>%
+  filter(tipo == 'Fuego') %>%
+  ggplot(
+    data = .,
+    aes(x = velocidad)
+    ) +
+  geom_dotplot()
+```
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
+```{r ejemplo_6_2_1_1_6, exercise = TRUE, fig.align = "center", out.width='340'}
+
+pokemon %>%
+  select(tipo, ataque) %>%
+  ggplot(
+    data = .,
+    aes(x = tipo, y = ataque)
+    ) +
+  geom_boxplot()
+```
+  </div>
+  <div class="col-md-6" markdown="1">
+```{r ejemplo_6_2_1_1_7, exercise = TRUE, fig.align = "center", out.width='340'}
+
+pokemon %>%
+  select(tipo, ataque) %>%
+  ggplot(
+    data = .,
+    aes(x = tipo, y = ataque)
+    ) +
+  geom_violin()
+```
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
+```{r ejemplo_6_2_1_1_8, exercise = TRUE, fig.align = "center", out.width='340'}
+
+pokemon %>%
+  inner_join(pokemon_2, 'nombre') #%>%
+  #select(nombre, tipo, tipo_2) %>%
+  #ggplot(
+    #data = .,
+    #aes(x = tipo, y = tipo_2)
+    #) +
+  #geom_count()
+```
+  </div>
+  <div class="col-md-6" markdown="1">
+
+  </div>
+</div>
+
+##### 6.2.1.2 Capa 4: facetas
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
++ __Facet wrap__
+  </div>
+  <div class="col-md-6" markdown="1">
+
+```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+
+knitr::include_graphics("images/29va_imagen.png")  
+```
+  </div>
+</div>
+
+:::example
+#### Ejemplo 6.2.1.2.1
+:::
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
++ __Facet grid__
+  </div>
+  <div class="col-md-6" markdown="1">
+
+```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+
+knitr::include_graphics("images/28va_imagen.png")  
+```
+  </div>
+</div>
+
+:::example
+#### Ejemplo 6.2.1.2.2
+:::
+
+##### 6.2.1.3 Capa 5: estadísticas
+
+
+
+##### 6.2.1.4 Capa 6: coordenadas
+
+
+
+##### 6.2.1.5 Capa 7: tema
+
+
+
+:::caution
+Si deseas conocer más sobre la gramática de gráficos en capas propuesto por Hadley Wickham, te invitamos a revisar su articulo titulado [A layered grammar of graphics](https://github.com/Leo4Luffy/Un_curso_amigable_sobre_R/blob/master/Documentos/A%20Layered%20Grammar%20of%20Graphics.pdf) que cubre en detalle su propuesta en la construcción de gráficos y también habla sobre el paquete `ggplot2`.
+:::
+
+
+### 6.3 Gráficos estadísticos con `ggplot2`
+
+Ya vimos como funciona la gramática de gráficas y las distintas capas que ponemos agregar y utilizar para crearlos, es hora de que pongamos en practica estos conceptos. Iniciemos viendo las capas individualmente partiendo de un esquema que no posee datos, para ello debemos cargar el paquete `ggplot2` y ejecutar la siguiente linea de código.
+
+:::example
+#### Ejemplo 6.3.1
+:::
+
+```{r addition_631, exercise = TRUE,fig.align='center'}
+# Cargando paquete
+library(ggplot2)
+# Esquema base
+ggplot()
+```
+
+Generalmente en la función `ggplot()` asignamos los datos que vamos a graficar usando el argumento data. Supongamos que tenemos un set de datos llamado "mis_datos", en este caso la función del esquema base con la capa de los datos quedaría de la forma `ggplot(data=mis_datos)`.
+
+Continuemos manejando el esquema de un gráfico sin usar datos. El siguiente paso es agregar la capa de estética, la cual puede añadirse directamente en la función `ggplot()` con el argumento `mapping = aes()` o de manera independiente con la función `aes()`. Para el segundo caso debemos agregar una capa usando el operador `+`. Veamos los dos casos estableciendo valores arbitrarios tanto para x como para y.
+
+```{r addition_631_1, exercise = TRUE, fig.align='center'}
+# Cargando paquete
+library(ggplot2)
+# Esquema base con mapping
+ggplot(mapping = aes(x=0,y=0))
+# Esquema base con aes()
+ggplot()+
+  aes(x=0,y=0)
+```
+
+Después de estas dos capas se agrega la capa de geometrías, que en general depende de el tipo de gráfico que necesitemos o el que mejor se adapte a nuestros datos. Para conocer algunos gráficos  agruparemos algunos de ellos en 7 conjuntos:  1) Gráficos de distribución, 2) Gráficos de correlación, 3) Gráficos de clasificación y 4)Mapas.
+
+#### 6.3.1 Gráficos de distribución
+
+Estos gráficos se utilizan generalmente en variables continuas como edad, altura, masa, etc. Para iniciar esta sección de gráficos haremos el gráfico de densidad para la altura de los personajes de Starwars.
+
+```{r,echo=FALSE}
+Starwars
+```
+
+:::example
+#### Ejemplo 6.3.1.1
+:::
+
+```{r addition_6311, exercise = TRUE,fig.align='center'}
+ggplot(data = Starwars)+ # Datos
+  aes(x=height)+ # Estética
+  geom_density() # Geometría 
+```
+
+Sabemos que los personajes de Starwars no son todos del mismo genero, entonces modifiquemos el gráfico anterior utilizando facetas para distinguir por genero usando `facet_wrap()` y eliminado los personajes que no tiene genero definido. Ademas usemos el operador tubería ` %>% ` para realizar una operación secuencial que una directamente nuestros datos con el gráfico.
+
+```{r addition_6311_1, exercise = TRUE,fig.align='center'}
+Starwars %>% 
+  filter(!is.na(gender)) %>% 
+  ggplot(data=.)+ # Datos (.)
+  aes(x=height)+ # Estética
+  geom_density()+ # Geometría
+  facet_wrap(~gender) #Faceta
+```
+
+Otra forma de diferenciar por género sin usar las facetas, es otorgar color a la variable distintiva, esto podemos hacerlo en la capa estética del gráfico agregando para este caso “color= gender”. Veamos cómo quedaría el gráfico.
+
+```{r addition_6311_2, exercise = TRUE,fig.align='center'}
+Starwars %>% 
+  filter(!is.na(gender)) %>% 
+  ggplot(data=.)+ # Datos (.)
+  aes(x=height,color=gender)+ # Estética con color
+  geom_density() # Geometría
+```
+
+Ahora hagamos modificaciones de imagen para personalizar y embellecer los dos gráficos anteriores, para ello utilizaremos argumentos como “alpha” y "fill" agregando ademas la capa de tema. También nos apoyaremos en la librería`patchwork` para fusionar los dos gráficos en uno solo. 
+
+* Te recomendamos revisar la documentación de `patchwork` para entender su funcionamiento 
+
+```{r addition_6311_3, exercise = TRUE,fig.align='center'}
+#libreria
+library(patchwork)
+base <- Starwars %>% 
+  filter(!is.na(gender)) %>% 
+  ggplot(data=.)+ # Datos (.)
+  aes(x=height,color=gender,fill=gender)+ # Estética con color y relleno
+  geom_density(alpha=.3) # Geometría
+
+(base +theme_classic()) / # base con tema clásico
+  (base +theme_dark()+facet_wrap(~gender)) #base con faceta y tema oscuro 
+```
+
+Sigamos usando la misma variable “height” de Starwars para aprender cómo se hacen los gráficos de histograma, en este caso reuniremos todos los tipos de gráficos que hicimos en el ejemplo anterior en uno solo. Fijate muy bien en la sintaxis del código y todos los comentarios en él. El argumento “alpha” hace referencia a transparencia y el argumento “fill” a relleno.
+
+:::example
+#### Ejemplo 6.3.1.2
+:::
+
+```{r addition_6312, exercise = TRUE,fig.align='center',fig.height=6.5}
+# Gráfico base
+base <- Starwars %>% 
+  filter(!is.na(gender)) %>% 
+  ggplot(data=.)+ # Datos (.)
+  aes(x=height)+ # Estética básica 
+  geom_histogram(alpha=.5) # Geometría
+# opciones sobre la base 
+base /
+  (base +aes(fill=gender)+theme_classic()) / #base + estética con color +  tema clásico 
+  (base +aes(fill=gender)+theme_dark()+facet_wrap(~gender)) #base + estética con color + faceta + tema clasico 
+```
+
+Veamos otro tipo de gráfico que es conocido como Boxplot, para estos gráficos seguiremos usando los mismos datos que en los anteriores ejemplo, agregando las capas de estadísticas y coordenadas. Veamos un ejemplo para la variable “height” para cada genero.
+
+:::example
+#### Ejemplo 6.3.1.3
+:::
+
+```{r addition_6313, exercise = TRUE,fig.align='center'}
+# Gráfico base
+Starwars %>% 
+  filter(!is.na(gender)) %>% 
+  ggplot(data=.)+ # Datos (.)
+  aes(x=gender,y=height)+ # Estética básica 
+  geom_boxplot(fill=NA)+ # geometría sin relleno
+  stat_summary(fun=mean,geom="point", color="red") + # Estadísticas con geometría
+  coord_flip() # Coordenadas invertidas
+```
+
+El siguiente gráfico es conocido como el gráfico de violín y lo implementaremos igual que el boxplot salvo por la geometría.
+
+:::example
+#### Ejemplo 6.3.1.4
+:::
+
+```{r addition_6314, exercise = TRUE,fig.align='center'}
+# Gráfico base
+Starwars %>% 
+  filter(!is.na(gender)) %>% 
+  ggplot(data=.)+ # Datos (.)
+  aes(x=gender,y=height,fill=gender)+ # Estética básica con relleno
+  geom_violin(alpha=.3)+ # geometría con transparencia
+  stat_summary(fun=mean,geom="point", color="red") + # Estadísticas con geometría
+  coord_flip() # Coordenadas invertidas
+```
+
+Hasta el momento hemos visto gráficas con una sola geometría, ahora veamos gráficas con varias geometrías que incluya las dos gráficas anteriores y una tercera geometría conocida como `geom_jitter()`.
+
+:::example
+#### Ejemplo 6.3.1.5
+:::
+
+```{r addition_6315, exercise = TRUE,fig.align='center'}
+# Gráfico base
+Starwars %>% 
+  filter(!is.na(gender)) %>% 
+  ggplot(data=.)+ # Datos (.)
+  aes(x=gender,y=height,fill=gender,color=gender)+ # Estética color y  con relleno
+  geom_boxplot(alpha=.2)+ # geometría boxplot con transparencia
+  geom_violin(alpha=.3)+ # geometría violín con transparencia
+  geom_jitter()+
+  stat_summary(fun=mean,geom="point",size=6,shape=23,color="black") + # Estadísticas con geometría puntos
+  coord_flip() + # Coordenadas invertidas
+  theme_light() #tema
+```
+
+#### 6.3.2 Gráficos de relación
+
+Los siguientes gráficos corresponde a ilustraciones que muestran la relación entre dos o más variables continuas. Veamos el primero de ellos el cual se denomina gráfico de dispersión entre dos variables. Usaremos los datos de masa y altura de `Starwars` para relacionarlas en este gráfico.
+
+:::example
+#### Ejemplo 6.3.2.1
+:::
+
+```{r addition_6321, exercise = TRUE,fig.align='center'}
+Starwars %>% 
+  filter(!is.na(gender)) %>% 
+  filter(mass<quantile(Starwars$mass,probs = .99,na.rm = T)) %>% 
+  ggplot(data = .)+ #Datos
+  aes(x=height,y=mass,color=gender)+ #estética
+  geom_point() # geometría
+```
+
+Usando las mismas variables del ejemplo anterior veamos un gráfico de densidad de dos dimensiones. En general este gráfico es útil cuando nuestras variables a relacionar tiene una gran cantidad de observaciones que son difíciles de procesar por un `geom_point()`.
+
+:::example
+#### Ejemplo 6.3.2.2
+:::
+
+```{r addition_6322, exercise = TRUE,fig.align='center'}
+Starwars %>% 
+  filter(!is.na(gender)) %>% 
+  filter(mass<quantile(Starwars$mass,probs = .99,na.rm = T)) %>% 
+  ggplot(data = .)+ #Datos
+  aes(x=height,y=mass)+ # Estética
+  stat_density_2d(aes(fill = ..density..), geom = "raster", contour = FALSE) #Estadística con geometría
+```
+
+Otro tipo de gráfico que podemos realizar es el que relaciona el tiempo con una variable continua, estas son las denominadas series de tiempo. Para el siguiente ejemplo tomaremos la variable de precio del petróleo de el dataset `Seatbelts`, el cual corresponde  a una serie temporal que muestra los totales mensuales de conductores de automóviles en Gran Bretaña que murieron o resultaron gravemente heridos desde enero de 1969 hasta diciembre de 1984.  Para mayor  información del dataset ejecuta `?Seatbelts`
+
+:::example
+#### Ejemplo 6.3.2.3
+:::
+
+```{r addition_6323, exercise = TRUE,fig.align='center'}
+as.matrix(Seatbelts) %>% 
+  data.frame()  %>% 
+  mutate(date=seq(as.Date("1969-01-01"),as.Date("1984-12-01"), by="month")) %>% 
+  ggplot(data=.)+ #Datos
+  aes(x=date,y=PetrolPrice)+ #Estética
+  geom_line()+ # Geometría de lineas
+  geom_point()+ # Geometría de puntos 
+  scale_x_date(date_breaks = "12 month",date_labels = "%y-%m")+ #Coordenadas 
+  theme_light() # Tema
+```
+
+Ya vimos cómo relacionar gráficamente dos variables continuas y una variable continua con el tiempo, veamos ahora cómo relacionar más de dos variables continuas en un gráfico. Para ello nos valdremos de la matriz de correlación de las 4 variables numéricas del dataset `iris`. Consulta la información del dataset con `?iris` para obtener más información.  
+
+:::example
+#### Ejemplo 6.3.2.4
+:::
+
+```{r addition_6324, exercise = TRUE,fig.align='center'}
+iris %>% 
+  select_if(is.numeric) %>%
+  cor(method = "pearson") %>% 
+  as_tibble() %>%
+  mutate(name=colnames(iris)[1:4]) %>% 
+  relocate(name) %>% 
+  pivot_longer(cols = 2:5,names_to="name_2",values_to="Corr") %>% 
+  ggplot(data=.)+ #Datos
+  aes(x=name,y=name_2,fill=Corr)+ # Estética
+  geom_tile()+ # Geometría
+  scale_fill_gradientn(colours = topo.colors(5),limits=c(-1,1),breaks=seq(-1,1,.2)) #Coordenadas
+```
+
+#### 6.3.3 Gráficos de clasificación
+
+Los gráficos de clasificación corresponden generalmente a conteos o resúmenes numéricos de variables categóricas. Como primer ejemplo veamos un gráfico de barras de el número de autos que tienen 4, 6 u 8 cilindros en el dataset `mtcars`. Para este caso la función `geom_bar()` hace automáticamente el conteo de los autos, `width` corresponde al grosor de las barras.
+
+:::example
+#### Ejemplo 6.3.3.1
+:::
+
+```{r addition_6331, exercise = TRUE,fig.align='center'}
+mtcars %>% 
+  ggplot(data = .)+ #Datos
+  aes(x=factor(cyl),fill=factor(cyl))+ #Estética
+  geom_bar(width = .5) + #Geometría
+  theme_linedraw() #tema
+```
+
+En el casos de que nuestros datos tengan el conteo o variable de interés de nuestra variable categórica, podemos usar el  argumento `stat=”identity”` en `geom_bar()` para que este no sea calculado por la función, en cuyo caso debemos asignar adicionalmente el conteo o variable `y`.
+
+```{r addition_6331_1, exercise = TRUE,fig.align='center'}
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(n=n()) %>% 
+  ggplot(data = .)+ #Datos
+  aes(x=factor(cyl),fill=factor(cyl),y=n)+ # Estética
+  geom_bar(stat ="identity", width = .5)+ # Geometría
+  coord_flip() # Coordenadas invertidas
+```
+
+Otra forma de generar un gráfico de barras es combinar dos geometrías y crear el gráfico denominado “lollipop”, el cual es una visualización un poco más llamativa que cumple el mismo fin con algunos toques estéticos.
+
+:::example
+#### Ejemplo 6.3.3.2
+:::
+
+```{r addition_6332, exercise = TRUE,fig.align='center'}
+data.frame( x=letters,
+            y=sample(1:60,26,replace = T)) %>% 
+  ggplot(data=.)+ #Datos
+  aes(x=x,y=y)+ #Estética base
+  geom_point(color="blue", size=4,alpha=0.5)+ #Geometría de puntos
+  geom_segment(aes(x=x, xend=x, y=0, yend=y),color="skyblue")+ #Geometría de segmentos con estética adicional
+  theme_classic() # Tema
+```
+
+Retomemos los datos del número de cilindros de `mtcars` con su respectivo conteo y veamos un gráfico de barras modificado utilizando `coord_polar()`. Recuerda consultar la documentación de esta función para tener mayor claridad respecto al gráfico.
+
+:::example
+#### Ejemplo 6.3.3.3
+:::
+
+```{r addition_6333, exercise = TRUE,fig.align='center'}
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(n=n()) %>% 
+  ggplot(data=.)+ #Datos 
+  aes(x=factor(cyl),y=n, fill=factor(cyl))+ # Estética
+  geom_bar(stat = "identity")+ #Geometría
+  scale_y_continuous(breaks = seq(0,16,2))+ #coordenadas
+  coord_polar(theta="y") #Coordenadas
+```
+
+Otro gráfico que se puede realizar con `coord_polar()` usando los datos del número de cilindros de `mtcars` es el siguiente.
+
+:::example
+#### Ejemplo 6.3.3.4
+:::
+
+```{r addition_6334, exercise = TRUE,fig.align='center'}
+mtcars %>% 
+  ggplot(data=.) + #Datos
+  aes(x = factor(1), fill = factor(cyl))+ #Estética
+  geom_bar(width = 1, color="white")+ # Geometría
+  coord_polar(theta = "y",start = pi / 3)+ #Coordenadas
+  scale_fill_brewer(palette = 7)+  #Coordenadas
+  theme_void() #Tema
+```
+
+Otra forma de representar los datos del número de cilindros de `mtcars` con su respectivo conteo es con el gráfico de rosca, el cual combina dos geometrías y aplicar retoques estéticos para lograr una visualización más llamativa. Para este caso se necesita manipular los datos de una forma específica que veremos a continuación.
+
+:::example
+#### Ejemplo 6.3.3.5
+:::
+
+```{r addition_6335, exercise = TRUE,fig.align='center'}
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(n=n()) %>% 
+  mutate(frac=n/sum(n),
+         ymax=cumsum(frac),
+         ymin=c(0,head(ymax,-1)),
+         pos=(ymax+ymin)/2,
+         label=paste0(cyl,"\n valor:",n)) %>% 
+  ggplot(data=.)+ #Datos
+  aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=factor(cyl))+ #Estética
+  geom_rect() + #Geometría 1
+  geom_text( x=2.5, aes(y=pos, label=label, color=factor(cyl)), size=4)+ #Geometría 2
+  xlim(c(1, 4))+ # Coordenadas limites eje x
+  coord_polar(theta="y")+ #Coordenadas
+  scale_fill_viridis_d() + # Coordenadas escala de relleno
+  scale_color_viridis_d() + # Coordenadas escala de color
+  theme_void() #Tema
+```
+
+Como último gráfico de esta sección tenemos las barras apiladas, que pueden ser útiles para ver conteos en simultáneo de dos variables categóricas. Para este caso representamos el conteo de cilindros y carburadores de los automóviles de `mtcars`.
+
+:::example
+#### Ejemplo 6.3.3.6
+:::
+
+```{r addition_6336, exercise = TRUE,fig.align='center'}
+mtcars %>% 
+  ggplot(data=.)+ #Datos
+  aes(x=factor(cyl),fill=factor(carb))+ #Estética
+  geom_bar()+ #Geometría
+  scale_fill_viridis_d(option = "plasma") #Coordenadas
+```
+
+#### 6.3.4 Mapas
+
+La cuestión con los mapas es un poco más compleja y para graficarlos tenemos múltiples geometrías que nos pueden ayudar como `geom_map()`, `geom_sf()`, `geom_polygon()`, etc. Sin embargo el uso de cada una de ellas depende exclusivamente del formato de los datos y para ello debemos relacionarnos más con análisis geoespacial. Para no adentrarnos y extendernos en los formatos de datos espaciales presentaremos dos breves ejemplos nombrando paquetes útiles para graficar mapas.
+
+El primer ejemplo consiste en graficar el número de asesinatos por cada 100.000 personas en los distintos estados de norte america. Para graficar este mapa usamos los datos `USArrests`, te invito a que consultes su estructura y lo explores detalladamente. 
+
+:::example
+#### Ejemplo 6.3.4.1
+:::
+
+```{r addition_6341, exercise = TRUE,fig.align='center'}
+USArrests %>% 
+  ggplot(data=.)+#Datos
+  aes(x=long,y=lat,group=group,order=order,fill=Murder)+ #Estética
+  geom_polygon(color="white")+ # Geometría
+  scale_fill_distiller(palette = 4)+ #Coordenadas
+  labs(title = "Asesinatos USA - 1973")+ # Etiquetas
+  theme_void() #Tema
+```
+
+El segundo ejemplo es un gráfico de homicidios en Colombia por departamentos para el año 2013.
+
+:::example
+#### Ejemplo 6.3.4.2
+:::
+
+```{r addition_6342, exercise = TRUE,fig.align='center',fig.height=5,fig.width=5.3}
+departamentos %>% 
+  ggplot(data=.)+ #Datos
+  geom_polygon(aes(x=long,y=lat,group=group,order=order,fill=homicidios))+ #Geometría de forma
+  geom_text(data = . %>% distinct(depto,lab_long,lab_lat), 
+            aes(x=lab_long,y=lab_lat, label=depto),size=1.5)+ #Geometría de texto
+  scale_fill_viridis_c()+ #Coordenadas escala de color
+  labs(title = "Homicidios Colombia - 2013")+ # Etiquetas
+  theme_void() #Tema
+```
+
+Otros paquetes paquetes que podemos utilizar para graficar mapas y datos geoespaciales son `tmap` , `leaflet` , `ggmap` y algunas de sus dependencias, aunque estas tres son las más relacionadas con el `tidyverse`.
 
 ## 8. Referencias
