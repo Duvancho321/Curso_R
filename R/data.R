@@ -295,9 +295,9 @@
 #' Datos de polígono para departamentos de Colombia
 #'
 #'
-#'Los datos fueron obtenidos de dos paquetes `colmaps` y `homicidios` de
-#'Daniel Moreno, contiene datos de homicidios en colombia del año
-#'2013 para cada departamento incluyendo su población para la fecha.
+#' Los datos fueron obtenidos de dos paquetes `colmaps` y `homicidios` de
+#' Daniel Moreno, contiene datos de homicidios en colombia del año
+#' 2013 para cada departamento incluyendo su población para la fecha.
 #'
 #' @format Conjunto de información de homicidios en Colombia año 2013
 #'
@@ -325,3 +325,55 @@
 #'
 #'
 "departamentos"
+
+
+#' Resultados de la liga inglesa 1888-2017
+#'
+#' Todos los resultados de los partidos de fútbol inglés en los 4 niveles superiores
+#' desde la temporada 1888/89 hasta la temporada 2016/17
+#'
+#' @format Un marco de datos con 196076 filas y 12 variables:
+#' \describe{
+#'   \item{Date}{Fecha de coincidencia}
+#'   \item{Season}{Temporada de partido - se refiere al año de inicio}
+#'   \item{home}{Equipo local}
+#'   \item{visitor}{Equipo visitante}
+#'   \item{FT}{Resultado a tiempo completo}
+#'   \item{hgoal}{Goles marcados por el equipo local}
+#'   \item{vgoal}{Goles marcados por el equipo visitante}
+#'   \item{division}{División: 1,2,3,4 o 3a (Viejo 3-Norte) o 3b (Viejo 3-Sur)}
+#'   \item{tier}{Nivel de la pirámide de fútbol: 1,2,3,4}
+#'   \item{totgoal}{Total de goles en el juego}
+#'   \item{goaldif}{Diferencia de goles en los objetivos de inicio del juego - objetivos de visitante}
+#'   \item{result}{Resultado: H-Home Win, A-Away Win, D-Draw}
+#' }
+#'
+#'
+#' @source \url{https://github.com/jalapic/engsoccerdata}
+#'
+#' Datos originales en R obtenidos en engsoccerdata::england
+#'
+#'
+"england"
+
+
+#' Datos sobre Pokémon
+#'
+#' Los datos fueron obtenidos desde Kaggle y la Pokémon Database.
+#' El dataset fue propuesto, traducido y editado por Gonzalo Fichero para
+#' datos de miércoles semana 14 y se adapto al paquete.El dataset contiene
+#' datos sobre las características de 800 pokémon.
+#'
+#'
+#' @format Un marco de datos con 2443 filas y 3 variables:
+#'
+#' \describe{
+#'   \item{Temporada}{Año en el que se llevo a cabo la competición 1888-2017}
+#'   \item{Equipo}{Nombre del los equipos pertenecientes a la primera división}
+#'   \item{Puntos}{Puntos logrados por el respectivo equipo en esa temporada de futbol}
+#' }
+#'
+#' Datos obtenidos a partir de engsoccerdata::england
+#'
+#'
+"Pts_temporada"

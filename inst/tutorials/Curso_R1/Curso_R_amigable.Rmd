@@ -17,6 +17,7 @@ require(curl)
 require(gradethis)
 require(kableExtra)
 require(palmerpenguins)
+library(gapminder)
 require(tibble)
 require(timevis)
 require(ggplot2)
@@ -38,11 +39,9 @@ knitr::opts_chunk$set(echo = F,
 
 ## ¡Bienvenido!
 
-```{r, echo = FALSE, eval = TRUE, out.width = "44%", fig.align = "center"}
-knitr::include_graphics("images/Mundo_R.jpg")  
+```{r, echo = FALSE, eval = TRUE, out.width = "28%", fig.align = "center"}
+knitr::include_graphics("images/imagen_curso.png")  
 ```
-
-<section style="text-align: center;"><small>Ilustracíon hecha por <font color = "black"><u>\@allison_horst</u></font>.</small></section>
 
 ### Descripción
 
@@ -5360,7 +5359,7 @@ La __visualización de datos__ es la práctica de convertir datos en una represe
 Es impensable cualquier sector profesional sin el uso de elementos de visualización, pues estos facilitan la transmisión de información. De las misma forma, es erróneo considerar a la visualización de datos como un recurso secundario o adicional, finalmente prescindible.
 
 :::caution
-El concepto de visualización de datos no es nuevo. De hecho, la visualización de datos ha [existido durante siglos](https://jorge-leonardo-lopez-martinez.shinyapps.io/historia_visualizacion/?_ga=2.152978873.160297420.1593535028-503089247.1593365860).
+El concepto de visualización de datos no es nuevo. De hecho, la visualización de datos ha existido durante siglos. [Aquí](https://jorge-leonardo-lopez-martinez.shinyapps.io/historia_visualizacion/?_ga=2.152978873.160297420.1593535028-503089247.1593365860) podrás encontrar una visualización que corresponde a una línea de tiempo sobre el desarrollo de los gráficos estadísticos.
 :::
 
 <div class="row">
@@ -5385,14 +5384,13 @@ knitr::include_graphics("images/ggplot2_3.png")
 Una gramática de gráficos es un marco que sigue un enfoque en capas para describir y construir visualizaciones o gráficos de manera estructurada.
 
 ```{r, echo = FALSE, eval = TRUE, out.width = "48%", fig.align = "center"}
-
 knitr::include_graphics("images/26va_imagen.png")  
 ```
 
 Para explicar el concepto de la gramática de gráficos en capas implementado en el paquete `ggplot2` se empleara el conjunto de datos [`pokemon`](https://github.com/cienciadedatos/datos-de-miercoles/tree/master/datos/2019/2019-07-10). Estos datos es uno de los muchos conjuntos de datos del proyecto [_Datos de miércoles_](https://github.com/cienciadedatos/datos-de-miercoles) cuyo propósito consiste en buscar que lo ususraios de `R` desarrollen habilidades de visualización y procesado de datos usando las herramientas del `tidyverse`.
 
-```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
 
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
 knitr::include_graphics("images/27va_imagen.png")  
 ```
 
@@ -5427,7 +5425,7 @@ save(pokemon_2, file = 'data_pkg/pokemon_2.rda', compress='xz')
 
 ##### 6.2.1.1 Capas 1-2-3: datos-estética-geometrías
 
-Para asociar el gráfico a un conjunto de datos en específico se emplea el argumento `data`. Luego se define un mapeo haciendo uso de la función `aes()` dentro de `ggplot()` para seleccionar las variables a graficar. Por último, con `geoms` se indica cómo se representaran los datos en el gráfico.
+Estas son las capas que determinan la representación visual de los datos. Para asociar el gráfico a un conjunto de datos en específico se emplea el argumento `data`. Luego se define un mapeo haciendo uso de la función `aes()` dentro de `ggplot()` para seleccionar las variables a graficar. Por último, con `geoms` se indica cómo se representaran los datos en el gráfico.
 
 :::example
 #### Ejemplo 6.2.1.1.1
@@ -5520,7 +5518,7 @@ pokemon <- pokemon %>%
 
 ggplot( # Primera forma
   data = pokemon,
-  aes(x = ataque, y = fuerza_total, colour = tipo)
+  aes(x = ataque, y = fuerza_total, colour = tipo, fill = tipo)
   ) +
   geom_point()
   
@@ -5528,133 +5526,31 @@ ggplot( # Segunda forma
   data = pokemon,
   aes(x = ataque, y = fuerza_total)
   ) +
-  geom_point(aes(colour = tipo))
+  geom_point(aes(colour = tipo, fill = tipo))
 ```
 
 :::caution
 Las asignaciones estéticas, definidas con la función `aes()`, describen cómo las variables se asignan a propiedades visuales o estéticas. Además de una posición horizontal (`x`) y vertical (`y`), cada punto puede tener también un tamaño (`size`), un color (`colour` y `fill`) y una forma (`shape`).
 :::
 
-:::caution
-<!--Colocar aqui las otras opciones de geom_-->
-:::
-
-:::example
-#### Ejemplo 6.2.1.1.2
-:::
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-```{r ejemplo_6_2_1_1_2, exercise = TRUE, fig.align = "center", out.width='340'}
-
-pokemon %>%
-  group_by(tipo) %>%
-  summarise(Total_puntos_vida = sum(puntos_vida)) %>%
-  ggplot(
-    data = .,
-    aes(x = tipo, y = Total_puntos_vida)
-    ) +
-  geom_bar(stat = 'identity')
-```
-  </div>
-  <div class="col-md-6" markdown="1">
-```{r ejemplo_6_2_1_1_3, exercise = TRUE, fig.align = "center", out.width='340'}
-
-pokemon %>%
-  filter(tipo == 'Fuego') %>%
-  ggplot(
-    data = .,
-    aes(x = velocidad)
-    ) +
-  geom_density()
-```
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-```{r ejemplo_6_2_1_1_4, exercise = TRUE, fig.align = "center", out.width='340'}
-
-pokemon %>%
-  filter(tipo == 'Fuego') %>%
-  ggplot(
-    data = .,
-    aes(x = velocidad)
-    ) +
-  geom_histogram()
-```
-  </div>
-  <div class="col-md-6" markdown="1">
-```{r ejemplo_6_2_1_1_5, exercise = TRUE, fig.align = "center", out.width='340'}
-
-pokemon %>%
-  filter(tipo == 'Fuego') %>%
-  ggplot(
-    data = .,
-    aes(x = velocidad)
-    ) +
-  geom_dotplot()
-```
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-```{r ejemplo_6_2_1_1_6, exercise = TRUE, fig.align = "center", out.width='340'}
-
-pokemon %>%
-  select(tipo, ataque) %>%
-  ggplot(
-    data = .,
-    aes(x = tipo, y = ataque)
-    ) +
-  geom_boxplot()
-```
-  </div>
-  <div class="col-md-6" markdown="1">
-```{r ejemplo_6_2_1_1_7, exercise = TRUE, fig.align = "center", out.width='340'}
-
-pokemon %>%
-  select(tipo, ataque) %>%
-  ggplot(
-    data = .,
-    aes(x = tipo, y = ataque)
-    ) +
-  geom_violin()
-```
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-```{r ejemplo_6_2_1_1_8, exercise = TRUE, fig.align = "center", out.width='340'}
-
-pokemon %>%
-  inner_join(pokemon_2, 'nombre') #%>%
-  #select(nombre, tipo, tipo_2) %>%
-  #ggplot(
-    #data = .,
-    #aes(x = tipo, y = tipo_2)
-    #) +
-  #geom_count()
-```
-  </div>
-  <div class="col-md-6" markdown="1">
-
-  </div>
-</div>
-
 ##### 6.2.1.2 Capa 4: facetas
 
+Las facetas son una de las capas más importantes para construir una visualización de datos efectiva. Las facetas consisten de múltiples gráficos de lado a lado utilizados para mostrar los niveles de una variable categórica. Hay dos tipos de facetado:
+
 <div class="row">
   <div class="col-md-6" markdown="1">
-+ __Facet wrap__
++ `facet_wrap()`
+
+```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+knitr::include_graphics("images/29va_imagen.png")  
+```
   </div>
   <div class="col-md-6" markdown="1">
 
-```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
++ `facet_grid()`
 
-knitr::include_graphics("images/29va_imagen.png")  
+```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+knitr::include_graphics("images/28va_imagen.png")  
 ```
   </div>
 </div>
@@ -5663,39 +5559,456 @@ knitr::include_graphics("images/29va_imagen.png")
 #### Ejemplo 6.2.1.2.1
 :::
 
-<div class="row">
-  <div class="col-md-6" markdown="1">
-+ __Facet grid__
-  </div>
-  <div class="col-md-6" markdown="1">
+```{r ejemplo_6_2_1_2_1, exercise = TRUE, fig.align = "center"}
 
-```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
 
-knitr::include_graphics("images/28va_imagen.png")  
+ggplot(
+  data = pokemon,
+  aes(x = ataque, y = fuerza_total, colour = tipo, fill = tipo)
+  ) +
+  geom_point() #+
+  #facet_wrap(~ tipo)
+
+#ggplot(
+  #data = pokemon,
+  #aes(x = ataque, y = fuerza_total, colour = tipo, fill = tipo)
+  #) +
+  #geom_point() +
+  #facet_wrap(~ tipo, ncol = 3, dir = 'h') # "h" de horizontal.
+
+#ggplot(
+  #data = pokemon,
+  #aes(x = ataque, y = fuerza_total, colour = tipo, fill = tipo)
+  #) +
+  #geom_point() +
+  #facet_wrap(~ tipo, nrow = 6, dir = 'v') # "v" de vertical.
 ```
-  </div>
-</div>
 
 :::example
 #### Ejemplo 6.2.1.2.2
 :::
 
+```{r ejemplo_6_2_1_2_2, exercise = TRUE, fig.align = "center"}
+
+pokemon_2 <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    ) %>%
+  inner_join(pokemon_2, 'nombre')
+pokemon_2
+
+#ggplot(
+  #data = pokemon_2,
+  #aes(x = ataque, y = fuerza_total)
+  #) +
+  #geom_point() +
+  #facet_grid(tipo ~ tipo_2)
+
+#ggplot(
+  #data = pokemon_2,
+  #aes(x = ataque, y = fuerza_total)
+  #) +
+  #geom_point() +
+  #facet_grid(vars(tipo), vars(tipo_2))
+```
+
 ##### 6.2.1.3 Capa 5: estadísticas
 
+La capa 5 de estadísticas (`stat_`), permite presentar resumenes estadísticos dentro de los gráficos por medio de una transformación estadística de los datos.
 
+:::example
+#### Ejemplo 6.2.1.3.1
+:::
+
+```{r ejemplo_6_2_1_3_1, exercise = TRUE, fig.align = "center"}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+
+Modelo <- lm(
+  formula = fuerza_total ~ ataque, 
+  data = pokemon
+  )
+summary(Modelo)
+
+Int_Pend <- tribble(
+  ~Intercepto, ~Pendiente,
+       138.24,       1.96
+  )
+
+#ggplot(
+  #data = pokemon,
+  #aes(x = ataque, y = fuerza_total)
+  #) +
+  #geom_point() +
+  #geom_abline(
+    #data = Int_Pend, 
+    #aes(intercept = Intercepto, slope = Pendiente)
+    #)
+  
+#ggplot(
+  #data = pokemon,
+  #aes(x = ataque, y = fuerza_total)
+  #) +
+  #geom_point() +
+  #stat_smooth(method = 'lm', colour = 'black')
+
+#ggplot(
+  #data = pokemon,
+  #aes(x = ataque, y = fuerza_total, colour = tipo, fill = tipo)
+  #) +
+  #geom_point() +
+  #facet_wrap(~ tipo) +
+  #stat_smooth(method = 'lm', colour = 'black')
+```
+
+:::caution
+Además de la función `geom_point()`, existen otras funciones `geom_` que permiten indicar la forma en como se desea representar los datos en la visualización. Cada una de estas funciones pueden estar asociadas con una función `stat_` que se encargan de realizar los cálculos para obtener los parámetros necesarios para realizar una determinada gráfica. [Aquí](https://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms) podrás encontrar una lista de estas funciones. 
+:::
+
+:::example
+#### Ejemplo 6.2.1.3.2
+:::
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
+```{r ejemplo_6_2_1_3_2_1, exercise = TRUE, fig.align = "center", out.width='380'}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+
+ggplot(
+  data = pokemon,
+  aes(x = tipo, y = fuerza_total)
+  ) +
+  geom_point() #+
+  #stat_summary(fun = mean, fun.min = min, fun.max = max, colour = 'yellow')
+```
+  </div>
+  <div class="col-md-6" markdown="1">
+```{r ejemplo_6_2_1_3_2_2, exercise = TRUE, fig.align = "center", out.width='380'}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+
+ggplot(
+  data = pokemon,
+  aes(x = fuerza_total)
+  ) +
+  geom_histogram() #+
+  #stat_bin(bins = 12)
+
+#ggplot(
+  #data = pokemon,
+  #aes(x = fuerza_total, after_stat(density))
+  #) +
+  #geom_histogram()
+```
+  </div>
+</div>
 
 ##### 6.2.1.4 Capa 6: coordenadas
 
+Un sistema de coordenadas asigna la posición de los objetos geométricos en la superficie de una gráfica. Con el paquete `ggplot2`, dicha posición se especifica mediante dos coordenadas (`x` y `y`).
 
+:::example
+#### Ejemplo 6.2.1.4.1
+:::
+
+```{r ejemplo_6_2_1_4, exercise = TRUE, fig.align = "center"}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+
+ggplot(
+  data = pokemon,
+  aes(x = ataque, y = fuerza_total)
+  ) #+
+  #geom_point() +
+  #coord_polar()
+```
+
+Existen dos tipos de sistema de coordenadas comúnenmente usados en el paquete `ggplot2`:<!--Los sistemas de coordenadas controlan cómo se dibujan los ejes y las líneas de cuadrícula de una gráfica y pueden cambiar la apariencia de los objetos geométricos.-->
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
++ Sistema de coordenadas cartesianas
+
+```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+knitr::include_graphics("images/30va_imagen.png")  
+```
+  </div>
+  <div class="col-md-6" markdown="1">
+
++ Sistema de coordenadas polar
+
+```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+knitr::include_graphics("images/31va_imagen.png")  
+```
+  </div>
+</div>
+
+:::example
+#### Ejemplo 6.2.1.4.2
+:::
+
+```{r, echo = FALSE, eval = TRUE, out.width = "62%", fig.align = "center"}
+knitr::include_graphics("images/Astronauts_tidytuesday.png")
+```
+<section style="text-align: center;"><small>Ilustracíon hecha por <font color = "black"><u>[\@Z3tt](https://github.com/Z3tt/TidyTuesday)</u></font>.</small></section>
 
 ##### 6.2.1.5 Capa 7: tema
 
+La capa 7 de tema (`theme`), ayudan a que las gráficas sean estéticamente agradables o coincidan con una guía de estilo existente, sin afectar lo ya hecho a partir de las capas anteriormente presentadas.
 
+```{r ejemplo_6_2_5, exercise = TRUE, fig.align = "center"}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+
+ggplot(
+  data = pokemon,
+  aes(x = ataque, y = fuerza_total, colour = tipo, fill = tipo)
+  ) +
+  geom_point(alpha = 0.4) +
+  facet_wrap(~ tipo, ncol = 6) +
+  stat_smooth(method = 'lm', colour = 'black') #+
+  #labs(
+    #x = 'Ataque',
+    #y = 'Fuerza total',
+    #title = 'Relación entre ataque y fuerza total de acuerdo al tipo de pokemon'
+  #) +
+  #scale_colour_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
+  #scale_fill_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4'))
+```
+
+El paquete `ggplot2` viene con una serie de temas integrados. Estos son:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+knitr::include_graphics("images/32va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 6.2.1.5.1
+:::
+
+```{r ejemplo_6_2_1_5_1, exercise = TRUE, fig.align = "center"}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+
+ggplot(
+  data = pokemon,
+  aes(x = ataque, y = fuerza_total, colour = tipo, fill = tipo)
+  ) +
+  geom_point(alpha = 0.4) +
+  facet_wrap(~ tipo, ncol = 6) +
+  stat_smooth(method = 'lm', colour = 'black') +
+  labs(
+    x = 'Ataque',
+    y = 'Fuerza total',
+    title = 'Relación entre ataque y fuerza total de acuerdo al tipo de pokemon'
+  ) +
+  scale_colour_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
+  scale_fill_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
+  theme_bw()
+```
+
+:::caution
+`ggplot2` no está limitado a los temas que tiene integrados. Puede hacer uso de otros paquetes, como `ggthemes` de Jeffrey Arnold, para disponer de muchos más temas. [Aquí](https://github.com/jrnold/ggthemes) podrá encontrar información sobre este paquete.
+:::
+
+El sistema de temas está compuesto por varios componentes principales:
+  
++ Componentes del gráfico
+
+Estos pueden afectar la apariencia del gráfico en su conjunto. Estos son:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+knitr::include_graphics("images/33va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 6.2.1.5.2
+:::
+
+```{r ejemplo_6_2_1_5_2, exercise = TRUE, fig.align = "center"}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+
+ggplot(
+  data = pokemon,
+  aes(x = ataque, y = fuerza_total, colour = tipo, fill = tipo)
+  ) +
+  geom_point(alpha = 0.4) +
+  facet_wrap(~ tipo, ncol = 6) +
+  stat_smooth(method = 'lm', colour = 'black') +
+  labs(
+    x = 'Ataque',
+    y = 'Fuerza total',
+    title = 'Relación entre ataque y fuerza total de acuerdo al tipo de pokemon'
+  ) +
+  scale_colour_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
+  scale_fill_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
+  theme_bw() +
+  theme(
+    plot.background = element_rect(colour = 'black', size = 1.4),
+    plot.title = element_text(size = 10, colour = 'black', face = 'bold')
+  )
+```
+
++ Componentes de los ejes
+
+Estos pueden controlar la apariencia de los ejes. Estos son:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+knitr::include_graphics("images/34va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 6.2.1.5.3
+:::
+
+```{r ejemplo_6_2_1_5_3, exercise = TRUE, fig.align = "center"}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+
+ggplot(
+  data = pokemon,
+  aes(x = ataque, y = fuerza_total, colour = tipo, fill = tipo)
+  ) +
+  geom_point(alpha = 0.4) +
+  facet_wrap(~ tipo, ncol = 6) +
+  stat_smooth(method = 'lm', colour = 'black') +
+  labs(
+    x = 'Ataque',
+    y = 'Fuerza total',
+    title = 'Relación entre ataque y fuerza total de acuerdo al tipo de pokemon'
+  ) +
+  scale_colour_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
+  scale_fill_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
+  theme_bw() +
+  theme(
+    plot.background = element_rect(colour = 'black', size = 1.4),
+    plot.title = element_text(size = 10, colour = 'black', face = 'bold'),
+    axis.text.x = element_text(size = 10, face = 'bold', angle = -45, hjust = 0, vjust = 1),
+    axis.title = element_text(size = 12, face = 'bold')
+  )
+```
+
++ Componentes de la leyenda
+
+Estos pueden controlar la apariencia de todas las leyendas. Estos son:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+knitr::include_graphics("images/35va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 6.2.1.5.4
+:::
+
+```{r ejemplo_6_2_1_5_4, exercise = TRUE, fig.align = "center"}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+
+ggplot(
+  data = pokemon,
+  aes(x = ataque, y = fuerza_total, colour = tipo, fill = tipo)
+  ) +
+  geom_point(alpha = 0.4) +
+  facet_wrap(~ tipo, ncol = 6) +
+  stat_smooth(method = 'lm', colour = 'black') +
+  labs(
+    x = 'Ataque',
+    y = 'Fuerza total',
+    title = 'Relación entre ataque y fuerza total de acuerdo al tipo de pokemon'
+  ) +
+  scale_colour_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
+  scale_fill_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
+  theme_bw() +
+  theme(
+    plot.background = element_rect(colour = 'black', size = 1.4),
+    plot.title = element_text(size = 10, colour = 'black', face = 'bold'),
+    axis.text.x = element_text(size = 10, face = 'bold', angle = -45, hjust = 0, vjust = 1),
+    axis.title = element_text(size = 12, face = 'bold'),
+    legend.position = 'none'
+  )
+```
+
++ Componentes de facetado
+
+Estos pueden controlar la apariencia de los gráficos facetados. Estos son:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+knitr::include_graphics("images/36va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 6.2.1.5.5
+:::
+
+```{r ejemplo_6_2_1_5_5, exercise = TRUE, fig.align = "center"}
+
+pokemon <- pokemon %>%
+  mutate(
+    fuerza_total = ataque + defensa + velocidad + puntos_vida
+    )
+
+ggplot(
+  data = pokemon,
+  aes(x = ataque, y = fuerza_total, colour = tipo, fill = tipo)
+  ) +
+  geom_point(alpha = 0.4) +
+  facet_wrap(~ tipo, ncol = 6) +
+  stat_smooth(method = 'lm', colour = 'black') +
+  labs(
+    x = 'Ataque',
+    y = 'Fuerza total',
+    title = 'Relación entre ataque y fuerza total de acuerdo al tipo de pokemon'
+  ) +
+  scale_colour_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
+  scale_fill_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
+  theme_bw() +
+  theme(
+    plot.background = element_rect(colour = 'black', size = 1.4),
+    plot.title = element_text(size = 10, colour = 'black', face = 'bold'),
+    axis.text.x = element_text(size = 10, face = 'bold', angle = -45, hjust = 0, vjust = 1),
+    axis.title = element_text(size = 12, face = 'bold'),
+    legend.position = 'none',
+    strip.background = element_rect(colour = 'black', fill = 'black'),
+    strip.text = element_text(size = 10, colour = 'white', face = 'bold')
+  )
+```
 
 :::caution
 Si deseas conocer más sobre la gramática de gráficos en capas propuesto por Hadley Wickham, te invitamos a revisar su articulo titulado [A layered grammar of graphics](https://github.com/Leo4Luffy/Un_curso_amigable_sobre_R/blob/master/Documentos/A%20Layered%20Grammar%20of%20Graphics.pdf) que cubre en detalle su propuesta en la construcción de gráficos y también habla sobre el paquete `ggplot2`.
 :::
-
 
 ### 6.3 Gráficos estadísticos con `ggplot2`
 
@@ -5726,7 +6039,7 @@ ggplot()+
   aes(x=0,y=0)
 ```
 
-Después de estas dos capas se agrega la capa de geometrías, que en general depende de el tipo de gráfico que necesitemos o el que mejor se adapte a nuestros datos. Para conocer algunos gráficos  agruparemos algunos de ellos en 7 conjuntos:  1) Gráficos de distribución, 2) Gráficos de correlación, 3) Gráficos de clasificación y 4)Mapas.
+Después de estas dos capas se agrega la capa de geometrías, que en general depende de el tipo de gráfico que necesitemos o el que mejor se adapte a nuestros datos. Para conocer algunos gráficos  agruparemos algunos de ellos en 7 conjuntos:  1) Gráficos de distribución, 2) Gráficos de correlación, 3) Gráficos de clasificación y 4) Mapas.
 
 #### 6.3.1 Gráficos de distribución
 
@@ -6083,4 +6396,260 @@ departamentos %>%
 
 Otros paquetes paquetes que podemos utilizar para graficar mapas y datos geoespaciales son `tmap` , `leaflet` , `ggmap` y algunas de sus dependencias, aunque estas tres son las más relacionadas con el `tidyverse`.
 
-## 8. Referencias
+### 6.4 Animando sus visualizaciones de datos
+
+Ya en este punto de seguro se preguntará ¿es posible ir más alla de lo que se ha visto hasta ahora? La respuesta es definitivamente un si. Un ejemplo de ello es la famosa visualización de [Hans Rosling](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen) donde representaba la población mundial, la expectativa de vida y varios indicadores económicos mediante una visualización animada.
+
+Afortunadamente, hacer este tipo de visualizaciones se ha vuelto hoy en día bastante simple mediante el uso de paquetes de `R`. <!--Para explicar como hacer estas visualizaciones se empleará los dos conjuntos de datos que se observan a continuación:-->
+
+```{r, eval = FALSE, message = FALSE, echo = FALSE}
+
+# Antes de la temporada de 1981, el equipo ganador se llevaba 2 puntos, y posteriormente se llevaba 3 puntos. El equipo derrotado por otra parte se llevaba 0 puntos, mientras que si el juego terminaba en empate, ambos equipos se llevaban 1 punto... se crean dos nuevas columnas para asignar punto de local y puntos de visitante. ----
+premier_league <- england %>%
+  mutate(
+    Pts_local = case_when(
+      Season <= 1980 & result == 'H' ~ 2,
+      Season > 1980 & result == 'H' ~ 3,
+      result == 'D' ~ 1,
+      result == 'A' ~ 0
+      ),
+    Pts_visitante = case_when(
+      Season <= 1980 & result == 'A' ~ 2,
+      Season > 1980 & result == 'A' ~ 3,
+      result == 'D' ~ 1,
+      result == 'H' ~ 0
+      )
+    )
+
+# Ahora, se obtendra el total de puntos de local y vistante para cada equipo y cada temporada, y solo de juegos jugados en primera división. ----
+Pts_local <- premier_league %>%
+  filter(tier == 1) %>%
+  group_by(Season, home) %>%
+  summarise(Pts = sum(Pts_local))
+
+Pts_visitante <- premier_league %>%
+  filter(tier == 1) %>%
+  group_by(Season, visitor) %>%
+  summarise(Pts = sum(Pts_visitante))
+
+#  Ahora se unen los dos anteriores conjuntos de datos y se suman los puntos locales y de visitante para obtener los puntos totales de cada equipo en cada temporada. ----
+Pts_temporada <- Pts_local %>%
+  rename(Equipo = home) %>%
+  bind_rows(
+    Pts_visitante %>%
+      rename(Equipo = visitor)
+  ) %>%
+  group_by(Season, Equipo) %>%
+  summarise(Pts = sum(Pts)) %>%
+  rename('Temporada' = Season)
+
+# Se guarda la base de datos anterior. ----
+save(Pts_temporada, file = "data_pkg/Pts_temporada.rda", compress='xz') # Base de datos que contiene los puntos obtenidos por cada equipo en cada una de las temporadas.
+```
+
+
+```{r datos_premier_1, exercise = TRUE}
+
+Pts_temporada
+```
+
+#### 6.4.1 ¿Como se crean las animaciones gráficas?
+
+Al crear animaciones, el gráfico no se mueve sino que en realidad son muchos gráficos individuales que luego se unen como si tratase de cuadros de película:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/37va_imagen.png")  
+```
+
+:::caution
+Cuantos más subconjuntos de datos se tienen, mejor será su visualización animada. Si los subconjuntos de datos generado son pocos, mejor será realizar un gráfico estático mediante el uso de facetas en lugar de una animación.
+:::
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
+#### 6.4.2 Construccion de visualizaciones animadas mediante el uso del paquete `gganimate`
+
+El paquete `gganimate` extiende la gramática de gráficos implementada en el paquete `ggplot2` proporcionando una rica gramática o funciones de animación.
+
+Esta nueva gama de funciones se pueden agregar al código de graficación de la misma manera que se agrega un `geom_` u otra capa gráfica.
+
+<!--Estas funciones son:-->
+  </div>
+  <div class="col-md-6" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
+knitr::include_graphics("images/gganimate.png")
+```
+
+<section style="text-align: center;"><small>Ilustracíon hecha por <font color = "black"><u>\@allison_horst</u></font>.</small></section>
+  </div>
+</div>
+<!--
++ `transition_*()`: ¿Qué variables control cambian y cómo?
++ `view_*()`: ¿Deberían cambiar los ejes con los datos?
++ `enter_*()/exit_*()`: ¿Cómo deben aparecer los nuevos datos y cómo deben desaparecer los datos antiguos durante el proceso de animación?
++ `shadow_*()`: ¿Deberían "recordarse los datos anteriores y mostrarse con los datos actuales"?
++ `ease_aes()`: ¿Cómo desea manejar el ritmo de cambio entre los valores de transición?-->
+
+<!--
+<div class="row">
+  <div class="col-md-6" markdown="1">
+```{r ejemplo_gganimate_1, exercise = TRUE, fig.align = "center", out.width = '480'}
+
+tribble(
+  ~Nombre, ~Peso, ~Año,
+   'Juan',    60, 2018,
+  'Luisa',    54, 2018,
+  'Maria',    72, 2018,
+   'Luis',    68, 2018,
+   'Juan',    52, 2020,
+  'Luisa',    66, 2020,
+  'Maria',    80, 2020,
+   'Luis',    60, 2020
+  ) %>%
+  ggplot(aes(x = Nombre, y = Peso)) +
+  geom_bar(stat = 'identity') +
+  coord_flip() +
+  facet_wrap(~ Año)
+```
+
+```{r, echo = FALSE, eval = FALSE, out.width = "98%", fig.align = "center"}
+knitr::include_graphics("images/Ejemplo_gganimate_1.png")
+```
+  </div>
+  <div class="col-md-6" markdown="1">
+```{r ejemplo_gganimate_2, exercise = TRUE, fig.align = "center", out.width = '480'}
+
+tribble(
+  ~Nombre, ~Peso, ~Año,
+   'Juan',    60, 2018,
+  'Luisa',    54, 2018,
+  'Maria',    72, 2018,
+   'Luis',    68, 2018,
+   'Juan',    52, 2020,
+  'Luisa',    66, 2020,
+  'Maria',    80, 2020,
+   'Luis',    60, 2020
+  ) %>%
+  ggplot(aes(x = Nombre, y = Peso)) +
+  geom_bar(stat = 'identity') +
+  coord_flip() +
+  labs(title = "Año: {closest_state}") +
+  transition_states(Año)
+```  
+
+```{r, echo = FALSE, eval = FALSE, out.width = "70%", fig.align = "center"}
+knitr::include_graphics("images/Ejemplo_gganimate_2.gif")
+```
+  </div>
+</div>
+
+-->
+```{r paquete_gganimate, exercise = TRUE, fig.align = "center"}
+
+#install.packages('gganimate')
+#devtools::install_github('thomasp85/gganimate')
+
+#library(gganimate)
+```
+
+:::example
+#### Ejemplo 6.4.2.1
+:::
+
+```{r ejemplo_6_4_2_1, echo= TRUE ,eval=FALSE , fig.align = "center", out.width='580'}
+
+Pts_temporada %>%
+  filter(
+    Equipo == 'Liverpool' | Equipo == 'Manchester City' | Equipo == 'Manchester United' | Equipo == 'Tottenham Hotspur' | Equipo == 'Chelsea' | Equipo == 'Arsenal') %>%
+  ggplot(
+    data = .,
+    aes(x = Temporada, y = Pts, colour = Equipo, fill = Equipo)
+    ) +
+  geom_line() +
+  geom_point(alpha = 0.4, size = 2.4) +
+  labs(
+    x = 'Temporadas de la Premier League',
+    y = 'Puntos por temporada'
+  ) +
+  facet_wrap(~ Equipo, ncol = 2) +
+  scale_colour_manual(values = c('red', 'cyan', 'black', 'gray34', 'green', 'yellow')) +
+  scale_fill_manual(values = c('red', 'cyan', 'black', 'gray34', 'green', 'yellow')) +
+  theme_bw() +
+  theme(
+    axis.text = element_text(size = 12, face = 'bold'),
+    axis.title = element_text(size = 14, face = 'bold'),
+    legend.position = 'none',
+    strip.background = element_rect(colour = 'gray64', fill = 'gray64'),
+    strip.text = element_text(size = 12, colour = 'black', face = 'bold')
+    ) +
+  transition_reveal(Temporada) #+
+  #exit_shrink()
+#anim_save('images/1ra_animacion.gif')
+```
+
+<!-- Hola leo Cambie este chunk para no tener problemas con el paquete , recuerda que llamar gganimate complicaria un poco las cosas en el paquete -->
+
+```{r, echo = FALSE, eval = TRUE, out.width = "50%", fig.align = "center"}
+knitr::include_graphics("images/1ra_animacion.gif")
+```
+
+:::caution
+Si deseas ver un resumen de las posibilidades que ofrece el paquete `ggplot2` y profundizar más en su uso, puedes mirar su hoja de trucos [aquí](https://github.com/Leo4Luffy/Un_curso_amigable_sobre_R/blob/master/Documentos/cheat_sheet_ggplot2.pdf). De igual forma, si deseas conocer más sobre el paquete `gganimate` puedes mirar su hoja de trucos [aquí](https://github.com/Leo4Luffy/Un_curso_amigable_sobre_R/blob/master/Documentos/cheat_sheet_gganimate.pdf).
+:::
+
+## 8. Comunicación de resultados
+
+La comunicación de resultados es un aspecto muy importante en cualquier campo de la ciencia y en el análisis estadístico no es la excepción. A lo largo de los años se usado el enfoque manual (cortar y pegar) para comunicar resultados en forma de informes, artículos científicos, presentaciones académicas, libros, sitios web, etc. Sin embargo este enfoque manual se a visto reemplazado por la automatización permitiendo emitir resultados reproducibles y dinámicos con mayor simplicidad. En `R` y en muchos otros lenguajes de programación el formato de documento Markdown abrió las puertas a la interacción entre código de programación y texto plano, dando como resultado documentos que integran sus características y emiten distintos formatos de acuerdo a las necesidades del usuario. Markdown en conjunto con [Pandoc](https://pandoc.org/) permiten compilar formatos como PDF, HTML, Word, LaTex, PowerPoint, Beamer, etc. con una sintaxis bastante simple, dando como resultado documentos básicos susceptibles de personalización con algunos conocimientos de CSS y LaTex. 
+
+Aunque la sintaxis de Markdown es simple y admite muchos lenguajes incluyendo todos los inherentes a los formatos de salida, en R existe su propia versión en el paquete `rmarkdown` creado a principios de 2014. Esta versión en conjunto con `knitr` se han convertido en una de las herramientas más conocidas, divulgadas y avaluadas en toda la comunidad de programadores de `R`, por lo que conocerla y manejarla resulta apropiado para los usuarios de `R`.
+
+
+Como primer paso para el uso de `rmarkdown` es necesario instalarlo:
+
+```{r addition_8_01, exercise = TRUE}
+#install.packages("rmarkdown",dependencies = T)
+```
+
+No obstante si cuenta con la IDE de Rstudio no es explícitamente necesario que lo instale ya que el lo hace por usted. Tenga en cuenta que `rmarkdown` maneja la sintaxis de Markdown, para familiarizarse con ella puede realizar el [Tutorial Rmarkdown](https://www.markdowntutorial.com/).
+
+Como primer paso para aprender sobre las opciones de `rmarkdown` debemos conocer las plantillas que posee abriendo `Rstudio` y creando un nuevo Rmarkdown de la siguiente forma: 
+
+
+```{r, echo = FALSE, eval = TRUE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("images/rmarkdown_1.gif")
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
+knitr::include_graphics("images/rmarkdown_2.png")
+```
+
+En la segunda imagen se ilustra el panel de opciones de Rmarkdown mostrando los formatos de salida que podemos usar para generar documentos ya sean HTML,PDF o Word. Los formatos disponibles para presentaciones, Shiny y plantillas se ven a continuación.
+
+```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
+knitr::include_graphics("images/rmarkdown_3.png")
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
+knitr::include_graphics("images/rmarkdown_4.png")
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
+knitr::include_graphics("images/rmarkdown_5.png")
+```
+
+Generar cualquier tipo de documento, presentación, Shiny o plantilla es tan simple como seleccionar la opción que prefiera y dar click en **OK**. Después de pulsar OK se abrirá un archivo Rmd con instrucciones básicas correspondientes al formato seleccionado, para crear el archivo con el formato de interés debe buscar el icono de `knit` o ejecutar el comando `CTRL + SHIFT + K`.
+
+```{r, echo = FALSE, out.width = "100%", eval = TRUE, fig.align = "center"}
+knitr::include_graphics("images/rmarkdownflow.png")
+```
+
+Cada uno de los archivos posee la extensión .Rmd y cuenta por lo menos con tres tipos de contenidos:
+
+* Un encabezado YAML (opcional) rodeado de `---`
+* Trozos de código R rodeados por ` ``` `
+* Texto mezclado con formato de texto simple
+
+El encabezado YAML denota las características del archivo, como título, autor, fecha, opciones de tabla de contenido, condiciones estéticas, opciones de referencias, opciones figuras, etc.
+
+## 9. Referencias
