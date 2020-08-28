@@ -24,11 +24,11 @@ require(ggplot2)
 require(patchwork)
 require(fontawesome)
 #PARA COMENTAR AL FINALIZAR
-#require(jpeg)
-#require(grid)
-#require(gridGraphics)
-#require(showtext)
-#font_add_google('Gochi Hand', 'gochi')
+require(jpeg)
+require(grid)
+require(gridGraphics)
+require(showtext)
+font_add_google('Gochi Hand', 'gochi')
 #PARA COMENTAR AL FINALIZAR
 tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = F,
@@ -126,7 +126,7 @@ Se trata de un lenguaje __interpretado__ o de script, con __tipado dinámico__, 
 + __Lenguaje interpretado__ o de script: se ejecuta utilizando
 un programa intermedio llamado __intérprete__ (IDE).
 
-+ __Orientado a objetos__: `R` realiza acciones objetos (un número, un conjunto de datos, una palabra o un resumen estadístico como una media o varianza).
++ __Orientado a objetos__: `R` realiza acciones sobre objetos (un número, un conjunto de datos, una palabra o un resumen estadístico como una media o varianza).
 
 :::example
 #### Ejemplo 1.1.1
@@ -159,19 +159,19 @@ declarar el __tipo de dato__. A su vez, `R` es __fuertemente tipado__.
 ```{r addition, exercise = TRUE}
 
 a <- 'Hola'
-typeof(a)
+typeof(x = a)
 
 b <- 1L
-typeof(b)
+typeof(x = b)
 
 c <- 12.3
-typeof(c)
+typeof(x = c)
 
 d <- 1 + 2i
-typeof(d)
+typeof(x = d)
 
 e <- c(FALSE, TRUE)
-typeof(e)
+typeof(x = e)
 ```
 
 ### 1.2 ¿Por qué usar `R`?
@@ -180,7 +180,7 @@ El lenguaje de programación `R` se puede obtener y distribuir de forma gratuita
 
 <div class="row">
   <div class="col-md-8" markdown="1">
-  `R` cuenta con una __comunidad__ de usuarios alrededor del mundo. Al contar con una comunidad es posible dar con la solución de algún problema de programación, así como el desarrollo de paquetes utilizados en temas específicos, desarrolados por especialistas en alguna parte del mundo.
+  `R` cuenta con una __comunidad__ de usuarios alrededor del mundo. Al contar con una comunidad es posible dar con la solución de algún problema de programación, así como contar con el desarrollo de paquetes utilizados en temas específicos, desarrolados por especialistas en alguna parte del mundo.
   </div>
   <div class="col-md-4" markdown="1">
 ```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
@@ -206,27 +206,23 @@ __¡No se desanime!__ Los lenguajes de programación como el `R` no son sencillo
 
 #### 1.3.1 `R` base:
 
-<div class="row">
-  <div class="col-md-6" markdown="1">
-  + Windows: la instalación de `R` base en windows se realiza a través de la [CRAN](https://cran.r-project.org/mirrors.html) (Comprehensive R Archive Network).
-  + Linux: la instalación de `R` base en Linux se realiza escribiendo el siguiente código en la terminal:<br>
-  <div style="background-color:#262626">
-  <font color = "white"><p> sudo apt-get update</p></font>
-  <font color = "white"><p> sudo apt-get install r-base r-base-dev</p></font>
-  </div>
-  </div>
-  <div class="col-md-6" markdown="1">
-```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+La instalación de `R` base tanto en Windows como en Linux se realiza a través de la [CRAN](https://cran.r-project.org/) (Comprehensive R Archive Network).
+
+<details><summary>Ejemplo de __consola__ del `R`</summary>
+
+```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
 knitr::include_graphics("images/consola_R_base.jpg")
 ```
-  </div>
-</div>
+
+</details>
+
+<br>
 
 #### 1.3.2 RStudio:
 
 <div class="row">
   <div class="col-md-6" markdown="1">
-  Se puede instalar directamente desde la [página de RStudio](https://rstudio.com/products/rstudio/download/). Hay se encuentran los archivos de instalación tanto en windows como en Linux.
+  Se puede instalar directamente desde la [página de RStudio](https://rstudio.com/products/rstudio/). Hay se encuentran los archivos de instalación tanto en Windows como en Linux.
   
   Cuando se abre RStudio se pueden ver cuatro paneles: 
   </div>
@@ -240,7 +236,7 @@ knitr::include_graphics("images/RStudio_2.jpg")
 
 + La fuente: la libreta de notas para el código
 
-```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
+```{r, echo = FALSE, eval = TRUE, out.width = "74%", fig.align = "center"}
 knitr::include_graphics("images/source_RStudio.jpg")
 ```
 
@@ -250,54 +246,65 @@ Un texto insertado en el código el cual es omitido en la ejecución, se denomin
 
 + La consola: el corazón de `R`
 
-```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
+```{r, echo = FALSE, eval = TRUE, out.width = "74%", fig.align = "center"}
 knitr::include_graphics("images/console.jpg")
 ```
 
 + El ambiente / el historial
 
-<div class="row">
-  <div class="col-md-6" markdown="1">
-```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
+<details><summary>Ejemplo de __ambiente__ del `R`</summary>
+
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
 knitr::include_graphics("images/environment.jpg")
 ```
-  </div>
-  <div class="col-md-6" markdown="1">
-```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
+
+</details>
+
+<details><summary>Ejemplo de __historial__ del `R`</summary>
+
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
 knitr::include_graphics("images/history.jpg")
 ```
-  </div>
-</div>
 
-+ Los archivos / las gráficas / la ayuda / los paquetes
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
-knitr::include_graphics("images/files.jpg")
-```
-  </div>
-  <div class="col-md-6" markdown="1">
-```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
-knitr::include_graphics("images/plots.jpg")
-```
-  </div>
-</div>
+</details>
 
 <br>
 
-<div class="row">
-  <div class="col-md-6" markdown="1">
-```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
++ Los archivos / las gráficas / la ayuda / los paquetes
+
+<details><summary>Ejemplo de __archivos__ del `R`</summary>
+
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
+knitr::include_graphics("images/files.jpg")
+```
+
+</details>
+
+<details><summary>Ejemplo de __gráficos__ del `R`</summary>
+
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
+knitr::include_graphics("images/plots.jpg")
+```
+
+</details>
+
+<details><summary>Ejemplo de __ayuda__ del `R`</summary>
+
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
 knitr::include_graphics("images/help.jpg")
 ```
-  </div>
-  <div class="col-md-6" markdown="1">
-```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
+
+</details>
+
+<details><summary>Ejemplo de __paqutes__ del `R`</summary>
+
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
 knitr::include_graphics("images/packages.jpg")
 ```
-  </div>
-</div>
+
+</details>
+
+<br>
 
 ### 1.4 Los paquetes en `R`
 
@@ -327,10 +334,10 @@ install.packages('tidyr', 'dplyr', 'ggplot2')
 
 2) Mediante el uso del paquete `devtools`, el cual permite instalar paquetes alojados en distintos servidores:
 
-  + `install_bioc()` desde [Bioconductor](https://www.bioconductor.org/).
-  + `install_cran()` desde [CRAN](https://cran.r-project.org/index.html).
-  + `install_git()` desde un repositorio [git](https://git-scm.com/).
-  + `install_github()` desde [GitHub](https://github.com/).
++ `install_bioc()` desde [Bioconductor](https://www.bioconductor.org/).
++ `install_cran()` desde [CRAN](https://cran.r-project.org/index.html).
++ `install_git()` desde un repositorio [git](https://git-scm.com/).
++ `install_github()` desde [GitHub](https://github.com/).
 
 :::example
 #### Ejemplo 1.4.2
@@ -343,7 +350,7 @@ devtools::install_github('tidyverse/dplyr')
 
 Una vez haya instalado un paquete, estará en la computadora. Si se desea usar una función o un conjunto de datos del paquete instalado, debe cargar el paquete en la sesión de `R`. Para esto, existen dos formas:
 
-1) Con la notación `nombrepaquete::nombrefunción()` para hacer un uso temporal de la función o conjunto de datos.
+1) Con la notación `nombre_paquete::nombre_función()` para hacer un uso temporal de la función o conjunto de datos.
 
 :::example
 #### Ejemplo 1.4.3
@@ -353,11 +360,7 @@ Una vez haya instalado un paquete, estará en la computadora. Si se desea usar u
 dplyr::starwars
 ```
 
-:::caution
-Una ventaja del método anterior es que es inmediatamente claro para cualquier persona que lea el código qué paquete contiene la función. Sin embargo, un inconveniente es que si usa una función de un paquete con frecuencia, lo obliga a volver a escribir constantemente el nombre del paquete.
-:::
-
-2) Cargándolo en la memoria del computador mediante el uso de la función `library()` si su uso es permanente.
+2) Cargándolo en la memoria del computador mediante el uso de la función `library()`.
 
 :::example
 #### Ejemplo 1.4.4
@@ -376,7 +379,7 @@ Para acceder a la descripción de un paquete desde `R` se puede emplear las func
 
 ```{r addition_6, exercise = TRUE}
 packageDescription('dplyr')
-help(package = 'dplyr')
+#help(package = 'dplyr')
 ```
 
 Otras funciones que permiten la gestión de los paquetes instalados en el computador:
@@ -390,7 +393,12 @@ update.packages() # Para actualizar todo los paquetes instalados.
 
 ### 1.5 Trabajando con proyectos
 
-Un __directorio de trabajo__ en `R` es el lugar en la computadora en el que se encuentran los archivos con los que se esta trabajando. Es el lugar donde `R` buscara los archivos para importarlos y al que serán exportados.
+Un __directorio de trabajo__ es el lugar en la computadora en el que se encuentran los archivos con los que se esta trabajando. Es el lugar donde el programa `R` buscara los archivos para importarlos y al que serán exportados.
+
+```{r, echo = FALSE, eval = TRUE, out.width = "44%", fig.align = "center"}
+
+knitr::include_graphics("images/59va_imagen.png")  
+```
 
 Con la función `getwd()` se puede encontrar el directorio en el que se esta trabajando.
 
@@ -402,7 +410,7 @@ Con la función `getwd()` se puede encontrar el directorio en el que se esta tra
 getwd() # Da como resultado la ruta "/home/leo/Escritorio/github/Un_curso_amigable_sobre_R".
 ```
 
-Para cambiar el directorio de trabajo se puede emplear la función `setwd()`, dando como argumento la ruta del directorio que se quiere usar. 
+Para cambiar el directorio de trabajo se puede emplear la función `setwd()`, dando como argumento la ruta donde se encuentra el nuevo directorio de trabajo. 
 
 :::example
 #### Ejemplo 1.5.2
@@ -416,7 +424,7 @@ Sin embargo como señala [Jenny Bryan](https://www.tidyverse.org/blog/2017/12/wo
 
 <div class="row">
   <div class="col-md-5" markdown="1">
-  Un proyecto es un directorio de trabajo nombrado como un archivo __.Rproj__. Cuando se abre un proyecto, el directorio de trabajo se establecerá automáticamente en el directorio en el que se encuentra el archivo __.Rproj__.
+  Un proyecto es un directorio de trabajo designado como un archivo __.Rproj__. Cuando se abre un proyecto, el directorio de trabajo se establecerá automáticamente en la carpeta en el que se encuentra el archivo __.Rproj__.
   
   El archivo __.Rproj__ se puede crear yendo a "File" (archivo) &#8594; "New Project..." (nuevo proyecto) en RStudio, que luego se asocia con la carpeta o directorio especificado. 
   
@@ -431,6 +439,13 @@ knitr::include_graphics("images/Proyectos.jpg")
   </div>
 </div>
 
+La tabla a continuación presenta algunas funciones útiles para administrar el directorio de trabajo:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "44%", fig.align = "center"}
+
+knitr::include_graphics("images/60va_imagen.png")  
+```
+
 #### 1.5.1 Estructurando el directorio de trabajo
 
 Además de usar proyectos, también es una buena práctica estructurar el directorio de una manera que ayude a cualquier persona con la que se esta colaborando, o una versión futura de usted intente reproducir algunos análisis.
@@ -439,920 +454,494 @@ Además de usar proyectos, también es una buena práctica estructurar el direct
 knitr::include_graphics("images/2da_imagen.png")  
 ```
 
-## 2. Operaciones básicas en R
+## 2. Lo básico en el uso del R
 
-Antes de realizar operaciones sobre algunos objetos en `R`, veamos cuales de estas podemos realizar.
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
 
-* Suma y diferencia (+, -)
-* Producto y división (*, /)
-* Potencia (^, **)
-* Residuo (%%)
-* Mayor, mayor o igual, menor, menor o igual, igual y diferente que (>, >=, <, <=, ==, !=)
-* Conjunción (&, &&), disyunción (|, ||)
-
-### Indexación
-
-Dentro de los múltiples objetos de `R` sean estos simples como un vector o compuestos como un dataframe debemos tener claro el manejo de nuestra información, por lo cual es necesario saber cómo acceder a ella, segmentarla, seleccionarla y/o cambiarla. Para cualquiera de los casos se utiliza la indexación, lo cual significa que los elementos de nuestros objetos están identificados usualmente mediante un índice entero que inicia con el número uno `[1]`.
-
-En las secciones posteriores se explorará cada objeto con detalle, abordando las distintas operaciones que se pueden realizar sobre cada uno de ellos incluyendo la segmentación, selección y modificación.
-
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-```{r,echo=F, comment=""}
-print("[1][2][3][4][5][6][7][8][9]")
-11:19
+knitr::include_graphics("images/38va_imagen.png")  
 ```
-  </div>
-  <div class="col-md-6" markdown="1">
-```{r,echo=F,comment=""}
-matrix(1:25,nrow = 5)
-```
-  </div>
-</div>
 
-### Coerción
+### 2.1 Escalares
 
-Existe una forma de convertir el tipo de un vector o matriz a otro tipo y para ello se cuentan con funciones base del tipo `as.*`
+Los escalares son el tipo de objeto más simple en `R`. Un objeto escalar es un objeto de un único valor, sin embargo estos se pueden clasificar en cinco clases (clases atómicas):
 
-+------------------+--------------------------------------+
-| Función          | Acción                               |
-+==================+======================================+
-| `as.character()` | Convertir objetos a tipo caracter    |
-+------------------+--------------------------------------+
-| `as.complex()`   | Convertir objetos a tipo complejo    |
-+------------------+--------------------------------------+
-| `as.data.frame()`| Convertir objetos a tipo dataframe   |
-+------------------+--------------------------------------+
-| `as.Date()`      | Convertir objetos a tipo fecha       |
-+------------------+--------------------------------------+
-| `as.double()`    | Convertir objetos a tipo doble       |
-+------------------+--------------------------------------+
-| `as.factor()`    | Convertir objetos a tipo factor      |
-+------------------+--------------------------------------+
-| `as.integer()`   | Convertir objetos a tipo entero      |
-+------------------+--------------------------------------+
-| `as.list()`      | Convertir objetos a tipo lista       |
-+------------------+--------------------------------------+
-| `as.logical()`   | Convertir objetos a tipo lógico      |
-+------------------+--------------------------------------+
-| `as.matrix()`    | Convertir objetos a tipo matriz      |
-+------------------+--------------------------------------+
-| `as.numeric()`   | Convertir objetos a tipo numérico    |
-+------------------+--------------------------------------+
-| `as.POSIXct()`   | Convertir objetos a tipo fecha y hora|
-+------------------+--------------------------------------+
-| `as.vector()`    | Convertir objetos a tipo vector      |
-+------------------+--------------------------------------+
-
-### Funciones de prueba 
-
-En algunos casos diferenciar o reconocer el tipo de un vector o matriz que se tiene no es tan simple, en estos casos se utiliza la función `typeof()`, sin embargo existe también la opción de utilizar funciones que devuelvan valores de `TRUE` o `FALSE`.  En las funciones base de `R` se encuentran funciones del tipo `is.*`. Una alternativa a las funciones base de `R` son las del paquete **purr** los cuales son del tipo `is_*`
-
-+------------------+-----------------+
-| R base           | purr            |
-+==================+=================+
-| `is.logical()`   | `is_logical()`  |
-+------------------+-----------------+
-| `is.integer()`   | `is_integer()`  |
-+------------------+-----------------+
-| `is.double()`    | `is_double()`   |
-+------------------+-----------------+
-| `is.numeric()`   | `is_numeric()`  |
-+------------------+-----------------+
-| `is.character()` | `is_character()`|
-+------------------+-----------------+
-| `is.list()`      | `is_list()`     |
-+------------------+-----------------+
-| `is.vector()`    | `is_vector()`   |
-+------------------+-----------------+
-
-### Funciones útiles
-
-En `R` se cuenta con las conocidas funciones base, muchas con utilidades matemáticas o estadísticas. A continuación podra ver algunas de ellas los cuales pueden ser muy útiles en cualquier proyecto de análisis. 
-
-+-------------+-------------------------------------------------------------------+
-| Función     | Acción                                                            |
-+=============+===================================================================+
-| `str()`     | Devuelve la estructura de un objeto                               |
-+-------------+-------------------------------------------------------------------+
-| `sample()`  | Toma una muestra del tamaño especificado de determiando objeto    |
-+-------------+-------------------------------------------------------------------+
-| `length()`  | Calcula el número de elementos del objeto                         |
-+-------------+-------------------------------------------------------------------+
-| `nrow()`    | Calcula el número de filas en un objeto de dos dimensiones        |
-+-------------+-------------------------------------------------------------------+
-| `ncol()`    | Calcula el número de columnas en un objeto de dos dimensiones     |
-+-------------+-------------------------------------------------------------------+
-| `table()`   | Devuelve tablas de contingencia de conteos                        |
-+-------------+-------------------------------------------------------------------+
-| `sort()`    | Ordena los elementos de un vector ascendentemente                 |
-+-------------+-------------------------------------------------------------------+
-| `order()`   | Devuelve una permutación que reorganiza su primer argumento       |
-+-------------+-------------------------------------------------------------------+
-| `round()`   | Redondea los valor sin decimales por defecto                      |
-+-------------+-------------------------------------------------------------------+
-| `floor()`   | Devuelve el entero más grande que no sea mayor que el número dado |
-+-------------+-------------------------------------------------------------------+
-| `sqrt()`    | Calcula la raíz cuadrada de un vector numérico                    |
-+-------------+-------------------------------------------------------------------+
-| `sum()`     | Calcula la suma de los elementos del objeto                       |
-+-------------+-------------------------------------------------------------------+
-| `prod()`    | Calcula la producto de los elementos del objeto                   |
-+-------------+-------------------------------------------------------------------+
-| `abs()`     | Devuelve el valor absoluto de un vector numérico                  |
-+-------------+-------------------------------------------------------------------+
-| `mean()`    | Calcula la media de un vector numérico                            |
-+-------------+-------------------------------------------------------------------+
-| `median()`  | Calcula la media de un vector numérico                            |
-+-------------+-------------------------------------------------------------------+
-| `sd()`      | Calcula la desviacion estandar de un vector numérico              |
-+-------------+-------------------------------------------------------------------+
-| `IQR()`     | Calcula el rango intercuartílico de un vector numérico            |
-+-------------+-------------------------------------------------------------------+
-| `var()`     | Calcula la varianza estandar de un vector numérico                |
-+-------------+-------------------------------------------------------------------+
-| `cor()`     | Calcula la correlación de dos vectores numéricos                  |
-+-------------+-------------------------------------------------------------------+
-| `quantile()`| Devuelve los cuantiles seleccionados de un vector numérico        |
-+-------------+-------------------------------------------------------------------+
-
-<details><summary>2.1 Operaciones con vectores</summary> 
-
-Antes de iniciar con ejemplos y ejercicios se debe tener presente que un vector es una colección de elementos de la misma clase atómica, es decir que un vector puede contener `n` elementos del mismo tipo, ya sean estos números, caracteres, factores o lógicos, y nunca podrán ser de dos o más tipos. A medida que vea los ejemplos y realice los ejercicios aprenderá distintas formas de crear vectores.
-
-A continuación podra observar vectores con distintas clases atómicas y qué sucede si intenta mezclarlas.
++ `character` (caracteres)
++ `integer` (números enteros)
++ `double` (números reales)
++ `complex` (números complejos)
++ `logical` (lógicos o boleanos)
 
 :::example
 #### Ejemplo 2.1.1
 :::
 
-```{r addition_211, exercise = TRUE}
-#Vector numérico
-num <- c(1, 2, 3, 4, 5)
-num
-#Vector de caracteres
-let <- c("a", "b", "c", "d", "e", "f")
-let
-#Vector de Factores
-fac <- factor(c("f1", "f2", "f3", "f2", "f1"))
-fac
-#Vector logico
-log <- c(TRUE, FALSE, TRUE, TRUE, TRUE, FALSE)
-log
-#mezcla de clases atomicas
-c(num, let)
-c(num, log)
+```{r ejemplo_2_1_1, exercise = TRUE}
+
+a <- 'Hola'
+typeof(x =a)
+
+b <- 1L
+typeof(x = b)
+
+b_2 <- 1
+typeof(x = b_2)
+
+c <- 12.3
+typeof(x = c)
+
+d <- 1 + 2i
+typeof(x = d)
+
+e <- c(FALSE, TRUE)
+typeof(x = e)
 ```
 
-Como vio en la última parte, al mezclar dos clases atómicas no se obtiene un error. Sin embargo los vectores mezclados toman la clase solo de uno de ellos (la más compleja). En el primero, los números de `num` quedan entre comillas, lo cual implica que ahora son caracteres, de igual forma en el vector de valores lógicos `log`, los elementos son convertidos a su equivalente numérico.
-
-A continuación se plantea un ejemplo en el cual se genera un vector de prueba, y con el mismo se realizará algunas operaciones aritméticas básicas como suma, resta, división, multiplicación y exponenciación.
-
-Operaciones de suma.
-
-:::example
-#### Ejemplo 2.1.2
+:::caution
+En `R` existen las llamadas __palabras clave__ o __palabras reservadas__. Estas no se deben usar como nombres ni para crear objetos, ni para crear funciones.
 :::
 
-```{r addition_212, exercise = TRUE}
-#Vector de prueba
-x <- c(1:8)
-x
-#Suma sobre cada elemento del vector de prueba
-test_1 <- x + 2
-test_1
-#Suma repetitiva sobre los elementos del vector de prueba
-test_2 <- x + c(10, 20)
-test_2
-#Suma uno a uno sobre nuestro vector de prueba 
-test_3 <- x + c(8:1) 
-test_3
+### 2.2 Vectores
+
+Un vector consiste en una colección de escalares de la misma clase atómica, ya sean estos números, caracteres o lógicos, pero nunca podrán ser de dos o más clases diferentes.
+
+Hay muchas formas de crear vectores en `R`. A continuación podrá encontrar una tabla con ejemplos de estas formas:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/39va_imagen.png")  
 ```
-
-De igual forma se puede utilizar la resta. Te invito a que restablezcas el vector de prueba `x` a partir de los vectores test_1, test_2, test_3. Para ello copia los vectores del fragmento de código anterior y crear de nuevo el vector `x`. __¡Vamos confio en que podrás hacerlo!__
-
-:::exercise
-#### Ejercicio 2.1.1
-:::
-
-```{r exe_211, exercise = TRUE}
-test_1 <- c(1:8) + 2
-test_2 <- c(1:8) + c(10, 20)
-test_3 <- c(1:8) + 8:1
-# Ahora es tu turno
-```
-
-```{r exe_211-solution}
-test_1 <- c(1:8) + 2
-test_2 <- c(1:8) + c(10, 20)
-test_3 <- c(1:8) + 8:1
-# Ahora es tu turno
-test_1 - 2
-test_2 - c(10, 20)
-test_3 - 8:1
-```
-
-```{r exe_211-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Vamos ahora con la operación de producto. 
-
-:::example
-#### Ejemplo 2.1.3
-:::
-
-```{r addition_213, exercise = TRUE}
-#Vector de prueba
-y <- seq(2, 20, 2)
-y
-#Producto sobre cada elemento del vector de prueba
-test_1 <- y*2
-test_1
-#Producto repetitivo sobre los dos elementos del vector de prueba
-test_2 <- y * c(5, 7)
-test_2
-#Producto uno a uno sobre nuestro vector de prueba 
-test_3 <- y * 10:1 
-test_3
-```
-
-Ya que vimos cómo funciona el producto en `R`, te propongo que utilizando la operación inversa restablezcas el vector de prueba `y`. __¡Intentalo, se que podrás hacerlo!__
-
-:::exercise
-#### Ejercicio 2.1.2
-:::
-
-```{r exe_212, exercise = TRUE}
-test_1 <- seq(2, 20, 2) * 2
-test_2 <- seq(2, 20, 2) * c(5, 7)
-test_3 <- seq(2, 20, 2) * 10:1 
-# Ahora es tu turno
-```
-
-```{r exe_212-solution}
-test_1 <- seq(2, 20, 2) * 2
-test_2 <- seq(2, 20, 2) * c(5, 7)
-test_3 <- seq(2, 20, 2) * 10:1 
-# Ahora es tu turno
-test_1 / 2
-test_2 / c(10, 20)
-test_3 / 10:1
-```
-
-```{r exe_212-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Hagamos un ejercicio un poco más corto para la potenciación y su operación inversa. Para esto, calcule la séptima potencia del 4 y la raíz cúbica del 27. Te dejamos un par de ejemplos para que puedas guiarte. 
-
-:::exercise
-#### Ejercicio 2.1.3
-:::
-
-```{r exe_213, exercise = TRUE}
-8**5
-16**(1/4)
-# Ahora es tu turno
-```
-
-```{r exe_213-solution}
-4**7
-27**(1/3)
-```
-
-```{r exe_213-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Ahora hagamos un par de ejercicios de operaciones lógicas, los cuales son muy útiles  en cualquier campo de la programación y del análisis. Crearemos un vector de prueba y de él seleccionaremos los elementos que cumplan la condición específica de ser menores a 20.
-
-:::example
-#### Ejemplo 2.1.4
-:::
-
-```{r addition_214, exercise = TRUE}
-#Vector de prueba
-vec <- seq(1, 100, length.out = 20)
-vec
-#Condición
-filt_1 <- vec < 20
-filt_1
-#Selección
-vec_filt <- vec[filt_1]
-vec_filt
-```
-
-Encontremos ahora dentro de un vector de prueba los números diferentes de los pares, de igual manera te invito a que encuentres los números pares modificando el ejercicio planteado.
-
-:::exercise
-#### Ejercicio 2.1.4
-:::
-
-```{r exe_214, exercise = TRUE}
-#Vector de prueba
-vec <- seq(1, 150, 3)
-vec
-#Condición y selección
-vec[vec%%2 != 0]
-# Ahora es tu turno
-```
-
-```{r exe_214-solution}
-#Vector de prueba
-vec <- seq(1, 150, 3)
-vec
-#Condición y selección
-vec[vec%%2 != 0]
-# Ahora es tu turno
-vec[vec%%2 == 0]
-```
-
-```{r exe_214-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Veamos ahora una ejercicio con dos condiciones simultáneas y deberás realizar una operación similar para nuestro vector de prueba, en el cual elegirás los valores mayores a 15 y menores a 80.
-
-* `r fa("far fa-sticky-note")`Recuerda los operadores lógicos que nombramos en la parte inicial de esta sección.
-
-:::exercise
-#### Ejercicio 2.1.5
-:::
-
-```{r exe_215, exercise = TRUE}
-#Vector de prueba
-vec <- seq(1, 100, length.out = 20)
-vec
-#Condición y selección
-vec[vec>90 | vec<45]
-# Ahora es tu turno
-```
-
-```{r exe_215-solution}
-#Vector de prueba
-vec <- seq(1, 100, length.out = 20)
-vec
-#Condición y selección
-vec[vec>90 | vec<45]
-# Ahora es tu turno
-vec[vec>15 &  vec<80]
-```
-
-```{r exe_215-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Trabajemos ahora algunos ejercicios de indexación que nos permitan segmentar y modificar nuestros vectores. Veamos cómo tomar una sección de nuestro vector de prueba y además modificar algunos de sus valores.
-
-* `r fa("far fa-sticky-note")`Recuerda que la indexación en `R` inicia con uno `[1]`
-
-:::example
-#### Ejemplo 2.1.5
-:::
-
-```{r addition_215, exercise = TRUE}
-#Vector de prueba
-vec <- letters
-vec
-#Seleccion
-vec[1:10] #primeras 10 letras
-vec[-16:-1] # ultimas 10 letras 
-#Modificación
-vec[1] = "letra.a" #solo la primera posición
-vec
-vec[c(1, 26)] = c("la.letra.a","la.letra.z") #multiples posiciones
-vec
-```
-
-Exclusivamente para los ejemplos de selección de los primeros y los últimos elementos de un objeto se pueden utilizar las funciones `head()`  y `tail()`, respectivamente. 
-
-```{r addition_2151, exercise = TRUE}
-#Vector de prueba
-vec <- letters
-#Seleccion
-head(vec, 10)#primeras 10 letras
-tail(vec, 10)#ultimas 10 letras 
-```
-
-Observemos un ejemplo en el que se acceda a elementos de un vector para hacer operaciones con estos.
-
-:::example
-#### Ejemplo 2.1.6
-:::
-
-```{r addition_216, exercise = TRUE}
-#Vectores de prueba
-vec1 <- 20:40
-vec2 <- letters
-#Operaciones
-vec1[5] + vec1[21] #operaciones aritmeticas uno a uno
-vec1[c(5, 10)] + vec1[c(18, 21)] #operaciones aritmeticas 
-paste0(vec2[3], vec2[18], vec2[1], vec2[14]) #concatenar caracteres 
-```
-
-Como último ejemplo de esta sección visualicemos las conversiones y veamos su efectividad utilizando las funciones de prueba.
-
-:::example
-#### Ejemplo 2.1.7
-:::
-
-```{r addition_217, exercise = TRUE}
-#Vectores de prueba
-vec1 <- 20:40
-vec2 <- letters
-vec3 <- c(TRUE, FALSE, TRUE, TRUE, TRUE, FALSE)
-#conversiones
-test_1 <- as.character(vec1)
-test_2 <- as.factor(vec2)
-test_3 <- as.numeric(vec3)
-#funciones de prueba
-is.character(test_1)
-is.factor(test_2)
-is.numeric(test_3)
-```
-
-Como último ejercicio de esta sección deberás generar dos vectores uno que corresponda a la secuencia de números de 50 a 75 con una longitud de 20 elementos y otro vector con los números del 35 al -8. Estos vectores tendrán el nombre de `vec1` y `vec2`, respectivamente. `filt1` será un vector que cumpla la condición de números mayores a 64 de `vec1`, mientras que `filt2` será la selección de los números pares de `vec2`. Para `filt1` calcularemos la media y para `filt2` obtendremos la suma de los valores absolutos de las posiciones 2, 3, 7, 19, 20, 21 y 22. 
-
-* `r fa("far fa-sticky-note")` Recuerda lo aprendido anteriormente y ten presente las funciones útiles nombradas al inicio de esta sección. 
-
-:::exercise
-#### Ejercicio 2.1.6
-:::
-
-```{r exe_216, exercise = TRUE}
-#Vector de prueba
-vec1 <- 
-vec2 <- 
-filt_1 <- 
-filt_2 <- 
-```
-
-```{r exe_216-solution}
-vec1 <- seq(50, 75, length.out = 20)
-vec2 <- 35:-8
-filt_1 <- vec1 > 64
-filt_2 <- vec2[vec2 %% 2 == 0 ]
-mean(filt1)
-sum(abs(filt_2[c(2, 3, 7, 19:22)]))
-```
-
-```{r exe_216-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-</details>
-
-<details><summary>2.2 Operaciones con matrices </summary> 
-
-Ahora trabajaremos con las matrices, que desde la perspectiva de `R` son vectores con el atributo `dim` definido como un vector entero de dos elementos: número de filas y número de columnas. Las matrices son útiles para almacenar muchos datos y son bastante similares a las hojas de cálculo de Excel, puede pensar en ellas como un conjunto de `n` vectores de la misma longitud.
-
-En lo que se refiere a matrices, la indexación funciona nombrando primero las filas y después las columnas, de tal forma que teniendo una matriz `M` de dimensiones `mxn` se tendran `m` filas y `n` columnas. Si utiliza el comando `M[1,]` obtendra la primera fila  y al utilizar `M[,1]` obtendra la primera columna. Más adelante abordaremos ejercicios que nos permitan manejar e identificar las columnas y filas de una matriz.
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-```{r,echo=F, comment=""}
-matrix(1:25, nrow = 5)
-```
-  </div>
-  <div class="col-md-6" markdown="1">
-```{r,echo=F,comment=""}
-m <- matrix(1:25, nrow = 5)
-print("M[1,]")
-m[1,]
-print("M[,1]")
-m[,1]
-```
-  </div>
-</div>
-
-Generalmente las matrices en `R` tienen connotación matemática y pese a ser utilizadas para almacenar información, debe recordar que todos sus elementos sólo pueden pertenecer a un solo tipo ya sea numérico, lógico o caracter. Teniendo presente esto veamos los operadores y funciones que pueden resultarnos útiles en el contexto matemático y operativo de `R`. 
-
-+---------------+---------------------------------+
-| Función       | Acción                          |
-+===============+=================================+
-| `dim(M)`      | Dimesión de la matriz           |
-+---------------+---------------------------------+
-| `t(M)`        | Transpuesta de la matriz        |
-+---------------+---------------------------------+ 
-| `det(M)`      | Determinate de la matriz        |
-+---------------+---------------------------------+
-| `solve(M)`    | Inversa de la matriz            |
-+---------------+---------------------------------+
-| `diag(M)`     | Diagonal de la matriz           |
-+---------------+---------------------------------+
-| `M1%*%M2`     | Producto matricial              |
-+---------------+---------------------------------+
-| `colSums(M)`  | Suma por colunnas de la Matriz  |
-+---------------+---------------------------------+
-| `rowSums(M)`  | Suma por filas de la Matriz     |
-+---------------+---------------------------------+
-| `colMeans(M)` | Media por colunnas de la Matriz |
-+---------------+---------------------------------+
-| `rowMeans(M)` | Media por filas de la Matriz    |
-+---------------+---------------------------------+
-| `cbind()`     | Unir vectores por columnas      |
-+---------------+---------------------------------+
-| `rbin()`      | Unir vectores por filas         |
-+---------------+---------------------------------+
-
-Generemos una matriz de prueba y realicemos algunas operaciones sobre esta, recordando que podemos operar sobre filas y/o columnas. Iniciemos con operaciones aritméticas básicas con vectores.
 
 :::example
 #### Ejemplo 2.2.1
 :::
 
-```{r addition_221, exercise = TRUE}
-#Matriz de prueba
-m <- matrix(11:30, nrow = 5)
-m
-#Producto sobre cada elemento de la matriz de prueba
-test_1 <- m*3
-test_1
-#Potencia repetitiva sobre los elementos de la matriz de prueba (columna)
-test_2 <- m **c(2, 3)
-test_2
-#Suma sobre la matriz de prueba (columna)
-test_3 <- m + seq(7, 1, length.out = 20) 
-test_3
+```{r ejemplo_2_2_1, exercise = TRUE}
+
+num <- c(1, 2, 3, 4, 5)
+num
+
+let <- c('a', 'b', 'c', 'd', 'e', 'f')
+let
+
+num_2 <- 1:10
+num_2
+
+num_3 <- 10:1
+num_3
+
+num_4 <- seq(from = 0, to = 100, by = 10)
+num_4
+
+num_5 <- rep(x = 4, times = 10)
+num_5
+
+num_6 <- rep(x = c(1, 2), each = 2)
+num_6
 ```
 
-Ahora veamos cómo funcionan las operaciones entre matrices.
+:::caution
+Una __función__ en `R` es un procedimiento que generalmente toma un objeto como argumento, hace algo con ese objeto y luego devuelve un nuevo objeto.
+:::
+
+```{r, echo = FALSE, eval = TRUE, out.width = "32%", fig.align = "center"}
+
+knitr::include_graphics("images/40va_imagen.png")  
+```
+
+<details><summary> Lista de funciones útiles</summary>
+
+```{r, echo = FALSE, eval = TRUE, out.width = "74%", fig.align = "center"}
+
+knitr::include_graphics("images/57va_imagen.png")  
+```
+
+</details>
+
+:::caution
+Los __argumentos__ de una función son una serie de valores (objetos o incluso el resultado de otra función) que se pasan dentro de la función para que esta realice un proceso.
+:::
 
 :::example
 #### Ejemplo 2.2.2
 :::
 
-```{r addition_222, exercise = TRUE}
-#Matriz de prueba 1
-m1 <- 21:40
-dim(m1) <- c(5, 4)
-#Matriz de prueba 2
-m2 <- cbind(1:5, 6:10, 11:15, 16:20)
-#suma de matrices
-m1 + m2
-#Producto uno a uno
-m1*m2
-#Producto matricial
-m1 %*% t(m2)
+```{r ejemplo_2_2_2, exercise = TRUE}
+
+args(round)
+#?round
+#help(round)
 ```
 
-Tratemos de ver otras operaciones directamente con ejercicios. Te invito a que generes la matrices `m1` del ejercicio anterior utilizando la función `rbind()` y `m2` utilizando la función `matrix()`, y posteriormente calcules el producto matricial de `m1` traspuesta con `m2` nombrandolo `m3`. Por último calcula la suma de la diagonal de `m3`.
+#### 2.2.1 Operaciones sencillas con vectores
 
-:::exercise
-#### Ejercicio 2.2.1
-:::
+Las operaciones aritméticas más comunes están definidas para vectores. A continuación podrá encontrar una tabla con los operadores básicos:
 
-```{r exe_221, exercise = TRUE}
-#Matriz de prueba 1
-m1 <- 
-#Matriz de prueba 2
-m2 <-
-#Producto Matricial
-m3 <- 
-#suma de la diagonal
+```{r, echo = FALSE, eval = TRUE, out.width = "40%", fig.align = "center"}
+
+knitr::include_graphics("images/41va_imagen.png")  
 ```
-
-```{r exe_221-solution}
-#Matriz de prueba 1
-m1 <- rbind(seq(21, 36, 5),
-            seq(22, 37, 5),
-            seq(23, 38, 5),
-            seq(24, 39, 5),
-            seq(25, 40, 5))
-#Matriz de prueba 2
-m2 <- matrix(1:20, nrow = 5)
-#Producto Matricial
-m3 <- t(m1) %*% m2 
-#suma de la diagonal
-sum(diag(m3))
-```
-
-```{r exe_221-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-En el siguiente ejemplo, calcularemos la suma de los valores de cada columna y determinaremos su representación en porcentaje de la suma calculada. El porcentaje lo aproximáremos a dos cifras decimales y haremos un ejercicio de indexación con este resultado, imprimiendo un vector con los resultados de la diagonal.
 
 :::example
-#### Ejemplo 2.2.3
+#### Ejemplo 2.2.1.1
 :::
 
-```{r addition_223, exercise = TRUE}
-#Matriz de prueba 1
-m <- matrix(seq(18, 2, length.out = 16), ncol = 4, byrow = TRUE)
-m
-#suma de cada columnas
-tcol <- colSums(m)
-tcol
-#Porcentaje de cada columna
-pm <- cbind(m[,1]/tcol[1],
-            m[,2]/tcol[2],
-            m[,3]/tcol[3],
-            m[,4]/tcol[4])
-pm <- round(pm*100, 2)
-pm
-#Diagonal con funcion
-diag(pm)
-#diagonal con índice
-c(pm[1,1],pm[2,2],pm[3,3],pm[4,4])
+```{r ejemplo_2_2_1_1, exercise = TRUE}
+
+vec_1 <- c(1:8)
+vec_2 <- 2
+sum_vec_1_vec_2 <- vec_1 + vec_2
+sum_vec_1_vec_2
 ```
-
-Hagamos un ejercicio similar al ejemplo anterior. Para ello usaremos la matriz `m` y calcularemos en `pm` el porcentaje aproximado a tres cifras decimales que cada elemento representa de la suma de cada fila. Con él debemos imprimir un vector con los resultados de la diagonal secundaria.
-
-:::exercise
-#### Ejercicio 2.2.2
-:::
-
-```{r exe_222, exercise = TRUE}
-#Matriz de prueba
-m <- matrix(seq(42, 2, length.out = 16), ncol = 4, byrow = TRUE)
-#Suma de cada fila
-tfil <-
-#Porcenatje de cada fila 
-pm <- 
-#diagonal secundaria
-c()
-```
-
-```{r exe_222-solution}
-#Matriz de prueba
-m <- matrix(seq(42, 2, length.out = 16),ncol = 4, byrow = TRUE)
-#Suma de cada fila
-tfil <- rowSums(m)
-#Porcenatje de cada fila 
-pm <- rbind(m[1,]/tfil[1],
-            m[2,]/tfil[2],
-            m[3,]/tfil[3],
-            m[4,]/tfil[4])
-pm <- round(pm*100,3)
-#diagonal secundaria
-c(pm[1,4],pm[2,3],pm[3,2],pm[4,1])
-```
-
-```{r exe_222-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Veamos otra forma de solucionar el ejercicio anterior.
-
-```{r exe_2221, exercise = TRUE}
-#Matriz de prueba
-m <- matrix(seq(42, 2, length.out = 16), ncol = 4, byrow = TRUE)
-#matriz transpuesta
-tm <- t(m)
-#suma de cada columnas,
-tcol <- colSums(tm)
-#Porcentaje de cada columna
-pm <- cbind(tm[,1]/tcol[1],
-            tm[,2]/tcol[2],
-            tm[,3]/tcol[3],
-            tm[,4]/tcol[4])
-pm <- round(pm*100,3)
-#Diagonal con funcion
-c(pm[4,1],pm[3,2],pm[2,3],pm[1,4])
-
-```
-
-Ahora trabajemos lo que se denomina como estandarización sobre una matriz. Para ello, calcule la media y la desviación estándar por columnas y a cada elemento de la columna correspondiente deberas restarle la media y dividir por la desviación estándar. 
-
-:::exercise
-#### Ejercicio 2.2.3
-:::
-
-```{r}
-set.seed(20)
-```
-
-```{r exe_223, exercise = TRUE}
-#Matriz de prueba
-m <- matrix(sample(1:8, 16, replace = TRUE), ncol = 4, byrow = TRUE)
-#Media
-mmean <- 
-#Desviación estandar
-msd <-
-#Estandarización
-sm <- 
-#Resultado
-sm
-```
-
-```{r}
-set.seed(20)
-```
-
-```{r exe_223-solution}
-#Matriz de prueba
-m <- matrix(sample(1:8, 16, replace = TRUE), ncol = 4, byrow = TRUE)
-#Media
-mmean <- colMeans(m)
-#Desviación estandar
-msd <- c(sd(m[,1]),
-         sd(m[,2]),
-         sd(m[,3]),
-         sd(m[,4]))
-#Estandarización
-sm <- cbind((m[,1]-mmean[1])/msd[1],
-            (m[,2]-mmean[2])/msd[2],
-            (m[,3]-mmean[3])/msd[3],
-            (m[,4]-mmean[4])/msd[4])  
-#Resultado
-sm
-```
-
-```{r exe_223-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Para tener una mayor comprensión de la indexación en las matrices, nombremos cada una de las filas y de las columnas de un matriz `m`, y llamemos las filas y las columnas individualmente, tambien los elementos individuales y por último modifiquemos algunos valores.
 
 :::example
-#### Ejemplo 2.2.4
+#### Ejemplo 2.2.1.2
 :::
 
-```{r addition_224, exercise = TRUE}
-#Matriz de prueba 1
-m <- matrix(letters[1:25], ncol = 5, byrow = TRUE)
-m
-#nombre de filas y columnas
-rownames(m) <- c("fila1", "fila2", "fila3", "fila4", "fila5")
-colnames(m) <- c("columna1", "columna2", "columna3", "columna4", "columna5")
-m
-#llamado filas y columnas
-m["fila2",]
-m[,"columna3"]
-#llamado letra "r"
-m["fila4", "columna3"]
-m[4,3]
-#modificaciones
-m["fila2", "columna5"] <- "letraj"
-m[5,2] <- "letrav"
-m
+```{r ejemplo_2_2_1_2, exercise = TRUE}
+
+vec_1 <- seq(from = 1, to = 4, by = 1)
+vec_2 <- rep(x = 2, times = 4)
+div_vec_1_vec_2 <- vec_1 / vec_2
+div_vec_1_vec_2
 ```
 
-Para afianzar algunos conceptos trabajaremos sobre la matriz `m`. Para esto, tendrás que calcular la suma y la media tanto por filas como por columnas, añadirlas a la matriz original utilizando `cbind`  y `rbind`, y por último nombrar cada una de las filas y de las columnas añadiendo los nombres contenidos en los vectores `rname` y `cname`
+#### 2.2.2 Resumen estadístico en vectores
 
-:::exercise
-#### Ejercicio 2.2.4
+Debido a que el `R` es un lenguaje creado para estadísticas, el mismo contiene muchas funciones básicas que permiten calcular estadísticas descriptivas a partir de un vector de datos. A continuación podrá encontrar una tabla de estas funciones:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/42va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 2.2.2.1
 :::
 
-```{r}
-set.seed(25)
+```{r ejemplo_2_2_2_1, exercise = TRUE}
+
+Pesos_rn <- rnorm(n = 12, mean = 3768, sd = 572)
+Pesos_rn
+
+min(x = Pesos_rn)
+
+mean(x = Pesos_rn)
+
+sd(x = Pesos_rn)
+
+quantile(x = Pesos_rn)
+
+summary(object = Pesos_rn)
 ```
 
-```{r exe_224, exercise = TRUE}
-#Matriz de prueba
-m <- matrix(sample(1:16, 16), ncol = 4, byrow = TRUE)
-#vectores
-rname <- c("fila1", "fila2", "fila3", "fila4", "csum", "cmean")
-cname <- c("columna1", "columna2", "columna3", "columna4", "fsum", "fmean")
-#Nueva matriz
-
-#nombres para la matriz 
-
-```
-
-```{r}
-set.seed(25)
-```
-
-```{r exe_224-solution}
-#Matriz de prueba
-m <- matrix(sample(1:16, 16), ncol = 4, byrow = TRUE)
-#vectores
-rname <- c("fila1", "fila2", "fila3", "fila4", "csum", "cmean")
-cname <- c("columna1", "columna2", "columna3", "columna4", "fsum", "fmean")
-#Nueva matriz
-m <- rbind(m, colSums(m), colMeans(m))
-m <- cbind(m, rowSums(m), rowMeans(m))
-#nombres para la matriz 
-rownames(m) <- rname
-colnames(m) <- cname
-```
-
-```{r exe_224-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Para finalizar esta sección te invito a que trabajes con la matriz `M`. Primero suma `vec1` a la primera columna de la matriz de prueba, después multiplica el elemento de la primera columna y tercera fila por 1.375, y por último multiplica la tercera columna por `vec2`. Estas operaciones deben hacerse sobre la matriz, de tal forma que al terminar las operaciones y llamar a `M`, está guarde las operaciones realizadas.
-
-:::exercise
-#### Ejercicio 2.2.5
+:::caution
+En el `R` los datos faltantes se identifican como `NA` (not available). La mayoría de las funciones estadísticas en `R` en presencia de valores `NA` pueden generar resultados inconsistentes.  
 :::
 
-```{r exe_225, exercise = TRUE}
-#Objetos de prueba
-M <- matrix(seq(100, 700, length.out = 9), 3)
-vec1 <- c(3, 1.5, 3)*100
-vec2 <- c(1, .76, 1/1.75)
-#Operaciones
+:::example
+#### Ejemplo 2.2.2.2
+:::
 
-M
+```{r ejemplo_2_2_2_2, exercise = TRUE}
+
+val_NA <- c(1, 5, NA, 2, 10)
+mean(val_NA)
+#mean(val_NA, na.rm = TRUE)
 ```
 
-```{r exe_225-solution}
-#Objetos de prueba
-M <- matrix(seq(100, 700, length.out = 9), 3)
-vec1 <- c(3, 1.5, 1.5)*100
-vec2 <- c(1, .76, 1/1.75)
-#Operaciones
-M[,1] <- M[,1] + vec1
-M[3,1] <- M[3,1] * 1.375
-M[,3] <- M[,3] * vec2
-M
+#### 2.2.3 Indexación de vectores
+
+Dentro de los múltiples objetos en `R`, como los vectores en este caso, se debe tener claro como manejar o acceder a la información contenida en los mismos. Para estos casos se utiliza la __indexación__.
+
+La indexación consiste en la selección de subconjuntos de datos por medio de operadores de selección, que en el caso de los vectores corresponde al operador `[ ]`. Existen dos tipos de indexación:
+
++ Indexación numérica
+
+:::caution
+La posición de los valores de un vector se pueden identificar mediante su índice. En el caso del lenguaje de programación `R`, el tipo de indexación es en base-uno (**[1]**).
+:::
+
+:::example
+#### Ejemplo 2.2.3.1
+:::
+
+```{r ejemplo_2_2_3_1, exercise = TRUE}
+
+seq(from = 1, to = 100, by = 1)
 ```
 
-```{r exe_225-check}
-grade_code("Excelente lo lograste, sigamos adelante")
+La indexación numérica permite acceder a los valores de un vector de acuerdo a su posición especifica dentro del vector. Para esto, se emplea la forma __a[index]__, donde __a__ es el nombre del vector e __index__ es es el índice del vector.
+
+:::example
+#### Ejemplo 2.2.3.2
+:::
+
+```{r ejemplo_2_2_3_2, exercise = TRUE}
+
+indice <- seq(from = 1, to = 100, by = 1)
+indice[44]
+indice[2:10]
+indice[c(4, 4, 4)]
+
+seleccion <- 2:8
+indice[seleccion]
 ```
 
-</details>
+:::example
+#### Ejemplo 2.2.3.3
+:::
 
-<details><summary>2.3 Operaciones con conjuntos de datos</summary> 
+```{r ejemplo_2_2_3_3, exercise = TRUE}
 
-Los conjuntos de datos, dataframe, son muy similares a las matrices en lo que se refiere a la indexación. Sin embargo, su principal diferencia radica en el tipo de datos que albergan. En las matrices, todos sus elementos pertenecen al mismo tipo de dato, mientras que en los dataframe cada columna puede tener un tipo de dato diferente siempre que las columnas tengan la misma longitud. Ahora creemos un dataframe a partir vectores de diferentes tipos utilizando la función `data.frame()`.
+fechas <- c('Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic')
+fechas[c(1, 6, 11)]
+fechas[-c(2:5, 7:10, 12)]
+```
+
++ Indexación lógica
+
+:::caution
+En el lenguaje de programación `R` existen los denominados __operadores lógicos__. Estos pueden ser usados para hacer comparaciones u operaciones lógicas cuyo resultado del mismo será un __vector lógico__ (`TRUE` y `FALSE`).
+:::
+
+```{r, echo = FALSE, eval = TRUE, out.width = "26%", fig.align = "center"}
+
+knitr::include_graphics("images/44va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 2.2.3.4
+:::
+
+```{r ejemplo_2_2_3_4, exercise = TRUE}
+
+numeros <- seq(from = 1, to = 40, by = 1)
+numeros >= 34
+```
+
+La segunda forma de indexar vectores es mediante el uso de __vectores lógicos__ (vector que solo contiene valores `TRUE` y `FALSE` como el ejemplo anterior).
+
+:::example
+#### Ejemplo 2.2.3.5
+:::
+
+```{r, echo = FALSE, eval = TRUE, out.width = "30%", fig.align = "center"}
+
+knitr::include_graphics("images/43va_imagen.png")  
+```
+
+```{r ejemplo_2_2_3_5, exercise = TRUE}
+
+ind_logica <- c(4, 8, -1, 9, -3)
+ind_logica[ind_logica > 0]
+ind_logica[!(ind_logica < 0)]
+```
+
+:::example
+#### Ejemplo 2.2.3.6
+:::
+
+```{r ejemplo_2_2_3_6, exercise = TRUE}
+
+meses <- c('Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic')
+meses[meses == 'Nov']
+meses[meses != 'Nov']
+```
+
+:::example
+#### Ejemplo 2.2.3.7
+:::
+
+```{r ejemplo_2_2_3_7, exercise = TRUE}
+
+numeros <- seq(from = -10, to = 10, by = 1)
+numeros[numeros >= 0 & numeros != 4]
+```
+
+### 2.3 Matrices y conjuntos de datos
+
+```{r, echo = FALSE, eval = TRUE, out.width = "38%", fig.align = "center"}
+
+knitr::include_graphics("images/46va_imagen.png")  
+```
+
+Las matrices y los conjuntos de datos son dos tipos de objetos que representan estructuras de datos grandes. Si bien las matrices y los conjuntos de datos se ven muy similares, dada su estructura tabular, no son exactamente lo mismo: las matrices pueden contener solo una clase de datos (ya sea numérico o carácter), mientras que los conjuntos de datos pueden contener columnas tanto numéricas como de caracteres.
+
+Hay muchas formas de crear matrices y conjuntos de datos en `R`. A continuación podrá encontrar una tabla de estas formas:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/45va_imagen.png")  
+```
 
 :::example
 #### Ejemplo 2.3.1
 :::
 
-```{r addition_231, exercise = TRUE}
-#vectores de prueba
-letras <- letters[1:15]
-numeros <- seq(1, 100, length.out = 15)
-logicos <- c(TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE)
-#Dataframe
-df <- data.frame(letras, numeros, logicos)
-df
-#Estructura
-str(df)
+```{r ejemplo_2_3_1, exercise = TRUE}
+
+x <- 1:5
+y <- 6:10
+z <- 11:15
+
+x_y_z <- cbind(x, y, z)
+x_y_z
+
+x_y_z <- rbind(x, y, z)
+x_y_z
 ```
 
-Puede notar que al utilizar la función `data.frame()`, el vector de letras es convertido a factor, lo que en algunos casos puede no ser conveniente. Para evitar este problema se puede utilizar el argumento `stringsAsFactors = FALSE`.
-
-```{r,eval=TRUE,message=FALSE,echo=FALSE}
-#vectores de prueba
-letras <- letters[1:15]
-numeros <- seq(1, 100, length.out = 15)
-logicos <- c(TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE)
-```
-
-```{r,eval=FALSE}
-save(letras,file = "data_pkg/letras.rda", compress='xz')
-save(numeros,file = "data_pkg/numeros.rda", compress='xz')
-save(logicos,file = "data_pkg/logicos.rda", compress='xz')
-```
-
-```{r addition_231_1, exercise = TRUE}
-#Dataframe
-df <- data.frame(letras, numeros, logicos, stringsAsFactors = FALSE)
-df
-#Estructura
-str(df)
-```
-
-También puede crear un dataframe a partir de matrices y vectores utilizando la coerción. En el siguiente ejercicio debes convertir los objetos de prueba a conjuntos de datos conservando sus propiedades originales. No olvides verificar su estructura.
-
-* `r fa("far fa-sticky-note")` Recuerda la sección de coerción y las funciones allí nombradas.
-
-:::exercise
-#### Ejercicio 2.3.1
+:::example
+#### Ejemplo 2.3.2
 :::
 
-```{r exe_231, exercise = TRUE}
-#Objetos de prueba
-m <- matrix(seq(100, 700, length.out = 9), 3)
-letras <- letters[1:15]
-#conversión
-mdf <- 
-mdf
-letrasdf <- 
-letrasdf
-#estructura
-str()
-str()  
+```{r ejemplo_2_3_2, exercise = TRUE}
+
+x <- c(1, 2, 3, 4, 5)
+y <- c('a', 'b', 'c', 'd', 'e')
+
+x_y <- cbind(x, y)
+x_y
 ```
 
-```{r exe_231-solution}
-#Objetos de prueba
-m <- matrix(seq(100, 700, length.out = 9), 3)
-letras <- letters[1:5]
-#conversión
-mdf <- as.data.frame(m)
-mdf
-letrasdf <- as.data.frame(letras, stringsAsFactors = FALSE)
-letrasdf
-#estructura
-str(mdf)
-str(letrasdf) 
+:::caution
+Recuerden, las matrices pueden contener números o caracteres, ¡no ambos!. Si intenta crear una matriz con números y caracteres, el `R` convertirá todos los números en caracteres (__coerción implicita__).
+:::
+
+```{r, echo = FALSE, eval = TRUE, out.width = "38%", fig.align = "center"}
+
+knitr::include_graphics("images/58va_imagen.png")  
 ```
 
-```{r exe_231-check}
-grade_code("Excelente lo lograste, sigamos adelante")
+:::example
+#### Ejemplo 2.3.3
+:::
+
+```{r ejemplo_2_3_3, exercise = TRUE}
+
+matrices_1 <- matrix(
+  data = 1:15,
+  nrow = 5,
+  ncol = 3
+  )
+matrices_1
+
+matrices_2 <- matrix(
+  data = 1:15,
+  nrow = 5,
+  ncol = 3,
+  byrow = TRUE
+  )
+matrices_2
 ```
 
-Recordemos que los dataframe son similares a las matrices en cuanto a indexación. Para probarlo trabajaremos el siguiente ejercicio con la base de datos `Starwars`.
+:::example
+#### Ejemplo 2.3.4
+:::
+
+```{r ejemplo_2_3_4, exercise = TRUE}
+
+con_dtos <- data.frame(
+  'Identificación' = 1:5,
+  'Sexo' = c('Mujer', 'Mujer', 'Hombre', 'Mujer', 'Hombre'),
+  'Edad' = c(99, 34, 43, 50, 88)
+  )
+con_dtos
+```
+
+#### 2.3.1 Conjuntos de datos preinstalados en `R` y disponibes en paquetes de `R`
+
+El lenguaje de programación `R` cuenta con conjuntos de datos preinstalados en un paquete llamado `datasets`, el cual no requiere ser instalado una vez el mismo viene incluido en el software `R` base. Una lista completa de estos conjuntos de datos incluidos en el paquete `datasets` se puede ver al ejecutar el código `library(help = 'datasets')`.
+
+A continuación podrá encontrar una tabla del nombre de algunos de estos conjuntos de datos acompañado de una pequeña descripción:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "56%", fig.align = "center"}
+
+knitr::include_graphics("images/47va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 2.3.1.1
+:::
+
+```{r ejemplo_2_3_1_1, exercise = TRUE}
+
+data('iris')
+```
+
+También pueden existir conjuntos de datos disponibles dentro de paquetes del `R`. En la tabla a continuación podrá encontrar el nombre de algunos de estos conjuntos de datos acompañado del nombre del paquete donde se encuentra alojado y una pequeña descripción:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "56%", fig.align = "center"}
+
+knitr::include_graphics("images/48va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 2.3.1.2
+:::
+
+```{r ejemplo_2_3_1_2, exercise = TRUE}
+
+data(package = 'dplyr')
+#library(dplyr)
+#data('starwars')
+```
+
+#### 2.3.2 Operaciones sencillas con matrices y conjuntos de datos
+
+El lenguaje de programación `R` proporciona operadores o funciones útiles para trabajar con matrices. En la tabla a continuación podrá encontrar un ejemplo del uso de estas funciones:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "58%", fig.align = "center"}
+
+knitr::include_graphics("images/49va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 2.3.2.1
+:::
+
+```{r ejemplo_2_3_2_1, exercise = TRUE}
+
+A <- matrix(data = 1:9, nrow = 3, ncol = 3, byrow = TRUE)
+
+a <- c(4, 5, 4)
+b <- c(3, 4, 4)
+d <- c(8, 7, 7)
+B <- rbind(a, b, d)
+
+M_1 <- A + B
+M_1
+
+M_2 <- A %*% B
+M_2
+
+M_3 <- 4 * A
+M_3
+```
+
+:::example
+#### Ejemplo 2.3.2.2
+:::
+
+```{r ejemplo_2_3_2_2, exercise = TRUE}
+
+Juan <- c(4.4, 3.8, 4.2, 3.4)
+Andres <- c(3.2, 3.6, 4.4, 4.6)
+Laura <- c(4.1, 3.4, 3.2, 5.0)
+Notas <- rbind(Juan, Andres, Laura)
+
+Prom_persona <- rowMeans(x = Notas)
+Prom_persona
+```
+
+El lenguaje de programación `R` contiene también funciones para ver matrices y conjuntos de datos y proporcionar información sobre ambos tipos de objetos. En la tabla a continuación podrá encontrar el nombre de estas funciones acompañada de una pequeña descripción:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "44%", fig.align = "center"}
+
+knitr::include_graphics("images/50va_imagen.png")  
+```
+
+Para explicar tanto las funciones anteriores como las que se veran posteriormente en lo que resta de este capitulo, se empleara el conjunto de datos `Starwars`:
 
 ```{r, eval = TRUE, message = FALSE, echo = FALSE}
 
@@ -1366,808 +955,727 @@ Starwars <- as.data.frame(Starwars)
 save(Starwars, file="data_pkg/Starwars.rda", compress='xz')
 ```
 
-El ejercicio consiste en seleccionar las primeras 5 columnas de nuestra base de datos, seleccionar las primeras 20 filas de la columna name y por último  seleccionar las filas entre 20 y 40 para las columnas height y mass.
+```{r Conjuntos_datos, exercise = TRUE}
 
-:::exercise
-#### Ejercicio 2.3.2
-:::
-
-```{r exe_232, exercise = TRUE}
-#Primeras 5 columnas
-Starwars[]
-#primeras 20 filas de name
-Starwars[]
-#filas entre 20:40 para height y mass.
-Starwars[]
+#library(CursoR)
+#data('Starwars')
 ```
 
-```{r exe_232-solution}
-#Primeras 5 columnas
-Starwars[, 1:5]
-#primeras 20 filas de name
-Starwars[1:20,"name"]
-#filas entre 20:40 para height y mass.
-Starwars[20:40, c(2, 3)]
+```{r, echo = FALSE, eval = TRUE, out.width = "74%", fig.align = "center"}
+
+knitr::include_graphics("images/51va_imagen.png")  
 ```
-
-```{r exe_232-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Otra posible solución a este ejercicio seria la siguiente.
-
-```{r exe_2321, exercise = TRUE}
-#Primeras 5 columnas
-Starwars[, c("name", "height", "mass", "hair_color", "skin_color")]
-#primeras 20 filas de name
-Starwars[1:20, 1]
-#filas entre 20:40 para height y mass.
-Starwars[20:40, c("height","mass")]
-```
-
-Como vimos en el ejercicio anterior podemos acceder a una columna de un dataframe utilizando expresiones del tipo `Starwars[, 1]` o `Starwars[, ”name”]`, sin embargo la forma más popular y simple es utilizar la expresión `Starwars$name`. Esta última no solo permite acceder a una columna de nuestro conjunto de datos, sino que también permite crear nuevas variables. Veamos un ejemplo en el que seleccionemos la columna `species` y creemos una nueva columna que enumere nuestros datos.
 
 :::example
-#### Ejemplo 2.3.2
+#### Ejemplo 2.3.2.3
 :::
 
-```{r addition_232, exercise = TRUE}
-#seleccion
-Starwars$species
-#nueva variable
-Starwars$numero <- 1:nrow(Starwars)
-#Nueva Starwars
-Starwars
+```{r ejemplo_2_3_2_3, exercise = TRUE}
+
+head(x = Starwars)
+
+tail(x = Starwars)
+
+#View(x = Starwars)
 ```
 
-```{r,eval=TRUE,message=FALSE,echo=FALSE}
-Starwars$numero <- 1:nrow(Starwars)
+<details><summary>Ejemplo de lo que se observa con `View()`</summary>
+
+```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+
+knitr::include_graphics("images/View_star_wars.png")  
 ```
-
-Veamos en acción la función `table()` para conocer el numero de individuos por especies de la base de datos Starwars.
-
-```{r addition_2321, exercise = TRUE,comment=""}
-table(Starwars$species)
-```
-
-Del fragmento de código anterior sabemos que la gran mayoría de personajes de Starwars son humanos, ahora veamos cómo seleccionar un subconjunto de los datos en el cual solo estén los personajes humanos, conservando también las otras características presentes en la base de datos. Además de ello con `Starwars_human` podemos probar la función `order()` utilizando la masa de los individuos y visualizar los hombres provenientes de Tatooine.
-
-:::example
-#### Ejemplo 2.3.3
-:::
-
-```{r addition_233, exercise = TRUE}
-#Subconjunto
-Starwars_human <- Starwars[Starwars$species =="Human",]
-Starwars_human
-#Ordenar por altura ascendentemente
-Starwars_human[order(Starwars_human$mass),]
-#Ordenar por altura descendentemente
-Starwars_human[order(Starwars_human$mass,decreasing = T),]
-#Hombres de Tatooine
-Starwars_human[Starwars_human$gender =="masculine" & Starwars_human$homeworld =="Tatooine",]
-```
-
-En lo referente a la función `order()` todo salio de acuerdo a lo planteado, sin embargo con los subconjuntos de datos no podemos hacer la misma afirmación, si nos fijamos en el dataset de los  hombres proveniente de Tatooine podemos ver que hay filas totalmente vacías, por esta razón la forma más adecuada y corta  de obtener subconjuntos de datos es con la función `subset()` como veremos a continuación.
-
-```{r addition_2331, exercise = TRUE}
-#Subconjunto
-Starwars_human <- subset(Starwars, species =="Human")
-Starwars_human
-#Hombres de Tatooine
-subset(Starwars_human,gender =="masculine" & homeworld =="Tatooine")
-```
-
-Ahora te invito a que crees un subconjunto de datos con el nombre `Starwars_fem` en el cual debes seleccionar el género femenino y la especie humana, adicionalmente ordena descendentemente el dataset de acuerdo a su altura eliminado la variable sex.
-
-:::exercise
-#### Ejercicio 2.3.3
-:::
-
-```{r exe_233, exercise = TRUE}
-#Subconjunto
-Starwars_fem <- 
-#Reordenado
-Starwars_fem[]
-```
-
-```{r exe_233-solution}
-#Subconjunto
-Starwars_fem <- subset(Starwars, gender == "feminine" & species =="Human")
-#Reordenado
-Starwars_fem[order(Starwars_fem$height,decreasing = T),c(1:7,9:11)]
-```
-
-```{r exe_233-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Aplicando lo aprendido en el ejemplo 2.3.2 crea la variable `IMC` ($IMC = \frac{Masa\ (kg)}{Altura(m)^2}$), para ello debes transformar la altura a metros. Además debes crear otra variable llamada `Obesidad` que corresponde a un puntaje de IMC de por lo menos 30 unidades. 
-
-:::exercise
-#### Ejercicio 2.3.4
-:::
-
-```{r exe_234, exercise = TRUE}
-#IMC
-Starwars$IMC <- 
-#Obesidad
-Starwars$Obesidad <- 
-```
-
-```{r exe_234-solution}
-#IMC
-Starwars$IMC <- (Starwars$mass) / (Starwars$height/100)**2
-#Obesidad
-Starwars$Obesidad <- Starwars$IMC >= 30
-Starwars
-```
-
-```{r exe_234-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Una función bastante útil cuando trabajamos en R es `summary( )` la cual se utiliza para producir resúmenes de objetos, sean estos modelos, dataframe o vectores. De momento trabajaremos sobre dataframe y veamos que resulta.
-
-:::example
-#### Ejemplo 2.3.4
-:::
-
-```{r addition_234, exercise = TRUE, comment=""}
-#Subconjunto
-summary(Starwars)
-```
-
-Supongamos que ahora necesitamos medidas resumen de peso y altura por género, `summary()` ya no sería útil, entonces debemos utilizar otra función que nos permita lograr nuestro objetivo. La función `with()` nos ayudará con estas nuevas medidas resumen.
-
-:::example
-#### Ejemplo 2.3.5
-:::
-
-```{r addition_235, exercise = TRUE, comment=""}
-#Medidas resumen
-with(Starwars,mean(height[gender =="feminine"],na.rm = T))
-with(Starwars,max(mass[gender =="masculine"],na.rm = T))
-with(Starwars,median(height[gender =="masculine"],na.rm = T))
-with(Starwars,min(mass[gender =="feminine"],na.rm = T))
-```
-
-Con esta función podemos hacer algunas cosas interesantes como por ejemplo conocer los nombres de los personajes con obesidad solo creando la variable IMC. Podemos hacerlo de cuatro formas que veremos a continuación. 
-
-```{r addition_2351, exercise = TRUE, comment=""}
-#IMC
-Starwars$IMC <- (Starwars$mass) / (Starwars$height/100)**2
-#Obesos forma 1
-Starwars[Starwars$IMC>=30,]$name
-#Obesos forma 2
-subset(Starwars,IMC>=30)$name
-#Obesos forma 3
-with(Starwars,name[IMC>=30])
-#Obesos forma 4
-with(subset(Starwars,IMC>=30),name[])
-```
-
-Teniendo en cuenta lo que hemos trabajado sobre los dataframe, cual o cuales son las formas más adecuadas de obtener los nombres de las personas con obesidad de Starwars.
-
-```{r addition_2352, echo = FALSE}
-question(" ",
-  answer("Forma 1", message = "No estas en lo correcto, sigue intentandolo."),
-  answer("Forma 3", message = "No estas en lo correcto, sigue intentandolo."),
-  answer("Formas 3 y 4", message = "No estas en lo correcto, sigue intentandolo."),
-  answer("Formas 2 y 4",correct = TRUE, message = "Estas en lo correcto.."),
-  answer("Formas 1 y 3", message = "No estas en lo correcto, sigue intentandolo."),
-  allow_retry = TRUE,
-  random_answer_order = TRUE
-)
-```
-
-
-Realiza el siguiente ejercicio en el debes utilizar las funciones `with()` y `subset()` para calcular la mediana de la masa de las mujeres y guardarlo en `medfem`. Con medfem calculada debes obtener el nombre de los personajes cuyo peso sea a lo sumo el valor obtenido en la mediana de la masa de las mujeres.
-
-:::exercise
-#### Ejercicio 2.3.5
-:::
-
-```{r exe_235, exercise = TRUE}
-#Mediana
-medfem <- 
-#Nombres
-
-```
-
-```{r exe_235-solution}
-#Mediana
-medfem <- with(Starwars,min(mass[gender =="feminine"],na.rm = T))
-#Nombres
-with(subset(Starwars,mass<=medfem),name[])
-```
-
-```{r exe_235-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Ya vimos como obtener medidas resumen como la media para las mujeres o los hombres, veamos en este momento como obtener la media de la altura para los dos generos utilizando la función `aggregate()`.
-
-:::example
-#### Ejemplo 2.3.6
-:::
-
-```{r addition_236, exercise = TRUE, comment=""}
-#Media de peso
-aggregate(height~gender,Starwars,mean)
-```
-
-Pero qué sucede si necesitamos la media para la altura y la masa, la primera opción sería utilizar `aggregate()` con cada una variable, sin embargo hay una opción más cómoda valiéndonos de una función que ya hemos utilizado antes `cbind()`. Veamos cómo hacerlo:
-
-```{r addition_2361, exercise = TRUE, comment=""}
-#Media de altura y masa
-aggregate(cbind(height,mass)~gender,Starwars,mean)
-```
-
-Genial verdad?, es mucho más rápido que utilizar `with()` y `subset()` varias veces, pero hagamos algo más interesante, veamos la media de la altura y la masa por género teniendo en cuenta su lugar de origen.
-
-```{r addition_2362, exercise = TRUE, comment=""}
-#Media de altura y masa por genero y mundo natal
-aggregate(cbind(height,mass)~homeworld+gender,Starwars,mean)
-```
-
-Para hacerlo más interesante e incluir media, mediana, máximos y mínimos de altura y masa debemos apoyarnos en las funciones `do.call()` y `function()`, esta última función la retomaremos más adelante con mayor detalle, do.call() debes consultarla por tu cuenta.
-
-```{r addition_2363, exercise = TRUE, comment=""}
-#Media, madiana... de altura y masa por genero y mundo natal
-ag_st <- aggregate(cbind(height,mass)~homeworld+gender,Starwars,function(x) c(mn=mean(x), med=median(x),max = max(x),min=min(x)))
-do.call(data.frame,ag_st)
-```
-
-Apliquemos lo que acabamos de aprender, para ello debes calcular la altura y peso máximo por género y especie en la primera parte, en la segunda parte debes calcular la mediana y la mitad del rango intercuartílico para las mismas variables por género y especie.
-
-:::exercise
-#### Ejercicio 2.3.6
-:::
-
-```{r exe_236, exercise = TRUE}
-#Primera parte
-
-#Segunda aprte
-ag_st <- 
-do.call(data.frame,ag_st)
-```
-
-```{r exe_236-solution}
-#Primera parte
-aggregate(cbind(height,mass)~species+gender,Starwars,mean)
-#Segunda aprte
-ag_st <- aggregate(cbind(height,mass)~species+gender,Starwars,function(x) c(med=median(x),IQR_2 = IQR(x)/2))
-do.call(data.frame,ag_st)
-```
-
-```{r exe_236-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Para continuar con el manejo de los marcos de datos trabajaremos con la función `merge()`, la cual sirve para unir diferentes dataframe de acuerdo a variables en común, para utilizarla dividiremos Starwars en varios marcos de datos conservando en cada uno de ellos la variable `name`, luego cambiaremos su orden y al final los uniremos.
-
-:::example
-#### Ejemplo 2.3.7
-:::
-
-```{r addition_237, exercise = TRUE, comment=""}
-#Divisiones 
-starw_1 <- Starwars[order(Starwars$height),c(1:5)]
-starw_2 <- Starwars[order(Starwars$mass),c(1,6:11)]
-starw_1
-starw_2
-#Union
-merge(starw_1,starw_2)
-```
-
-Esto funcionó muy bien uniendo dos marcos de datos, sin embargo para unir tres o más marcos de datos el proceso es algo diferente, ya que solo se puede unir dos a la vez. veamos cómo funciona con dos o más dataframe.
-
-```{r addition_2371, exercise = TRUE, comment=""}
-#Divisiones 
-starw_1 <- Starwars[order(Starwars$height),c(1,2,4)]
-starw_2 <- Starwars[order(Starwars$mass),c(1,3,5,7)]
-starw_3 <- Starwars[order(Starwars$homeworld),c(1,6,8:11)]
-starw_1
-starw_2
-starw_3
-#Union
-starw_1_2 <- merge(starw_1,starw_2,by = "name")
-merge(starw_1_2,starw_3)
-```
-
-A medida que aumente el número de dataframe a unir aumentará el número de variables que debemos crear y el proceso se hará mucho más largo, para evitar realizar muchos pasos podemos utilizar la función `Reduce()` de la siguiente manera.
-
-```{r addition_2372, exercise = TRUE, comment=""}
-#Divisiones 
-starw_1 <- Starwars[order(Starwars$height),c(1,2)]
-starw_2 <- Starwars[order(Starwars$mass),c(1,4,5)]
-starw_3 <- Starwars[order(Starwars$homeworld),c(1,6)]
-starw_4 <- Starwars[order(Starwars$eye_color),c(1,7)]
-starw_5 <- Starwars[order(Starwars$gender),c(1,3,8)]
-starw_6 <- Starwars[order(Starwars$birth_year),c(1,9:11)]
-#Union
-Reduce(function(...) merge(...,by="name"),list(starw_1,starw_2,starw_3,starw_4,starw_5,starw_6))
-```
-
-Con lo anterior logramos ahorrarnos por lo menos 4 o 5 pasos para lograr el mismo objetivo. Veamos ahora un ejemplo del cual no tengamos previo conocimiento del resultado
-
-:::example
-#### Ejemplo 2.3.8
-:::
-
-```{r, eval = TRUE, message = FALSE, echo = FALSE}
-data("mtcars")
-mtcars_1 <- mtcars %>% mutate(cars = rownames(mtcars)) %>% relocate(cars) %>% 
-  as_tibble() %>% select(c(1,3,5)) %>% slice(1:10) %>% arrange(hp)
-mtcars_2 <- mtcars %>% mutate(cars = rownames(mtcars)) %>% relocate(cars)%>% 
-  as_tibble() %>% select(1,7) %>% slice(8:14) %>% arrange(wt)
-mtcars_3 <- mtcars %>% mutate(cars = rownames(mtcars)) %>% relocate(cars)%>% 
-  as_tibble() %>% select(c(1,10,12)) %>% slice(5,13,14,30,32) %>%
-  mutate(am = "manual") %>% arrange(-carb)
-```
-
-```{r,eval=FALSE}
-save(mtcars_1, file="data_pkg/mtcars_1.rda", compress='xz')
-save(mtcars_2, file="data_pkg/mtcars_2.rda", compress='xz')
-save(mtcars_3, file="data_pkg/mtcars_3.rda", compress='xz')
-```
-
-Trabajaremos ahora con tres bases de datos modificadas para cierta cantidad de autos de la revista Motor Trend US de 1974 que comprenden 5 variables, `mpg` millas por galón, `hp` potencia bruta, `wt` peso, `am` transmisión y `carb` número de carburadores. A diferencia del ejemplo anterior en el que todas bases de datos separadas tenían exactamente los mismos nombre en esta solo coinciden algunos nombres de carros.  En el siguiente ejemplo veremos en la primera parte cómo unir solo las coincidencias, en la segunda parte veremos cómo unir conservando inclusive los carros que no coinciden.
-
-```{r addition_238, exercise = TRUE, comment=""}
-#bases de datos
-mtcars_1
-mtcars_2
-#Primera = coincidencias
-merge(mtcars_1,mtcars_2, by ="cars")
-#Segunda = todo
-merge(mtcars_1,mtcars_2, by ="cars",all = TRUE)
-```
-
-Une `mtcars_1`, `mtcars_2`, `mtcars_3` utilizando la función `Reduce ()` para los carros que están en las 3 base de datos incluyendo los que no coinciden.
-
-:::exercise
-#### Ejercicio 2.3.7
-:::
-
-```{r exe_237, exercise = TRUE}
-#bases de datos
-mtcars_1
-mtcars_2
-mtcars_3
-#Union completa
-```
-
-```{r exe_237-solution}
-#bases de datos
-mtcars_1
-mtcars_2
-mtcars_3
-#Union completa
-Reduce(function(...) merge(...,by="cars",all = T),list(mtcars_1,mtcars_2,mtcars_3))
-```
-
-```{r exe_237-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Ya vimos cómo funciona la indexación, los subconjuntos, las medidas resumen y la selección de columnas y filas en los dataframe. Pero faltan algunas cosas referente a ellos, empezando por la cuestión de que en `R` la función que los define fue creada en 1992 para el lenguaje S, es por ello que hoy en día son considerados levemente obsoletos. En reemplazo del dataframe tradicional se creó el formato de datos `Tibble`, el cual recoge todo lo bueno de su antecesor con mejoras que potencian su rendimiento y usabilidad, lo que quiere decir que podemos utilizar `order()`, `subset()`, `summary()`, `with()`, `aggregate()`, `merge()` y demás funciones que utilizamos en esta subsección. Cabe mencionar que este nuevo formato no hace parte de las funciones básicas de `R`, por lo que necesitaremos instalar y cargar un paquete para trabajar con él.
-
-```{r addition_23001, exercise = TRUE, comment=""}
-install.packages("tibble")
-library(tibble)
-```
-
-Las primeras mejoras inician con problemas que ya tratamos en el ejemplo 2.3.1 y es la cuestión que los data.frame convierten los caracteres a factores cosa que no hacen los tibble, otra diferencia es que tibble nunca cambia los nombres de las variables y nunca crean nombres de fila.
-
-Para reconocer estas mejoras debes trabajar el siguiente ejercicio en consola, crea de nuevo el marco de datos df del ejemplo 2.3.1  utilizando la función `data.frame()` y luego crea df2 con la función `tibble()`, sigue los pasos que estan a continuacion:
-
-:::exercise
-#### Ejercicio 2.3.8
-:::
-
-1. Carga las librerías necesarias
-
-```{r,eval=FALSE,echo=TRUE}
-library(CursoR)
-library(tibble)
-```
-
-2. Crea `df` y `df2`
-
-```{r,eval=FALSE,echo=TRUE}
-df <- data.frame(letras, numeros, logicos)
-df2 <- tibble(letras,numeros,logicos)
-```
-
-3. Imprime en pantalla los dos marcos de datos 
-
-```{r,eval=FALSE,echo=TRUE}
-df
-df2
-```
-
-Al final de estos tres pasos debes obtener los siguientes resultados, en los cuales notarás otra mejora en relación a la impresión, como se ve, los tibble arroja el tipo de dato de cada columna cosa que no sucede con los dataframe tradicionales.
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
-knitr::include_graphics("images/tibble_1.png")
-```
-  </div>
-  <div class="col-md-6" markdown="1">
-```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
-knitr::include_graphics("images/tibble_2.png")
-```
-  </div>
-</div>
-
-Una mejora que poseen los tibble es la forma en que se escriben los datos ya que no es necesario escribir vectores con nuestra información, veamos un ejemplo. 
-
-:::example
-#### Ejemplo 2.3.9
-:::
-
-```{r addition_239, exercise = TRUE, comment=""}
-amigos <- tribble(
-  ~nombre ,~edad,~ altura,~soltero,
-  "Andres",  23 ,    181 ,  TRUE   ,
-  "Julian",  24 ,    179 ,  FALSE  ,
-  "Maria" ,  19 ,    167 ,  TRUE   ,
-  "sandra",  21 ,    174 ,  TRUE   ,
-  "Karol" ,  26 ,    171 ,  FALSE  ,
-  "Javier",  18 ,    164 ,  TRUE  
-)
-amigos
-```
-
-Otra de las diferencias con los dataframe, es la capacidad que tienen los tibble para hace referencia a variables que se acaban de crear, veamos cómo funciona
-
-:::example
-#### Ejemplo 2.3.10
-:::
-
-```{r addition_2310, exercise = TRUE, comment=""}
-tibble(x = 1:5, 
-       y = 1, 
-       z = x ^ 2 + y)
-```
-
-Hagamos un ejercicio para reforzar esta última diferencia. En él debes crear dos objetos `df_vol` y `tb_vol`, en ellos debes guardar la información de 10 cilindros y calcular las variables radio y volumen para cada uno, de tal forma que cada objeto contenga exactamente la misma información. Para el objeto df_vol utiliza `data.frame()` y para tb_vol `tibble()`. Al finalizar debes imprimir los dos objetos en pantalla.
-
-:::exercise
-#### Ejercicio 2.3.9
-:::
-
-```{r exe_239, exercise = TRUE}
-#Informacion
-referencia <- paste("Cilindro",seq(1,10))
-seq(1.5,100,length.out = 10) #altura
-seq(3,50,length.out = 10) #diametro
-#dataframe
-df_vol <- 
-#tibble
-tb_vol <- 
-#verificacion
-df_vol
-tb_vol
-```
-
-```{r exe_239-solution}
-#Informacion
-referencia <- paste("Cilindro",seq(1,10))
-seq(1.5,100,length.out = 10) #altura
-seq(3,50,length.out = 10) #diametro
-#dataframe
-df_vol <- data.frame(referencia,
-                     altura = seq(1.5,100,length.out = 10),
-                     diametro = seq(3,50,length.out = 10))
-df_vol$radio <- df_vol$diametro /2
-df_vol$volumen <- pi * df_vol$radio^2 * df_vol$altura
-#tibble
-tb_vol <- tibble(referencia,
-                 altura = seq(1.5,100,length.out = 10),
-                 diametro = seq(3,50,length.out = 10),
-                 radio = diametro/2,
-                 volumen = pi * radio^2 *altura)
-#verificacion
-df_vol
-tb_vol
-```
-
-```{r exe_239-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Otra de las capacidades que tiene tibble es conservar la estructura de objetos anidados, sean estos, vectores, matrices, dataframe, listas e incluso otro tibble, solo necesitamos cumplir la regla de que nuestra variable que anida objetos tenga la misma extensión de nuestras filas.
-
-Para entender esto retomemos la base de datos del ejemplo 2.3.9 con algunas modificaciones, las variables serán nombre,físico y sentimental, donde fisco tendrá edad y altura mientras que sentimental tendrá si es soltero y si tiene hijos, esta forma de guardar información es relativamente complicada en los dataframe. Veamos cómo podemos lograrlo.
-
-:::example
-#### Ejemplo 2.3.11
-:::
-
-```{r addition_2311, exercise = TRUE, comment=""}
-amigos <- tribble(
-  ~nombre ,         ~fisico          ,  ~ sentimental    ,
-  "Andres", c(edad=23,altura=181) , c(soltero=T,hijos=F) ,
-  "Julian", c(edad=24,altura=179) , c(soltero=F,hijos=T) ,
-  "Maria" , c(edad=19,altura=167) , c(soltero=T,hijos=F) ,
-  "sandra", c(edad=21,altura=174) , c(soltero=T,hijos=F) ,
-  "Karol" , c(edad=26,altura=171) , c(soltero=F,hijos=T) ,
-  "Javier", c(edad=18,altura=164) , c(soltero=T,hijos=F) ,
-)
-amigos
-```
-
-Como se pueda notar el tipo de datos  que reporta las columnas físico y sentimental pertenece a lista, lo cual es un requerimiento para anidar objetos con los tibble. De las listas hablaremos en la siguiente subsección y retomaremos este ejemplo para acceder a elementos individuales del marco de datos `amigos`.
 
 </details>
 
-<details><summary>2.4 Operaciones con listas </summary> 
+:::example
+#### Ejemplo 2.3.2.4
+:::
 
-Se entiende por lista a la colección de elementos de cualquier longitud que pueden ser de una clase diferente cada uno, lo que indica que en una lista podemos almacenar todos los objetos de los que tenemos conocimiento, sean estos vectores, matrices, dataframe, tibble en incuso otras listas. Para crear listas utilizamos la función `list()`, veamos un ejemplo sencillo de cómo se crea una lista objetos de diferente clase.
+```{r ejemplo_2_3_2_4, exercise = TRUE}
+
+nrow(x = Starwars)
+
+ncol(x = Starwars)
+
+dim(x = Starwars)
+```
+
+:::example
+#### Ejemplo 2.3.2.5
+:::
+
+```{r ejemplo_2_3_2_5, exercise = TRUE}
+
+summary(object = Starwars)
+```
+
+#### 2.3.3 Indexación de matrices y conjuntos de datos
+
+Al igual que con los vectores, tanto en matrices como en conjunto de datos el lenguaje de programación `R` permite usar el operador `[ ]` para acceder a valores específicos dentro de los mismos, y al igual que con los vectores, la indexación de matrices y conjuntos de datos pueden ser de dos tipos:
+
++ Indexación numérica
+
+En matrices y conjuntos de datos, y a diferencia de lo visto con vectores, el operador `[ ]` requiere de dos argumentos para acceder a los valores de acuerdo a su posición: el primer argumento el cual se aplica a las filas y el segundo a las columnas.
+
+:::example
+#### Ejemplo 2.3.3.1
+:::
+
+```{r ejemplo_2_3_3_1, exercise = TRUE}
+
+A <- matrix(data = 1:9, nrow = 3, ncol = 3)
+A
+A[3, ]
+A[, 3]
+```
+
+:::caution
+Al usar una coma (`,`) dentro del operador `[ ]` se esta dando la instrucción al `R` de buscar los valores solicitados en más de una dimensión. Así, el número antes de la coma será buscado en la primera dimensión del objeto, y el número después de la coma en la segunda dimensión.
+:::
+
+:::example
+#### Ejemplo 2.3.3.2
+:::
+
+```{r ejemplo_2_3_3_2, exercise = TRUE}
+
+a <- c(3, 2, 4, 6, 5, 1)
+a[2, 4]
+#a[c(2, 4)]
+```
+
+:::exercise
+#### Ejercicio 2.3.3.1
+Por favor, haciendo uso del conjunto de datos `Starwars` intente seleccionar las primeras 5 columnas de este conjunto de datos, luego seleccionar las primeras 20 filas de la primera columna y por último seleccionar de forma conjunta las columnas 2 y 3, y las filas 20 a la 40.
+:::
+
+```{r ejercicio_2_3_3_1, exercise = TRUE}
+
+# Primeras 5 columnas ----
+Starwars[]
+# Primeras 20 filas de la columna 1 ----
+Starwars[]
+# Filas de la 20 a la 40 de las columnas 2 y 3 ----
+Starwars[]
+```
+
+```{r ejercicio_2_3_3_1-solution}
+
+# Primeras 5 columnas ----
+Starwars[, 1:5]
+# Primeras 20 filas de la columna 1 ----
+Starwars[1:20, 1]
+# Filas de la 20 a la 40 de las columnas 2 y 3 ----
+Starwars[20:40, c(2, 3)]
+```
+
+```{r ejercicio_2_3_3_1-check}
+
+grade_code("¡Excelente lo lograste, sigamos adelante!")
+```
+
+:::example
+#### Ejemplo 2.3.3.3
+:::
+
+```{r ejemplo_2_3_3_3, exercise = TRUE}
+
+names(Starwars)
+
+# Primeras 5 columnas ----
+Starwars[, c('name', 'height', 'mass', 'hair_color', 'skin_color')]
+# Primeras 20 filas de la columna 1 ----
+Starwars[1:20, 'name']
+# Filas de la 20 a la 40 de las columnas 2 y 3 ----
+Starwars[20:40, c('height', 'mass')]
+```
+
+<!--
+En el siguiente ejemplo, calcularemos la suma de los valores de cada columna y determinaremos su representación en porcentaje de la suma calculada. El porcentaje lo aproximáremos a dos cifras decimales y haremos un ejercicio de indexación con este resultado, imprimiendo un vector con los resultados de la diagonal.
+-->
+:::example
+#### Ejemplo 2.3.3.4
+:::
+
+```{r ejemplo_2_3_3_4, exercise = TRUE}
+
+M <- matrix(seq(from = 18, to = 2, length.out = 16), ncol = 4, byrow = TRUE)
+M
+
+t_col <- colSums(m)
+t_col
+
+porc_M <- cbind(
+  m[, 1] / t_col[1],
+  m[, 2] / t_col[2],
+  m[, 3] / t_col[3],
+  m[, 4] / t_col[4]
+  )
+porc_M <- round(porc_M * 100, 2)
+porc_M
+
+diag(porc_M) # Vector con los resultados de la diagonal (1ra forma)
+
+c(porc_M[1, 1], porc_M[2, 2], porc_M[3, 3], porc_M[4, 4]) # Vector con los resultados de la diagonal (2da forma)
+```
+
++ Indexación lógica
+
+Indexar matrices y conjuntos de datos mediante el uso de vectores lógicos es muy similar a lo visto con vectores:
+
+  1- Se crea un vector lógico que contiene solo valores `TRUE` y `FALSE`.
+  
+  2- Usando el vector lógico se indexa la matriz o conjunto de datos, devolviendo solo aquellos valores para los que dicho vector lógico es igual a `TRUE`.
+
+:::example
+#### Ejemplo 2.3.3.5
+:::
+
+```{r ejemplo_2_3_3_5, exercise = TRUE}
+
+Starwars[, 'species'] == 'Human'
+#Starwars[Starwars[, 'species'] == 'Human', ]
+```
+
++ Indexación mediante el uso del operador `$`
+
+El operador `$` permite acceder a una columna especifica en una matriz o conjuntos de datos mediante el nombre de las columnas de la forma `df$name`, donde `df` es el nombre del objeto y `name` es el nombre de la columna. De esta forma, este operador establece una forma de tener acceso a los valores de las matrices y conjuntos de datos mediante los nombres de las variables o columnas.
+
+:::example
+#### Ejemplo 2.3.3.6
+:::
+
+```{r ejemplo_2_3_3_6, exercise = TRUE}
+
+#Starwars[Starwars[, 'species'] == 'Human', ]
+Starwars[Starwars$species == 'Human', ]
+```
+
+El operador `$` no solo permite acceder a los valores de la matriz y conjunto de datos, sino que también permite crear nuevas columnas o variables.
+
+:::example
+#### Ejemplo 2.3.3.7
+:::
+
+```{r ejemplo_2_3_3_7, exercise = TRUE}
+
+Starwars$numero <- 1:nrow(Starwars)
+Starwars
+```
+
++ Indexación mediante el uso de la función `subset()`
+
+La función `subset()` es una de las funciones de manejo de datos más útiles en `R`. Esta función permite extraer subconjuntos de datos como se haría con el operador `[ ]` mediante los diferentes tipos de indexación ya vistos, pero el código es mucho más fácil de escribir.
+
+La tabla a continuación muestra los argumentos principales de esta función:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "44%", fig.align = "center"}
+
+knitr::include_graphics("images/52va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 2.3.3.8
+:::
+
+```{r ejemplo_2_3_3_8, exercise = TRUE}
+
+#Starwars[Starwars[, 'species'] == 'Human', ]
+#Starwars[Starwars$species == 'Human', ]
+subset(
+  x = Starwars,
+  subset = species == 'Human'
+  )
+```
+
+:::example
+#### Ejemplo 2.3.3.9
+:::
+
+```{r ejemplo_2_3_3_9, exercise = TRUE}
+
+subconjunto <- subset(
+  x = Starwars,
+  subset = species == 'Human' & homeworld != 'Tatooine'
+  )
+subconjunto
+```
+
+:::example
+#### Ejemplo 2.3.3.10
+:::
+
+```{r ejemplo_2_3_3_10, exercise = TRUE}
+
+prom_peso <- subset(
+  x = Starwars,
+  subset = species == 'Human' & homeworld == 'Tatooine'
+  )
+mean(x = prom_peso$mass, na.rm = TRUE)
+```
+
+#### 2.3.4 Lectura y exportación de conjuntos de datos
+
+Frecuentemente, los conjuntos de datos que seran leidos en el programa `R` se almacenan en dos formatos: archivos de Excel o similares con extensión __.csv__ o archivos de texto plano con extensión __.txt__.
+
+<details><summary>Ejemplo de almacenamiento en __.csv__</summary>
+
+<div class="row">
+  <div class="col-md-5" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
+
+knitr::include_graphics("images/datos_csv.png")  
+```  
+  </div>
+  <div class="col-md-7" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+
+knitr::include_graphics("images/datos_csv_2.png")  
+```  
+  </div>
+</div>
+
+</details>
+
+<details><summary>Ejemplo de almacenamiento en __.txt__</summary>
+
+<div class="row">
+  <div class="col-md-5" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
+
+knitr::include_graphics("images/datos_txt.png")  
+```  
+  </div>
+  <div class="col-md-7" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+
+knitr::include_graphics("images/datos_txt_2.png")  
+```  
+  </div>
+</div>
+
+</details>
+
+<br>
+
+Independientemente del tipo de formato con que se guarde el conjunto de datos, se puede emplear una de las funciones incluidas en el software `R` base para llevar a cabo la lectura de dicho conjunto de datos: la función `read.table()`.
+
+La tabla a continuación muestra los argumentos principales de esta función:
+
+```{r, echo = FALSE, eval = TRUE, out.width = "44%", fig.align = "center"}
+
+knitr::include_graphics("images/54va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 2.3.4.1
+:::
+
+```{r ejemplo_2_3_4_1, exercise = TRUE}
+
+#read.table(file = 'datos_csv.csv', header = TRUE, sep = ',')
+#read.table(file = 'datos_txt.txt', header = TRUE, sep = '\t')
+
+datos_csv <- data.frame(
+  'Edad' = c(34, 25, 28, 19),
+  'Deporte' = c(TRUE, TRUE, FALSE, FALSE),
+  'Fuma' = c(FALSE, TRUE, FALSE, TRUE),
+  'Ciudad' = c('Medellin', 'Bogota', 'Cerete', 'Pasto') 
+)
+
+str(datos_csv)
+```
+
+<details><summary>Ejemplo de lectura de datos</summary>
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
+
+knitr::include_graphics("images/imp_datos_csv.png")  
+```  
+  </div>
+  <div class="col-md-6" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
+
+knitr::include_graphics("images/imp_datos_txt.png")  
+```  
+  </div>
+</div>
+
+</details>
+
+<br>
+
+<!--Con la función `read.table()` también es posible cargar archivos de texto de la web (suponiendo que la misma se encuentra en línea).
+
+:::example
+#### Ejemplo 2.3.4.2
+:::
+
+```{r ejemplo_2_3_4_2, echo = FALSE, eval = FALSE}
+
+datos_web <- read.table(file = 'https://raw.githubusercontent.com/fhernanb/datos/master/orellana', header = TRUE)
+```
+
+<details><summary>Ejemplo de almacenamiento en la web</summary>
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+
+knitr::include_graphics("images/datos_web.png")  
+```  
+  </div>
+  <div class="col-md-6" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "94%", fig.align = "center"}
+
+knitr::include_graphics("images/datos_web_2.png")  
+```  
+  </div>
+</div>
+
+</details>
+
+<br>
+
+En caso contrario que no desee leer un conjunto de datos sino exportarlo, puede emplear la función `write.table()`. La tabla a continuación muestra los argumentos principales de esta función:
+
+```{r, echo = FALSE, eval = FALSE, message = FALSE, fig.align = 'center', fig.showtext = TRUE, out.width = '500'}
+
+data.frame(
+  x = c(1:6), y = c(1:6)
+) %>%
+  ggplot(aes(x, y)) +
+  geom_blank() +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 2.5, ymin = 5.0, ymax = 6.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 1.75, y = 5.5, label = 'Argumento', family = 'gochi', size = 5.5, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 2.5, ymin = 4.0, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'text', x = 1.75, y = 4.5, label = 'x', family = 'gochi', size = 5.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 2.5, ymin = 3.0, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'text', x = 1.75, y = 3.5, label = 'file', family = 'gochi', size = 5.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 2.5, ymin = 2.0, ymax = 3.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'text', x = 1.75, y = 2.5, label = 'sep', family = 'gochi', size = 5.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 1.0, xmax = 2.5, ymin = 1.0, ymax = 2.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'text', x = 1.75, y = 1.5, label = 'row.names', family = 'gochi', size = 5.0, colour = 'black') +
+  annotate(geom = 'rect', xmin = 2.5, xmax = 5.0, ymin = 5.0, ymax = 6.0, colour = 'black', fill = 'black', alpha = 0.2) +
+  annotate(geom = 'text', x = 3.75, y = 5.5, label = 'Descripción', family = 'gochi', size = 5.5, colour = 'black') +
+  annotate(geom = 'rect', xmin = 2.5, xmax = 5.0, ymin = 4.0, ymax = 5.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'text', x = 3.75, y = 4.65, label = 'Nombre del objeto creado en R,', family = 'gochi', size = 4.4, colour = 'black') +
+  annotate(geom = 'text', x = 3.75, y = 4.35, label = 'generalmente un conjunto de datos.', family = 'gochi', size = 4.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 2.5, xmax = 5.0, ymin = 3.0, ymax = 4.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'text', x = 3.75, y = 3.65, label = 'Ruta del directorio de trabajo', family = 'gochi', size = 4.4, colour = 'black') +
+  annotate(geom = 'text', x = 3.75, y = 3.35, label = 'donde desea guardar el archivo.', family = 'gochi', size = 4.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 2.5, xmax = 5.0, ymin = 2.0, ymax = 3.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'text', x = 3.75, y = 2.65, label = 'Indica el tipo de separación interna', family = 'gochi', size = 4.4, colour = 'black') +
+  annotate(geom = 'text', x = 3.75, y = 2.35, label = 'de los datos dentro del archivo.', family = 'gochi', size = 4.4, colour = 'black') +
+  annotate(geom = 'rect', xmin = 2.5, xmax = 5.0, ymin = 1.0, ymax = 2.0, colour = 'black', fill = 'white', alpha = 0.2) +
+  annotate(geom = 'text', x = 3.75, y = 1.65, label = 'Un valor lógico que indica si se guardan', family = 'gochi', size = 4.4, colour = 'black') +
+  annotate(geom = 'text', x = 3.75, y = 1.35, label = 'o no los nombres de fila en el archivo.', family = 'gochi', size = 4.4, colour = 'black') +
+  #scale_y_continuous(limits = c(2.05, 5.0)) +
+  #scale_x_continuous(limits = c(1.0, 7.0)) +
+  theme_void() +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank())
+```
+
+```{r, echo = FALSE, eval = FALSE, out.width = "44%", fig.align = "center"}
+
+knitr::include_graphics("images/55va_imagen.png")  
+```
+-->
+
+#### 2.3.5 Crear y convertir conjuntos de datos en __tibbles__
+
+<div class="row">
+  <div class="col-md-7" markdown="1">
+  Los __tibbles__ son una reinvención de la forma en como se creaban e importaban los conjuntos de datos a partir de las funciones del sistema base del `R` anteriormente descritas. Los tibbles al heredarse de los conjuntos de datos usando el sistema base del `R`, funcionan también con las funciones disponibles para estos últimos. Adicionalmente, los tibbles proporcionan un mejor comportamiento al momento de crear conjuntos de datos.
+  
+  Cabe mencionar que este nueva forma de crear conjuntos de datos no hace parte de las funciones básicas del `R`, por lo que es necesario instalar y cargar previamente un paquete para trabajar con ellos:
+  </div>
+  <div class="col-md-5" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "48%", fig.align = "center"}
+
+knitr::include_graphics("images/tibble.png")  
+```  
+  </div>
+</div>
+
+```{r instalacion_tibble, exercise = TRUE, comment = ""}
+install.packages('tibble')
+library(tibble)
+```
+
+Las ventajas de los tibbles son:
+
++ Los tibbles proporcionan una mejor forma de escribir los datos a la hora de crear un conjunto de datos, sin necesidad de escribir vectores:
+
+:::example
+#### Ejemplo 2.3.5.1
+:::
+
+```{r ejemplo_2_3_5_1, exercise = TRUE}
+
+datos_csv <- data.frame(
+  'Edad' = c(34, 25, 28, 19),
+  'Deporte' = c(TRUE, TRUE, FALSE, FALSE),
+  'Fuma' = c(FALSE, TRUE, FALSE, TRUE),
+  'Ciudad' = c('Medellin', 'Bogota', 'Cerete', 'Pasto') 
+)
+
+datos_tibble <- tribble(
+  ~Edad, ~Deporte, ~Fuma,    ~Ciudad,
+     34,     TRUE, FALSE, 'Medellin',
+     25,     TRUE,  TRUE,   'Bogota',
+     28,    FALSE, FALSE,   'Cerete',
+     19,    FALSE,  TRUE,    'Pasto'
+)
+```
+
++ Cuando se imprime un tibble en la consola del `R`, se especifica la clase atómica de cada una de las variables o columnas del conjunto de datos:
+
+:::example
+#### Ejemplo 2.3.5.2
+:::
+
+```{r ejemplo_2_3_5_2, exercise = TRUE}
+
+datos_csv <- data.frame(
+  'Edad' = c(34, 25, 28, 19),
+  'Deporte' = c(TRUE, TRUE, FALSE, FALSE),
+  'Fuma' = c(FALSE, TRUE, FALSE, TRUE),
+  'Ciudad' = c('Medellin', 'Bogota', 'Cerete', 'Pasto') 
+)
+datos_csv
+
+datos_tibble <- tribble(
+  ~Edad, ~Deporte, ~Fuma,    ~Ciudad,
+     34,     TRUE, FALSE, 'Medellin',
+     25,     TRUE,  TRUE,   'Bogota',
+     28,    FALSE, FALSE,   'Cerete',
+     19,    FALSE,  TRUE,    'Pasto'
+)
+datos_tibble
+```
+
+<details><summary>Ejemplo observado en la consola</summary>
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
+
+knitr::include_graphics("images/consola_base.png")  
+```  
+  </div>
+  <div class="col-md-6" markdown="1">
+```{r, echo = FALSE, eval = TRUE, out.width = "84%", fig.align = "center"}
+
+knitr::include_graphics("images/consola_tibble.png")  
+```    
+  </div>
+</div>
+
+</details>
+
+<br>
+
++ Al crear un tibble, nunca se convierte una variable con clase atómica `character` (caracter) a `Factor` (factor). 
+
+:::example
+#### Ejemplo 2.3.5.3
+:::
+
+```{r ejemplo_2_3_5_3, exercise = TRUE}
+
+datos_csv <- data.frame(
+  'Edad' = c(34, 25, 28, 19),
+  'Deporte' = c(TRUE, TRUE, FALSE, FALSE),
+  'Fuma' = c(FALSE, TRUE, FALSE, TRUE),
+  'Ciudad' = c('Medellin', 'Bogota', 'Cerete', 'Pasto') 
+)
+str(datos_csv)
+
+datos_tibble <- tribble(
+  ~Edad, ~Deporte, ~Fuma,    ~Ciudad,
+     34,     TRUE, FALSE, 'Medellin',
+     25,     TRUE,  TRUE,   'Bogota',
+     28,    FALSE, FALSE,   'Cerete',
+     19,    FALSE,  TRUE,    'Pasto'
+)
+str(datos_tibble)
+```
+
+:::caution
+La coerción es una característica del lenguaje de programación `R` que permite, implícita o explícitamente, convertir un elemento de una clase de datos en otra. Para ello se cuenta con funciones del tipo `as.*`
+:::
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+
+knitr::include_graphics("images/56va_imagen.png")  
+```
+
+:::example
+#### Ejemplo 2.3.5.4
+:::
+
+```{r ejemplo_2_3_5_4, exercise = TRUE}
+
+datos_csv <- as_tibble(
+  data.frame(
+    'Edad' = c(34, 25, 28, 19),
+    'Deporte' = c(TRUE, TRUE, FALSE, FALSE),
+    'Fuma' = c(FALSE, TRUE, FALSE, TRUE),
+    'Ciudad' = c('Medellin', 'Bogota', 'Cerete', 'Pasto') 
+    )
+  )
+str(datos_csv)
+```
+
+:::example
+#### Ejemplo 2.3.5.5
+:::
+
+```{r ejemplo_2_3_5_5, exercise = TRUE}
+
+amigos <- tribble(
+   ~nombre,                               ~fisico,                      ~sentimental,
+  'Andres', c(edad = 23, altura = 181, masa = 98),  c(soltero = TRUE, hijos = FALSE),
+  'Julian', c(edad = 24, altura = 179, masa = 75),  c(soltero = FALSE, hijos = TRUE),
+   'Maria', c(edad = 19, altura = 167, masa = 71), c(soltero = TRUE , hijos = FALSE),
+  'sandra', c(edad = 21, altura = 174, masa = 68),  c(soltero = TRUE, hijos = FALSE),
+   'Karol', c(edad = 26, altura = 171, masa = 70),  c(soltero = FALSE, hijos = TRUE),
+  'Javier', c(edad = 18, altura = 164), masa = 64,  c(soltero = TRUE, hijos = FALSE)
+)
+amigos
+```
+
+### 2.4 Listas y arreglos
+
+```{r, echo = FALSE, eval = TRUE, out.width = "64%", fig.align = "center"}
+
+knitr::include_graphics("images/53va_imagen.png")  
+```
+
++ Listas
+
+Las listas son como los vectores debido a que almacenan datos en una estructura unidimensional. Sin embargo, las listas a diferencia de los vectores no almacenan valores individuales sino que almacenan objetos, como escalares, conjuntos de datos, funciones e inclusive otras listas. Para crear una lista se emplea la función `list()`.
 
 :::example
 #### Ejemplo 2.4.1
 :::
 
-```{r addition_241, exercise = TRUE}
-my_lista <- list(vector = 1:10,
-                 matriz = matrix(1:25,ncol = 5),
-                 dataframe = Starwars[1:10,],
-                 tible = as_tibble(mtcars_3))
-my_lista
+```{r ejemplo_2_4_1, exercise = TRUE}
+
+lista_1 <- list(
+  L_1 = 40:80, 
+  L_2 = 'Hola', 
+  L_3 = list(VERDADERO = TRUE, FALSO = FALSE)
+  )
+lista_1
 ```
 
-```{r, eval = TRUE, message = FALSE, echo = FALSE}
-my_lista <- list(vector = 1:10,
-                 matriz = matrix(1:25,ncol = 5),
-                 dataframe = Starwars[1:10,],
-                 tible = as_tibble(mtcars_3))
-```
-
-```{r,eval=FALSE}
-save(my_lista, file="data_pkg/my_lista.rda", compress='xz')
-```
-
-Como se puede ver crear listas es relativamente sencillo, se recomienda nombrar los objetos para facilitar el acceso a estos, sin embargo no es estrictamente necesario.
-
-Ya vimos lo sencillo que es crear una lista con las clases de objetos que conocíamos previamente, ahora con el siguiente ejercicio debes crear una lista que contenga otras listas dentro de ella, la lista principal se llamará `mis_listas`,  las listas dentro de ella no tendrán nombre. La primera lista debe contener los bases de datos `Starwars` y `mtcars_3` y la segunda lista debe contar con dos subconjuntos de datos, el primero debe tener los personajes de Starwars de la especie humana y el segundo los autos de mtcars_3 con más de dos carburadores. Adicionalmente se agregarán nombres a la lista principal con la función `names()`.
-
-:::exercise
-#### Ejercicio 2.4.1
-:::
-
-```{r exe_241, exercise = TRUE}
-mis_listas <- 
-mis_listas
-#nombres 
-names(mis_listas) <- c("dataset","subconjuntos")
-mis_listas
-```
-
-```{r exe_241-solution}
-mis_listas <- list(list(Starwars,mtcars_3),
-                   list(subset(Starwars,species == "Human"),
-                        subset(mtcars_3,carb>2)))
-mis_listas
-#nombres 
-names(mis_listas) <- c("dataset","subconjuntos")
-mis_listas
-```
-
-```{r exe_241-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Veamos cómo funciona la indexación y el acceso a elementos individuales de una lista utilizando `my_lista`. Primero vamos a llamar a dataframe, después añadiremos nombres a la matriz, seguido seleccionaremos los autos del tibble con más de dos carburadores  y por último vamos a reemplazar cada elemento del vector por su correspondiente raíz cuadrada.
+Si se desea extraer los elementos almacenados en una lista, se pueden usar los operadores `$`, `[[ ]]` o `[ ]`.
 
 :::example
 #### Ejemplo 2.4.2
 :::
 
-```{r addition_242, exercise = TRUE}
-#lista
-my_lista
-#dataframe
-my_lista[["dataframe"]] #Opcion 1
-my_lista$dataframe #Opcion 2
-#nombres de la matriz
-row.names(my_lista$matriz) <-c(paste("fila",1:5))
-colnames(my_lista[["matriz"]]) <- c(paste("col",1:5))
-my_lista$matriz
-#tibble
-subset(my_lista$tible,carb>2)
-#vector
-my_lista$vector <- sqrt(my_lista$vector)
-my_lista$vector
-```
+```{r ejemplo_2_4_2, exercise = TRUE}
 
-El próximo ejercicio consiste en modificar una lista a partir de la siguiente tabla que contiene datos de los padres, hermanos e hijos de carlos; una lista `carlos_fam` fue creada para almacenar la información, sin embargo se presentaron errores en la transcripción y la lista es imprecisa. 
+lista_1 <- list(
+  L_1 = 40:80, 
+  L_2 = 'Hola', 
+  L_3 = list(VERDADERO = TRUE, FALSO = FALSE)
+  )
 
-+-------------+----------------+------+
-| Relación    | Nombre         | Edad |
-+=============+================+======+
-| Padre       | Juan Carlos    |  55  |
-+-------------+----------------+------+
-| Madre       | Luz Estela     |  53  |
-+-------------+----------------+------+
-| Hijo        | Juan Camilo    |  3   |
-+-------------+----------------+------+
-| Hijo        | Juan Fernado   |  5   |
-+-------------+----------------+------+
-| Hijo        | Juliana        |  1   |
-+-------------+----------------+------+
-| Hermano     | Andres Felipe  |  25  |
-+-------------+----------------+------+
-| Hermano     | Maria Camila   |  21  |
-+-------------+----------------+------+
+lista_1$L_2 # Si queremos extraer el vector con el nombre "L_2" dentro del objeto "lista_1".
 
-```{r, eval = TRUE, message = FALSE, echo = FALSE}
-carlos_fam <- list(Padres = list(Relacion=c("Padre","Madre"),
-                                 Nombre = c("Juan Camilo","Maria Camila"),
-                                 Edad=c(32,3)),
-                   Hijos = list(Relacion=c(rep("Hijo",2),"Hija"),
-                                 Nombre = c("Juan Camilo","Luz Estela","Juan Fernado"),
-                                 Edad=c(3,25,1)),
-                   Hermanos = list(Relacion=c("Hermano","Hermana"),
-                                 Nombre = c("Andres Felipe","Juliana"),
-                                 Edad=c(5,21)))
-```
+lista_1[[2]] # Si queremos extraer el vector con el nombre "L_2", pero esta vez no por su nombre sino por su posición dentro del objeto "lista_1".
 
-```{r,eval=FALSE}
-save(carlos_fam, file="data_pkg/carlos_fam.rda", compress='xz')
-```
-
-Debes modificar la lista `carlos_fam` de modo que coincida con los datos proporcionados en la tabla. Pueden existir múltiples formas de lograr este objetivo, en la solución encontraras solo una de ellas.
-
-:::exercise
-#### Ejercicio 2.4.2
-:::
-
-```{r exe_242, exercise = TRUE}
-#lista imprecisa
-carlos_fam
-str(carlos_fam)
-#modificaciones
-```
-
-```{r exe_242-solution}
-#lista imprecisa
-carlos_fam
-str(carlos_fam)
-#modificaciones
-carlos_fam$Padres$Nombre <- c("Juan Carlos","Luz Estela")
-carlos_fam$Padres$Edad <- c(55,53)
-carlos_fam$Hijos$Nombre[2:3] <- c("Juan Fernado","Juliana")
-carlos_fam$Hijos$Edad[2:3] <- c(5,1)
-carlos_fam$Hermanos$Nombre[2] <- "Maria Camila" 
-carlos_fam$Hermanos$Edad[1] <- 25 
-```
-
-```{r exe_242-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Dándole continuidad al ejercicio anterior se propone que se agregue la estatura de cada uno de los integrantes de la familia conforme a la siguiente tabla.
-
-+-------------+----------------+------+--------+
-| Relación    | Nombre         | Edad | Altura |
-+=============+================+======+========+
-| Padre       | Juan Carlos    |  55  |   180  |
-+-------------+----------------+------+--------+
-| Madre       | Luz Estela     |  53  |   165  |
-+-------------+----------------+------+--------+
-| Hijo        | Juan Camilo    |  3   |   95   |
-+-------------+----------------+------+--------+
-| Hijo        | Juan Fernado   |  5   |   105  |
-+-------------+----------------+------+--------+
-| Hijo        | Juliana        |  1   |   77   |
-+-------------+----------------+------+--------+
-| Hermano     | Andres Felipe  |  25  |   183  |
-+-------------+----------------+------+--------+
-| Hermano     | Maria Camila   |  21  |   176  |
-+-------------+----------------+------+--------+
-
-Recuerda que el acceso individual a las variables de una lista es muy similar al acceso a un dataframe, por lo que debe resultar familiar crear nuevas variable en una lista utilizando el mismo método `$`. Crea la variable __Estatura__ para padres, hijos y Hermanos en `carlos_fam_g`.
-
-```{r, eval = TRUE, message = FALSE, echo = FALSE}
-carlos_fam_g <- list(Padres = list(Relacion=c("Padre","Madre"),
-                                 Nombre = c("Juan Carlos","Luz Estela"),
-                                 Edad=c(55,53)),
-                   Hijos = list(Relacion=c(rep("Hijo",2),"Hija"),
-                                 Nombre = c("Juan Camilo","Juan Fernado","Juliana"),
-                                 Edad=c(3,5,1)),
-                   Hermanos = list(Relacion=c("Hermano","Hermana"),
-                                 Nombre = c("Andres Felipe","Maria Camila"),
-                                 Edad=c(25,21)))
-```
-
-```{r,eval=FALSE}
-save(carlos_fam_g, file="data_pkg/carlos_fam_g.rda", compress='xz')
-```
-
-:::exercise
-#### Ejercicio 2.4.3
-:::
-
-```{r exe_243, exercise = TRUE}
-#Datos
-carlos_fam_g
-str(carlos_fam_g)
-#Estatura
-
-```
-
-```{r exe_243-solution}
-#Datos
-carlos_fam_g
-str(carlos_fam_g)
-#Estatura
-carlos_fam_g$Padres$Estatura <- c(180,165)
-carlos_fam_g$Hijos$Estatura <- c(95,105,77)
-carlos_fam_g$Hermanos$Estatura <- c(183,176)
-```
-
-```{r exe_243-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
-
-Ya que sabemos un poco más de las listas retomemos el ejemplo 2.3.11  y veamos cómo funciona el acceso individual para nuestro set de datos `amigos`. Cabe mencionar que altura esta en cm y la masa en kg. Encontremos las edades de maria y julian y verifiquemos si Andres tiene hijos.
-
-```{r, eval = TRUE, message = FALSE, echo = FALSE}
-amigos <- tribble(
-  ~nombre ,         ~fisico          ,  ~ sentimental    ,
-  "Andres", c(edad=23,altura=181,masa=98) , c(soltero=T,hijos=F) ,
-  "Julian", c(edad=24,altura=179,masa=75) , c(soltero=F,hijos=T) ,
-  "Maria" , c(edad=19,altura=167,masa=71) , c(soltero=T,hijos=F) ,
-  "sandra", c(edad=21,altura=174,masa=68) , c(soltero=T,hijos=F) ,
-  "Karol" , c(edad=26,altura=171,masa=70) , c(soltero=F,hijos=T) ,
-  "Javier", c(edad=18,altura=164,masa=64) , c(soltero=T,hijos=F) ,
-)
-```
-
-```{r,eval=FALSE}
-save(amigos, file="data_pkg/amigos.rda", compress='xz')
+lista_1$L_3[2]
 ```
 
 :::example
 #### Ejemplo 2.4.3
 :::
 
-```{r addition_243, exercise = TRUE}
-#Datos
-amigos
-#Edades
-amigos$fisico[[3]][1] #Maria
-amigos$fisico[[2]][1] #Julian
-#Hijos
-amigos$sentimental[[1]][2]
-```
+```{r ejemplo_2_4_3, exercise = TRUE}
 
-Como ultimo ejercicio trabajaremos con el IMC ($IMC = \frac{Masa\ (kg)}{Altura(m)^2}$), ahora debes calcularlo para Karol y Javier utilizando la indexación que ya conoces.
+amigos <- tribble(
+   ~nombre,                               ~fisico,                      ~sentimental,
+  'Andres', c(edad = 23, altura = 181, masa = 98),  c(soltero = TRUE, hijos = FALSE),
+  'Julian', c(edad = 24, altura = 179, masa = 75),  c(soltero = FALSE, hijos = TRUE),
+   'Maria', c(edad = 19, altura = 167, masa = 71), c(soltero = TRUE,  hijos = FALSE),
+  'sandra', c(edad = 21, altura = 174, masa = 68),  c(soltero = TRUE, hijos = FALSE),
+   'Karol', c(edad = 26, altura = 171, masa = 70),  c(soltero = FALSE, hijos = TRUE),
+  'Javier', c(edad = 18, altura = 164, masa = 64),  c(soltero = TRUE, hijos = FALSE)
+  )
+
+# Selección de los elementos del anterior tibble ----
+amigos$fisico[[3]][1] # Edad de Maria.
+amigos$fisico[[2]][1] # Edad de Julian.
+amigos$sentimental[[6]][2] # Hijos de Javier. 
+```
 
 :::exercise
-#### Ejercicio 2.4.4
+#### Ejercicio 2.4.1
+Sabiendo que el índice de masa corporal de una persona se calcula con base en la expresión ($IMC = \frac{Masa\ (kg)}{Altura(m)^2}$), intente por favor calcular este párametro para Karol y Javier por medio de indexación. Aquí, la altura esta expresada en centímetros, por lo cual requerirá cambiarse a metros.
 :::
 
-```{r exe_244, exercise = TRUE}
-#Caculo IMC
+```{r ejercicio_2_4_1, exercise = TRUE}
+
+amigos <- tribble(
+   ~nombre,                               ~fisico,                      ~sentimental,
+  'Andres', c(edad = 23, altura = 181, masa = 98),  c(soltero = TRUE, hijos = FALSE),
+  'Julian', c(edad = 24, altura = 179, masa = 75),  c(soltero = FALSE, hijos = TRUE),
+   'Maria', c(edad = 19, altura = 167, masa = 71), c(soltero = TRUE,  hijos = FALSE),
+  'sandra', c(edad = 21, altura = 174, masa = 68),  c(soltero = TRUE, hijos = FALSE),
+   'Karol', c(edad = 26, altura = 171, masa = 70),  c(soltero = FALSE, hijos = TRUE),
+  'Javier', c(edad = 18, altura = 164, masa = 64),  c(soltero = TRUE, hijos = FALSE)
+  )
+
+# Calculo del IMC del anterior tibble ----
+amigos$fisico[[5]][3] / (amigos$fisico[[5]][2] / 100)^2 # IMC de Karol
+amigos$fisico[[6]][3] / (amigos$fisico[[6]][2] / 100)^2 # IMC de Javier
 ```
 
-```{r exe_244-solution}
-#Caculo IMC
-amigos$fisico[[5]][3][[1]] / (amigos$fisico[[5]][2][[1]]/100)^2 #Karol
-amigos$fisico[[6]][3][[1]] / (amigos$fisico[[6]][2][[1]]/100)^2 #Javier
++ Arreglos
+
+Un arreglo es una matriz n-dimensional. Por lo tanto los arreglos, al igual que en una matriz, se pueden almacenar datos de una sola clase atómica. Para construir una arreglo se usa la función `array()`.
+
+:::example
+#### Ejemplo 2.4.4
+:::
+
+```{r ejemplo_2_4_4, exercise = TRUE}
+
+arreglo_1 <- array(
+  data = c(11:14, 21:24, 31:34),
+  dim = c(2, 2, 3)
+)
+arreglo_1
 ```
 
-```{r exe_244-check}
-grade_code("Excelente lo lograste, sigamos adelante")
-```
+Si se desea extraer los elementos almacenados en un arreglo, se usa el operador `[ ]` al igual que en una matriz.
 
-</details>
+:::example
+#### Ejemplo 2.4.5
+:::
+
+```{r ejemplo_2_4_5, exercise = TRUE}
+
+arreglo_1 <- array(
+  data = c(11:14, 21:24, 31:34),
+  dim = c(2, 2, 3)
+)
+
+arreglo_1[2, 1, 3] # Si se quiere extraer el número almacenado en la fila 2 y la columna 1 de la tercera matriz. 
+arreglo_1[, , 2] # Si se quiere extraer la segunda matriz completa.  
+arreglo_1[, 2, ] # Si se quiere extraer la columna 2 de todas las matrices.
+arreglo_1[1, , ] # Si se quiere extraer la fila 1 de todas las matrices.
+```
 
 ## 3. Condiciones, bucles y funciones
 
@@ -2179,7 +1687,7 @@ En esta sección aprenderemos a crear y utilizar estructuras de control como fun
 
 <details><summary>3.1 Condicionales </summary> 
 
-Son conocidos como construcciones y se articulan con los operadores lógicos, de conjunción y de disyunción. Utilizan expresiones lógicas para denotar diferentes alternativas, es decir, funcionan como una condición a partir de la expresión lógica.La primera función que utilizaremos será `if(){}` acompañada de `print()`. Para ello recordemos con un ejemplo expresiones lógicas que ya conocemos y agreguemos la sintaxis de una condición para utilizar estas nuevas funciones. 
+Son conocidos como construcciones y se articulan con los operadores lógicos, de conjunción y de disyunción. Utilizan expresiones lógicas para denotar diferentes alternativas, es decir, funcionan como una condición a partir de la expresión lógica. La primera función que utilizaremos será `if(){}` acompañada de `print()`. Para ello recordemos con un ejemplo expresiones lógicas que ya conocemos y agreguemos la sintaxis de una condición para utilizar estas nuevas funciones. 
 
 :::example
 #### Ejemplo 3.1.1
@@ -2393,7 +1901,7 @@ if(dia =="Lunes" | dia =="Martes" | dia =="Miercoles" ){
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-En los anteriores ejemplos debíamos cambiar los valores para cada caso, ahora veamos cómo utilizar el código ágilmente sobre un o unos vectores para obtener resultados en simultaneo para cada caso. Retomemos entonces el ejemplo 3.1.2 para utilizar la función `ifelse()` y comparar varios números al mismo tiempo.
+En los anteriores ejemplos debíamos cambiar los valores para cada caso, ahora veamos cómo utilizar el código ágilmente sobre uno o varios vectores para obtener resultados en simultaneo para cada caso. Retomemos entonces el ejemplo 3.1.2 para utilizar la función `ifelse()` y comparar varios números al mismo tiempo.
 
 :::example
 #### Ejemplo 3.1.5
@@ -2416,7 +1924,7 @@ ifelse(test = numeros==20,yes = paste("Es igual a 20"),no =
          ifelse(numeros>20,paste("Es mayor a 20"),paste("Es menor a 20")))
 ```
 
-En ejemplos simples como este es fácil adaptar, la función `ifelse()` para usarla con vectores, sin embargo ya hemos trabajado ejemplos un poco más elaborados en los que modificamos las variables y obtenemos unas nuevas, para estos últimos esta función es difícil de adaptar y tenemos que valernos de los bucles que aprenderemos en la siguiente subsección.
+En ejemplos simples como este es fácil adaptar la función `ifelse()` para usarla con vectores, sin embargo ya hemos trabajado ejemplos un poco más elaborados en los que modificamos las variables y obtenemos unas nuevas, para estos últimos esta función es difícil de adaptar y tenemos que valernos de los bucles que aprenderemos en la siguiente subsección.
 
 Para seguir con los condicionales realiza el siguiente ejercicio usando `ifelse()`, en él debes encontrar los números pares de un vector de prueba, imprimiendo en pantalla la afirmación “Es par” cuando cumpla la condición, y “No es par” cuando no lo haga.
 
@@ -2441,7 +1949,7 @@ ifelse(vec%%2==0,paste("Es par"),paste("No es par"))
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Como último ejercicio de esta subsección debes utilizar `ifelse()` para clasificar los números en determinado rango, de tal manera que para los números en entre 20 y 60 en el vector de prueba se imprima “Están en el intervalo” y para los que no estén entre 20 y 60 se imprima “No están en el intervalo”.
+Como último ejercicio de esta subsección debes utilizar `ifelse()` para clasificar los números en determinado rango, de tal manera que para los números entre 20 y 60 en el vector de prueba se imprima “Están en el intervalo” y para los que no estén entre 20 y 60 se imprima “No están en el intervalo”.
 
 :::exercise
 #### Ejercicio 3.1.4
@@ -2468,7 +1976,7 @@ grade_code("Excelente lo lograste, sigamos adelante")
 
 <details><summary>3.2 Bucles </summary> 
 
-Los bucles o ciclos son estructuras de control que permiten recorrer los elementos de un objeto iterable (vector,lista,dataframe,tibble, array,...) repitiendo determinado número de veces el bloque de código o instrucción para cada iteración. Las estructuras de control asociadas con los ciclos  son:
+Los bucles o ciclos son estructuras de control que permiten recorrer los elementos de un objeto iterable (vector, lista, dataframe, tibble, array,...) repitiendo determinado número de veces el bloque de código o instrucción para cada iteración. Las estructuras de control asociadas con los ciclos  son:
 
 +------------+-------------------+
 | Estructura | Descripción       |
@@ -2485,6 +1993,14 @@ Los bucles o ciclos son estructuras de control que permiten recorrer los element
 +------------+-------------------+
 
 Para empezar trabajaremos con el ciclo `for` ilustrando cómo funcionan las iteraciones en cada elemento del vector `letras` el cual posee una longitud de 15. 
+
+Para empezar trabajaremos con el ciclo `for` viendo la siguiente ilustracion y observando el funcionamiento de las iteraciones en cada elemento en el vector `letras` del ejemplo 3.2.1. Recordemos que `letras`  posee 15 elementos.
+
+```{r, echo = FALSE, eval = TRUE, out.width = "95%", fig.align = "center"}
+knitr::include_graphics("images/for_loops.jpeg")
+```
+
+<section style="text-align: center;"><small>Ilustracíon hecha por <font color = "black"><u>\@allison_horst</u></font>.</small></section> 
 
 :::example
 #### Ejemplo 3.2.1
@@ -2549,7 +2065,7 @@ for (i in seq_along(letras)){
 }
 ```
 
-Hagamos un ejemplo un poco más elaborado usando el ejemplo 3.1.4 del descuento de comida de perro, utilizando en esta ocasión dos vectores, `x` vector con distintos números de bolsas de comida (cada número una compra diferente) y `des` vector que se señala cuando se aplica descuento y cuando no (1= Hay descuento, 0= No hay descuento). Cabe recordar que las ocasiones en la aplica el descuento este es de un 50% con un 10% adicional si el número de bolsas de comida es mayor a 10. El precio por bolsa es de 6800 pesos.
+Hagamos un ejemplo un poco más elaborado usando el ejemplo 3.1.4 del descuento de comida de perro, utilizando en esta ocasión dos vectores, `x` vector con distintos números de bolsas de comida (cada número una compra diferente) y `des` vector que se señala cuando se aplica descuento y cuando no (1= Hay descuento, 0= No hay descuento). Cabe recordar que las ocasiones en la que se aplica un descuento, este es de un 50% con un 10% adicional si el número de bolsas de comida es mayor a 10. El precio por bolsa es de 6800 pesos.
 
 :::example
 #### Ejemplo 3.2.3
@@ -2597,7 +2113,25 @@ for (i in seq_along(my_lista)){
 }
 ```
 
-Se puede ver que el proceso con las listas es tan simple como con los vectores, por ello en el siguiente ejercicio debes retomar la lista `carlos_fam_g` del ejercicio 2.4.3 y obtener todos los nombres de los familiares de carlos e imprimirlos en pantalla junto con el tipo de relación que tienen y su edad. Por ejemplo para el padre se debe mostrar en pantalla : “El padre de carlos es Juan carlos y tiene 55 años”.
+Se puede ver que el proceso con las listas es tan simple como con los vectores, por ello en el siguiente ejercicio debes hacer uso de la lista `carlos_fam_g` presentada a continuación y obtener todos los nombres de los familiares de Carlos, e imprimirlos en pantalla junto con el tipo de relación que tienen y su edad. Por ejemplo para el padre se debe mostrar en pantalla : “El padre de Carlos es Juan carlos y tiene 55 años”.
+
++-------------+----------------+------+
+| Relación    | Nombre         | Edad |
++=============+================+======+
+| Padre       | Juan Carlos    |  55  |
++-------------+----------------+------+
+| Madre       | Luz Estela     |  53  |
++-------------+----------------+------+
+| Hijo        | Juan Camilo    |  3   |
++-------------+----------------+------+
+| Hijo        | Juan Fernado   |  5   |
++-------------+----------------+------+
+| Hijo        | Juliana        |  1   |
++-------------+----------------+------+
+| Hermano     | Andres Felipe  |  25  |
++-------------+----------------+------+
+| Hermano     | Maria Camila   |  21  |
++-------------+----------------+------+
 
 :::exercise
 #### Ejercicio 3.2.1
@@ -2620,7 +2154,7 @@ for (objeto in carlos_fam_g){
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Como se puede notar el ejercicio se ve más sencillo de lo que es, veamos otro ejercicio para reforzar el aprendizaje del ciclo `for`. Para este ejercicio usaremos los datos `amigos` y retomaremos el ejercicio 2.4.4 calculando el IMC ($IMC = \frac{Masa\ (kg)}{Altura(m)^2}$) para todas las personas del conjunto de datos imprimiendo en pantalla una expresión del tipo: “Andres tiene un altura de 1,81 m, una masa de 98 kg y su IMC es 29.91”
+Como se puede notar el ejercicio se ve más sencillo de lo que es, veamos otro ejercicio para reforzar el aprendizaje del ciclo `for`. Para este ejercicio usaremos los datos `amigos` y retomaremos el ejercicio 2.4.1 calculando el IMC ($IMC = \frac{Masa\ (kg)}{Altura(m)^2}$) para todas las personas del conjunto de datos imprimiendo en pantalla una expresión del tipo: “Andres tiene un altura de 1.81 m, una masa de 98 kg y su IMC es 29.91”
 
 :::exercise
 #### Ejercicio 3.2.2
@@ -2645,7 +2179,7 @@ for (i in seq_along(amigos$nombre)){
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Modifica el código del ejercicio anterior y úsalo para incluir la variable IMC en la lista de fisco del dataset `amigos`. Recuerda la indexación y creación de variables tanto en los dataframe como en las listas.
+Modifica el código del ejercicio anterior y úsalo para incluir la variable IMC en la lista de fisico del dataset `amigos`. Recuerda la indexación y creación de variables tanto en los dataframe como en las listas.
 
 :::exercise
 #### Ejercicio 3.2.3
@@ -2705,7 +2239,7 @@ amigos
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-En R también está presente el ciclo `while()` el cual permite repetir la ejecución de un grupo de instrucciones mientras se cumpla una condición, debemos ser precavidos ya que es muy fácil programar un bucle infinito en el cual la condición siempre se cumpla. Iniciemos adaptando el ejemplo 3.2.1 para las primeras 10 letras del vector `letras`,usando además un contador. Veamos cómo funciona.
+En `R` también está presente el ciclo `while()` el cual permite repetir la ejecución de un grupo de instrucciones mientras se cumpla una condición, debemos ser precavidos ya que es muy fácil programar un bucle infinito en el cual la condición siempre se cumpla. Iniciemos adaptando el ejemplo 3.2.1 para las primeras 10 letras del vector `letras`, usando además un contador. Veamos cómo funciona.
 
 :::example
 #### Ejemplo 3.2.5
@@ -2809,7 +2343,7 @@ for (i in 1:20){
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Otro de los ciclos que posee R es `repeat{}`, que es incluso de menor uso que el ciclo `while`. En general `repeat{}` repite un grupo de instrucciones indefinidamente, por ello el uso del argumento `break` resulta obligatorio en este ciclo. veamos algunos de los ejemplos anteriores adaptados al ciclo `repeat{}`
+Otro de los ciclos que posee `R` es `repeat{}`, que es incluso de menor uso que el ciclo `while`. En general `repeat{}` repite un grupo de instrucciones indefinidamente, por ello el uso del argumento `break` resulta obligatorio en este ciclo. Veamos algunos de los ejemplos anteriores adaptados al ciclo `repeat{}`
 
 :::example
 #### Ejemplo 3.2.9
@@ -2924,8 +2458,7 @@ for (i in seq_along(dia)){
 }
 ```
 
-Como se ha dicho anteriormente algunos de los ciclos son de poco uso en el lenguaje `R` 
-, por lo que es más común utilizar funciones vectoriales como `ifelse()` y funciones derivadas de la familia `apply`. Primero apliquemos `ifelse()` a algunos de los ejemplos y ejercicios de esta subsección modificandolos como dataframe o tibble. La familia apply se verá en una subsección posterior. 
+Como se ha dicho anteriormente algunos de los ciclos son de poco uso en el lenguaje `R`, por lo que es más común utilizar funciones vectoriales como `ifelse()` y funciones derivadas de la familia `apply`. Primero apliquemos `ifelse()` a algunos de los ejemplos y ejercicios de esta subsección modificandolos como dataframe o tibble. La familia apply se verá en una subsección posterior. 
 
 Retomando el ejemplo 3.1.3 de la promoción en la floristería, observemos su adaptación en un tibble usando `ifelse()` para multiples compras 
 
@@ -3006,7 +2539,7 @@ environment(fun_1)
 attr(fun_1,"srcref")
 ```
 
-En general cualquier función creada en lenguaje `R` posee componentes y atributos, sin embargo algunas funciones base como `sum()` `mean()` y otras no posee poseen estos componentes, debido a que llaman código C directamente. Intenta hallar los componentes y atributos para la funciones `prod()` y `abs()`.
+En general cualquier función creada en lenguaje `R` posee componentes y atributos, sin embargo algunas funciones base como `sum()` `mean()` y otras no poseen estos componentes, debido a que llaman código C directamente. Intenta hallar los componentes y atributos para la funciones `prod()` y `abs()`.
 
 :::exercise
 #### Ejercicio 3.3.1
@@ -3048,7 +2581,7 @@ environment(rowMeans)
 attr(rowMeans,"srcref")
 ```
 
-En la sección anterior en los ejemplos y ejercicios 2.3.6 y 2.3.7  usamos `function()` en conjunto con otras funciones, en esos casos utilizamos lo que se denomina funciones anónimas, las cuales se caracterizan por ser breves (se pueden escribir en una sola línea de código) y por no poseer frecuentemente los  `{}`.  Veamos un ejemplo de una función anónima para la integral $\pi \int_{0}^{6}  \frac{x}{12} \sqrt{36-x^2}$, donde la función anónima corresponde al integrando.
+De igual forma, se puede hacer uso de la función `function()` en conjunto con otras funciones u operadores, en lo que se denomina como funciones anónimas. Estas se caracterizan por ser breves (se pueden escribir en una sola línea de código) y por no poseer frecuentemente los `{}`.  Veamos un ejemplo de una función anónima para la integral $\pi \int_{0}^{6}  \frac{x}{12} \sqrt{36-x^2}$, donde la función anónima corresponde al integrando.
 
 :::example
 #### Ejemplo 3.3.2
@@ -3067,7 +2600,7 @@ integrando <- function(x){
 integrate(integrando,0,6 )
 ```
 
-Una cuestión importante en las funciones, es el léxico que se maneja, en él debemos entender que los argumentos son válidos dentro de la función y que crearlos o nombrarlos en el exterior no siempre los afecta. Veamos las salidas del siguiente ejemplo para entender mejor este concepto. 
+Una cuestión importante en las funciones, es el léxico que se maneja, en él que debemos entender que los argumentos son válidos dentro de la función y que crearlos o nombrarlos en el exterior no siempre los afecta. Veamos las salidas del siguiente ejemplo para entender mejor este concepto. 
 
 :::example
 #### Ejemplo 3.3.3
@@ -3119,7 +2652,7 @@ question(" ",
 )
 ```
 
-Pero qué sucedería con el léxico, si nuestra función no posee argumentos pero requiere de una variable? o si los argumentos de nuestra función no son declarados y se requiere una variable ?. Veamos primero una función sin argumentos y cómo funciona la denominada búsqueda dinámica.
+¿Pero qué sucedería con el léxico, si nuestra función no posee argumentos pero requiere de una variable? ¿o si los argumentos de nuestra función no son declarados y se requiere una variable?. Veamos primero una función sin argumentos y cómo funciona la denominada búsqueda dinámica.
 
 :::example
 #### Ejemplo 3.3.4
@@ -3132,7 +2665,7 @@ fun_3 <- function() x+y
 fun_3()
 ```
 
-Como nuestra función requiere internamente de un `x` y un `y` obtenemos un error que nos notifica que el objeto `x` no se encuentra, es aquí donde podemos aplicar el concepto de búsqueda dinámica, agregando `x` y `y` como variables independientes.
+Como nuestra función requiere internamente de un `x` y un `y`, obtenemos un error que nos notifica que el objeto `x` no se encuentra. Es aquí donde podemos aplicar el concepto de búsqueda dinámica, agregando `x` y `y` como variables independientes.
 
 ```{r addition_334_1, exercise = TRUE}
 # Variables independientes
@@ -3200,7 +2733,7 @@ my.mean(1:956)
 mean(1:956)
 ```
 
-Es tu turno de crear funciones y comparar el resultado con una función predeterminada de `R`. En esta ocasión debes crear la funciones `my.var` y `my.sd` para comparar tus resultados con las funciones `var()` y `sd()`. Recuerda que la varianza obedece a la siguiente ecuación $\mathrm{Var}(x) = \frac{1}{n - 1} \sum_{i=1}^n (x_i - \bar{x}) ^2$. Compara tus resultados con los vectores de prueba.
+Es tu turno de crear funciones y comparar el resultado con una función predeterminada de `R`. En esta ocasión debes crear la funciones `my.var` y `my.sd` para comparar tus resultados con las funciones `var()` y `sd()`. Recuerda que la varianza obedece a la siguiente ecuación: $\mathrm{Var}(x) = \frac{1}{n - 1} \sum_{i=1}^n (x_i - \bar{x}) ^2$. Compara tus resultados con los vectores de prueba.
 
 :::exercise
 #### Ejercicio 3.3.3
@@ -3276,7 +2809,7 @@ sd(y)
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Retomemos el ejemplo 3.1.4 de descuento de comida para perro y creemos una función que haga todo el trabajo cada vez que lo necesitemos, al ser una función cambiaremos algunos argumentos y detendremos el proceso con `stop()` cada vez que se encuentre un error, sea en los valores de compra o en los de descuento. Además se incluirá un argumento predeterminado que define si la salida es impresiones en pantalla o un vector.
+Retomemos el ejemplo 3.1.4 de descuento de comida para perro y creemos una función que haga todo el trabajo cada vez que lo necesitemos. Al ser una función, cambiaremos algunos argumentos y detendremos el proceso con `stop()` cada vez que se encuentre un error, sea en los valores de compra o en los de descuento. Además se incluirá un argumento predeterminado que define si la salida es impresiones en pantalla o un vector.
 
 :::example
 #### Ejemplo 3.3.7
@@ -3313,7 +2846,7 @@ descuento_perros <- function(bolsas,descuentos,to_vector = FALSE){
 }
 ```
 
-Creada la función podemos realizar múltiples pruebas sin necesidad de escribir repetidamente el código. Veamos algunas pruebas e intenta otras por tu cuenta. Para ejecutar las pruebas debes comentar las que presenten errores, ya que para ilustrar su funcionamiento hay pruebas que arrojan error, estas están marcadas con el comentario `#error` al final.
+Creada la función podemos realizar múltiples pruebas sin necesidad de escribir repetidamente el código. Veamos algunas pruebas e intenta otras por tu cuenta. Para ejecutar las pruebas debes comentar las que presenten errores, ya que para ilustrar su funcionamiento hay pruebas que arrojan error. Estas están marcadas con el comentario `#error` al final.
 
 ```{r addition_337_1, exercise = TRUE}
 #Prueba 1
@@ -3328,7 +2861,7 @@ descuento_perros(c(10,2,15,18,16),c(1,0,0,1,0))
 descuento_perros(c(10,2,15,18,16),c(1,0,0,1,0),to_vector = TRUE)
 ```
 
-Es tu turno de adaptar una función al ejercicio de las rosas tratado en el ejemplo 3.1.3. Como ya sabes en esta sección hay muchas posibles soluciones a los problemas planteados, en `solution` encontraras una sola de todas las posibles. Verifica los resultados de la función con los dos objetos de prueba. Para ejecutar las pruebas debes comentar las que presenten errores, ya que para ilustrar su funcionamiento hay pruebas que arrojan error, estas están marcadas con el comentario `#error` al final.
+Es tu turno de adaptar una función al ejercicio de las rosas tratado en el ejemplo 3.1.3. Como ya sabes en esta sección hay muchas posibles soluciones a los problemas planteados, sin embargo en `solution` encontraras una sola de todas las posibles. Verifica los resultados de la función con los dos objetos de prueba. Para ejecutar las pruebas debes comentar las que presenten errores, ya que para ilustrar su funcionamiento hay pruebas que arrojan error, estas están marcadas con el comentario `#error` al final.
 
 :::exercise
 #### Ejercicio 3.3.4
@@ -3445,7 +2978,7 @@ descuento_helados(vec_dias_2,vec_total_2)
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-Continuando con teoría acerca de las funciones trabajaremos el argumento especial `...`, el cual tiene dos usos comunes: 1) Para extender una función y 2) Para permitir que la función posea cualquier número de argumentos adicionales. El primer caso es usado comúnmente cuando se anidan funciones, como se vio en los ejemplos y ejercicios 2.3.7. Veamos un ejemplo de este primer caso utilizando dos funciones `my_fun_1` y `my_fun_2`.
+Continuando con la teoría acerca de las funciones, trabajaremos el argumento especial `...`, el cual tiene dos usos comunes: 1) Para extender una función y 2) Para permitir que la función posea cualquier número de argumentos adicionales. El primer caso es usado comúnmente cuando se anidan funciones. Veamos un ejemplo de este primer caso utilizando dos funciones `my_fun_1` y `my_fun_2`.
 
 :::example
 #### Ejemplo 3.3.8
@@ -3589,7 +3122,7 @@ descuentos(c(5,6,8,10,12,47),rosas = T)
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-El otro uso del argumento especial `...` es en funciones que reciben cualquier número de argumentos, como ejemplo de ellas tenemos `sum()` , `prod()`, `paste()`, `paste0()` y otras más. veamos cómo funcionan estas y creemos una que reciba cualquier cantidad de argumentos.
+El otro uso del argumento especial `...` es en funciones que reciben cualquier número de argumentos, como ejemplo de ellas tenemos `sum()`, `prod()`, `paste()`, `paste0()` y otras más. Veamos cómo funcionan estas y creemos una que reciba cualquier cantidad de argumentos.
 
 :::example
 #### Ejemplo 3.3.11
@@ -3610,13 +3143,13 @@ fun_5(1,3,5,7,89,c=5,b=8)
 fun_5("Hola","Soy una función","con",ar=4,"argumentos")
 ```
 
-`fun_5` recibe cualquier cantidad de elementos y los guarda en una lista , el uso que le demos a ella depende de nuestras necesidades y habilidades con las listas. 
+`fun_5` recibe cualquier cantidad de elementos y los guarda en una lista. El uso que le demos a ella depende de nuestras necesidades y habilidades con las listas. 
 
 </details>
 
 <details><summary>3.4 Familia apply </summary> 
 
-Se conoce como familia `apply` al conjunto de funciones usadas para aplicar funciones en matrices, dataframe, arreglos y listas, corresponden a una de las características distintivas de R como lenguaje de programación y se utilizan frecuentemente para automatizar tareas complejas. Las funciones de la familia `apply` se caracterizan por recibir como argumentos a un objeto y al menos una función. Las funciones pertenecientes a esta familia son las siguientes:
+Se conoce como familia `apply` al conjunto de funciones usadas para aplicar funciones en matrices, dataframe, arreglos y listas. Corresponden a una de las características distintivas de `R` como lenguaje de programación y se utilizan frecuentemente para automatizar tareas complejas. Las funciones de la familia `apply` se caracterizan por recibir como argumentos a un objeto y al menos una función. Las funciones pertenecientes a esta familia son las siguientes:
 
 * `apply()`
 * `lapply()`
@@ -3627,7 +3160,7 @@ Se conoce como familia `apply` al conjunto de funciones usadas para aplicar func
 * `tapply()`
 * `vapply()`
 
-Algunas de estas funciones tienen aplicaciones sumamente específicas y profundizar en ellas no resulta apropiado para un curso corto; por esta razón se profundizará solo en algunas de ellas iniciando con la función `apply()`.
+Algunas de estas funciones tienen aplicaciones sumamente específicas y profundizar en ellas no resulta apropiado para un curso corto. Por esta razón, se profundizará solo en algunas de ellas iniciando con la función `apply()`.
 
 ```{r, echo=TRUE,eval=FALSE}
 apply(X,MARGIN,FUN,...)
@@ -3705,7 +3238,7 @@ rosas <-  data.frame(lunes=c(2,5,10,21,17,10,2,8,3),
 apply(rosas,2,quantile,probs=c(.33,.66,.99))
 ```
 
-Recordemos el ejemplo 2.2.3 en el cual determinamos la representación en porcentual de cada elemento de la columna sobre la suma total de la misma, en aquella ocasión determinar esa representación porcentual nos tomó aproximadamente 8 líneas de código, ahora con `apply()` debes lograrlo en una sola línea.
+Recordemos el ejemplo 2.3.3.4 en el cual determinamos la representación en porcentual de cada elemento de la columna sobre la suma total de la misma. En aquella ocasión determinar esa representación porcentual tomó aproximadamente 8 líneas de código. Ahora con `apply()`, debes lograrlo en una sola línea.
 
 :::exercise
 #### Ejercicio 3.4.1
@@ -3723,7 +3256,7 @@ m
 m <- matrix(seq(18, 2, length.out = 16), ncol = 4, byrow = TRUE)
 m
 #porcentaje columna
-apply(m,2,function(x) round(100*x/sum(x),2))
+apply(m, 2, function(x) round(100*x/sum(x), 2))
 ```
 
 ```{r exe_341-check}
@@ -3951,7 +3484,7 @@ sapply(ventas,function(x) descuento_perros(x[[1]],x[[2]],to_vector = T))
 grade_code("Excelente lo lograste, sigamos adelante")
 ```
 
-A partir de las funciones de la familia `apply` nombradas anteriormente se obtiene una noción básica del funcionamiento de la familia completa, para abordar y conocer mejor las otras funciones de la familia te recomendamos revisar la documentación de `R`.
+A partir de las funciones de la familia `apply` nombradas anteriormente, se puede obtener una noción básica del funcionamiento de la familia completa. Para abordar y conocer mejor las otras funciones de esta familia de funciones, te recomendamos revisar la documentación de `R`.
 
 </details>
 
@@ -4180,7 +3713,9 @@ Los datos ordenados funcionan bien en `R` porque `R` es un lenguaje de programac
 knitr::include_graphics("images/6ta_imagen.png")  
 ```
 
+:::caution
 Los datos ordenados fueron popularizados por __Hadley Wickham__, y sirven como base para muchos paquetes y funciones de `R`. Puede obtener más información sobre datos ordenados leyendo [Tidy Data](www.jstatsoft.org/v59/i10/paper), un documento escrito por __Hadley Wickham__ y publicado en el Journal of Statistical Software.
+:::
 
 ### 4.3 Ordenando los datos con `tidyr`
 
@@ -5387,8 +4922,7 @@ Una gramática de gráficos es un marco que sigue un enfoque en capas para descr
 knitr::include_graphics("images/26va_imagen.png")  
 ```
 
-Para explicar el concepto de la gramática de gráficos en capas implementado en el paquete `ggplot2` se empleara el conjunto de datos [`pokemon`](https://github.com/cienciadedatos/datos-de-miercoles/tree/master/datos/2019/2019-07-10). Estos datos es uno de los muchos conjuntos de datos del proyecto [_Datos de miércoles_](https://github.com/cienciadedatos/datos-de-miercoles) cuyo propósito consiste en buscar que lo ususraios de `R` desarrollen habilidades de visualización y procesado de datos usando las herramientas del `tidyverse`.
-
+Para explicar el concepto de la gramática de gráficos en capas implementado en el paquete `ggplot2` se empleara el conjunto de datos [`pokemon`](https://github.com/cienciadedatos/datos-de-miercoles/tree/master/datos/2019/2019-07-10). Estos datos es uno de los muchos conjuntos de datos del proyecto [_Datos de miércoles_](https://github.com/cienciadedatos/datos-de-miercoles) cuyo propósito consiste en buscar que lo usuarios de `R` desarrollen habilidades de visualización y procesado de datos usando las herramientas del `tidyverse`.
 
 ```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
 knitr::include_graphics("images/27va_imagen.png")  
@@ -5771,7 +5305,7 @@ knitr::include_graphics("images/Astronauts_tidytuesday.png")
 
 ##### 6.2.1.5 Capa 7: tema
 
-La capa 7 de tema (`theme`), ayudan a que las gráficas sean estéticamente agradables o coincidan con una guía de estilo existente, sin afectar lo ya hecho a partir de las capas anteriormente presentadas.
+La capa 7 de tema, ayuda a que las gráficas sean estéticamente agradables o coincidan con una guía de estilo existente, sin afectar lo ya hecho a partir de las capas anteriormente presentadas.
 
 ```{r ejemplo_6_2_5, exercise = TRUE, fig.align = "center"}
 
@@ -5834,8 +5368,9 @@ ggplot(
 `ggplot2` no está limitado a los temas que tiene integrados. Puede hacer uso de otros paquetes, como `ggthemes` de Jeffrey Arnold, para disponer de muchos más temas. [Aquí](https://github.com/jrnold/ggthemes) podrá encontrar información sobre este paquete.
 :::
 
-El sistema de temas está compuesto por varios componentes principales:
-  
+Los temas integrados anteriores cuentan con componentes individuales que a su
+vez pueden ser modificados usando la función `theme()`. Una manera general del código que se puede emplear para esto es de la forma: `plot + theme(element.name = element_function())`.
+
 + Componentes del gráfico
 
 Estos pueden afectar la apariencia del gráfico en su conjunto. Estos son:
@@ -5871,7 +5406,7 @@ ggplot(
   scale_fill_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
   theme_bw() +
   theme(
-    plot.background = element_rect(colour = 'black', size = 1.4),
+    plot.background = element_rect(colour = 'gray34', fill = 'white', size = 1.4),
     plot.title = element_text(size = 10, colour = 'black', face = 'bold')
   )
 ```
@@ -5911,9 +5446,10 @@ ggplot(
   scale_fill_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
   theme_bw() +
   theme(
-    plot.background = element_rect(colour = 'black', size = 1.4),
+    plot.background = element_rect(colour = 'gray34', fill = 'white', size = 1.4),
     plot.title = element_text(size = 10, colour = 'black', face = 'bold'),
     axis.text.x = element_text(size = 10, face = 'bold', angle = -45, hjust = 0, vjust = 1),
+    axis.text.y = element_text(size = 10, face = 'bold'),
     axis.title = element_text(size = 12, face = 'bold')
   )
 ```
@@ -5953,9 +5489,10 @@ ggplot(
   scale_fill_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
   theme_bw() +
   theme(
-    plot.background = element_rect(colour = 'black', size = 1.4),
+    plot.background = element_rect(colour = 'gray34', fill = 'white', size = 1.4),
     plot.title = element_text(size = 10, colour = 'black', face = 'bold'),
     axis.text.x = element_text(size = 10, face = 'bold', angle = -45, hjust = 0, vjust = 1),
+    axis.text.y = element_text(size = 10, face = 'bold'),
     axis.title = element_text(size = 12, face = 'bold'),
     legend.position = 'none'
   )
@@ -5996,13 +5533,14 @@ ggplot(
   scale_fill_manual(values = c('cyan', 'gray34', 'deeppink', 'orangered', 'yellow', 'turquoise', 'springgreen', 'red', 'black', 'darkmagenta', 'green', 'blue', 'maroon', 'violetred', 'chocolate', 'coral4', 'thistle', 'pink4')) +
   theme_bw() +
   theme(
-    plot.background = element_rect(colour = 'black', size = 1.4),
+    plot.background = element_rect(colour = 'gray34', fill = 'white', size = 1.4),
     plot.title = element_text(size = 10, colour = 'black', face = 'bold'),
     axis.text.x = element_text(size = 10, face = 'bold', angle = -45, hjust = 0, vjust = 1),
+    axis.text.y = element_text(size = 10, face = 'bold'),
     axis.title = element_text(size = 12, face = 'bold'),
     legend.position = 'none',
-    strip.background = element_rect(colour = 'black', fill = 'black'),
-    strip.text = element_text(size = 10, colour = 'white', face = 'bold')
+    strip.background = element_rect(colour = 'black', fill = 'gray64'),
+    strip.text = element_text(size = 10, colour = 'black', face = 'bold')
   )
 ```
 
@@ -6400,81 +5938,15 @@ Otros paquetes paquetes que podemos utilizar para graficar mapas y datos geoespa
 
 Ya en este punto de seguro se preguntará ¿es posible ir más alla de lo que se ha visto hasta ahora? La respuesta es definitivamente un si. Un ejemplo de ello es la famosa visualización de [Hans Rosling](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen) donde representaba la población mundial, la expectativa de vida y varios indicadores económicos mediante una visualización animada.
 
-Afortunadamente, hacer este tipo de visualizaciones se ha vuelto hoy en día bastante simple mediante el uso de paquetes de `R`. <!--Para explicar como hacer estas visualizaciones se empleará los dos conjuntos de datos que se observan a continuación:-->
-
-```{r, eval = FALSE, message = FALSE, echo = FALSE}
-
-# Antes de la temporada de 1981, el equipo ganador se llevaba 2 puntos, y posteriormente se llevaba 3 puntos. El equipo derrotado por otra parte se llevaba 0 puntos, mientras que si el juego terminaba en empate, ambos equipos se llevaban 1 punto... se crean dos nuevas columnas para asignar punto de local y puntos de visitante. ----
-premier_league <- england %>%
-  mutate(
-    Pts_local = case_when(
-      Season <= 1980 & result == 'H' ~ 2,
-      Season > 1980 & result == 'H' ~ 3,
-      result == 'D' ~ 1,
-      result == 'A' ~ 0
-      ),
-    Pts_visitante = case_when(
-      Season <= 1980 & result == 'A' ~ 2,
-      Season > 1980 & result == 'A' ~ 3,
-      result == 'D' ~ 1,
-      result == 'H' ~ 0
-      )
-    )
-
-# Ahora, se obtendra el total de puntos de local y vistante para cada equipo y cada temporada, y solo de juegos jugados en primera división. ----
-Pts_local <- premier_league %>%
-  filter(tier == 1) %>%
-  group_by(Season, home) %>%
-  summarise(Pts = sum(Pts_local))
-
-Pts_visitante <- premier_league %>%
-  filter(tier == 1) %>%
-  group_by(Season, visitor) %>%
-  summarise(Pts = sum(Pts_visitante))
-
-#  Ahora se unen los dos anteriores conjuntos de datos y se suman los puntos locales y de visitante para obtener los puntos totales de cada equipo en cada temporada. ----
-Pts_temporada <- Pts_local %>%
-  rename(Equipo = home) %>%
-  bind_rows(
-    Pts_visitante %>%
-      rename(Equipo = visitor)
-  ) %>%
-  group_by(Season, Equipo) %>%
-  summarise(Pts = sum(Pts)) %>%
-  rename('Temporada' = Season)
-
-# Se guarda la base de datos anterior. ----
-save(Pts_temporada, file = "data_pkg/Pts_temporada.rda", compress='xz') # Base de datos que contiene los puntos obtenidos por cada equipo en cada una de las temporadas.
-```
-
-
-```{r datos_premier_1, exercise = TRUE}
-
-Pts_temporada
-```
-
-#### 6.4.1 ¿Como se crean las animaciones gráficas?
-
-Al crear animaciones, el gráfico no se mueve sino que en realidad son muchos gráficos individuales que luego se unen como si tratase de cuadros de película:
-
-```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
-
-knitr::include_graphics("images/37va_imagen.png")  
-```
-
-:::caution
-Cuantos más subconjuntos de datos se tienen, mejor será su visualización animada. Si los subconjuntos de datos generado son pocos, mejor será realizar un gráfico estático mediante el uso de facetas en lugar de una animación.
-:::
+Afortunadamente, hacer este tipo de visualizaciones se ha vuelto hoy en día bastante simple mediante el uso de paquetes de `R`.
 
 <div class="row">
   <div class="col-md-6" markdown="1">
-#### 6.4.2 Construccion de visualizaciones animadas mediante el uso del paquete `gganimate`
+#### 6.4.1 Construcción de visualizaciones animadas mediante el uso del paquete `gganimate`
 
 El paquete `gganimate` extiende la gramática de gráficos implementada en el paquete `ggplot2` proporcionando una rica gramática o funciones de animación.
 
 Esta nueva gama de funciones se pueden agregar al código de graficación de la misma manera que se agrega un `geom_` u otra capa gráfica.
-
-<!--Estas funciones son:-->
   </div>
   <div class="col-md-6" markdown="1">
 ```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
@@ -6484,119 +5956,323 @@ knitr::include_graphics("images/gganimate.png")
 <section style="text-align: center;"><small>Ilustracíon hecha por <font color = "black"><u>\@allison_horst</u></font>.</small></section>
   </div>
 </div>
-<!--
-+ `transition_*()`: ¿Qué variables control cambian y cómo?
-+ `view_*()`: ¿Deberían cambiar los ejes con los datos?
-+ `enter_*()/exit_*()`: ¿Cómo deben aparecer los nuevos datos y cómo deben desaparecer los datos antiguos durante el proceso de animación?
-+ `shadow_*()`: ¿Deberían "recordarse los datos anteriores y mostrarse con los datos actuales"?
-+ `ease_aes()`: ¿Cómo desea manejar el ritmo de cambio entre los valores de transición?-->
 
-<!--
-<div class="row">
-  <div class="col-md-6" markdown="1">
-```{r ejemplo_gganimate_1, exercise = TRUE, fig.align = "center", out.width = '480'}
+Al crear gráficas animadas, el gráfico no se mueve sino que en realidad son muchos gráficos individuales que luego se unen como si tratase de cuadros de película:
 
-tribble(
-  ~Nombre, ~Peso, ~Año,
-   'Juan',    60, 2018,
-  'Luisa',    54, 2018,
-  'Maria',    72, 2018,
-   'Luis',    68, 2018,
-   'Juan',    52, 2020,
-  'Luisa',    66, 2020,
-  'Maria',    80, 2020,
-   'Luis',    60, 2020
-  ) %>%
-  ggplot(aes(x = Nombre, y = Peso)) +
-  geom_bar(stat = 'identity') +
-  coord_flip() +
-  facet_wrap(~ Año)
-```
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
 
-```{r, echo = FALSE, eval = FALSE, out.width = "98%", fig.align = "center"}
-knitr::include_graphics("images/Ejemplo_gganimate_1.png")
-```
-  </div>
-  <div class="col-md-6" markdown="1">
-```{r ejemplo_gganimate_2, exercise = TRUE, fig.align = "center", out.width = '480'}
-
-tribble(
-  ~Nombre, ~Peso, ~Año,
-   'Juan',    60, 2018,
-  'Luisa',    54, 2018,
-  'Maria',    72, 2018,
-   'Luis',    68, 2018,
-   'Juan',    52, 2020,
-  'Luisa',    66, 2020,
-  'Maria',    80, 2020,
-   'Luis',    60, 2020
-  ) %>%
-  ggplot(aes(x = Nombre, y = Peso)) +
-  geom_bar(stat = 'identity') +
-  coord_flip() +
-  labs(title = "Año: {closest_state}") +
-  transition_states(Año)
-```  
-
-```{r, echo = FALSE, eval = FALSE, out.width = "70%", fig.align = "center"}
-knitr::include_graphics("images/Ejemplo_gganimate_2.gif")
-```
-  </div>
-</div>
-
--->
-```{r paquete_gganimate, exercise = TRUE, fig.align = "center"}
-
-#install.packages('gganimate')
-#devtools::install_github('thomasp85/gganimate')
-
-#library(gganimate)
+knitr::include_graphics("images/37va_imagen.png")  
 ```
 
 :::example
-#### Ejemplo 6.4.2.1
+#### Ejemplo 6.4.1.1
 :::
 
-```{r ejemplo_6_4_2_1, echo= TRUE ,eval=FALSE , fig.align = "center", out.width='580'}
+<!--Para explicar como hacer estas visualizaciones se empleará el conjunto de datos gapminder:-->
 
-Pts_temporada %>%
-  filter(
-    Equipo == 'Liverpool' | Equipo == 'Manchester City' | Equipo == 'Manchester United' | Equipo == 'Tottenham Hotspur' | Equipo == 'Chelsea' | Equipo == 'Arsenal') %>%
+```{r grafica_gapminder, echo = FALSE, eval = FALSE, message = FALSE}
+
+library(ggrepel)
+
+gapminder_2 <- gapminder %>%
+  filter(country == 'China')
+
+gapminder %>%
+  rename(
+    'Continente' = continent
+    ) %>%
+  mutate(
+    Continente = recode(
+      .x = Continente,
+      'Africa' = 'África', 
+      'Americas' = 'América', 
+      'Asia' = 'Asia', 
+      'Europe' = 'Europa', 
+      'Oceania' = 'Oceanía'
+      )
+    ) %>%
   ggplot(
     data = .,
-    aes(x = Temporada, y = Pts, colour = Equipo, fill = Equipo)
+    aes(x = gdpPercap, y = lifeExp)
     ) +
-  geom_line() +
-  geom_point(alpha = 0.4, size = 2.4) +
-  labs(
-    x = 'Temporadas de la Premier League',
-    y = 'Puntos por temporada'
-  ) +
-  facet_wrap(~ Equipo, ncol = 2) +
-  scale_colour_manual(values = c('red', 'cyan', 'black', 'gray34', 'green', 'yellow')) +
-  scale_fill_manual(values = c('red', 'cyan', 'black', 'gray34', 'green', 'yellow')) +
+  geom_point(aes(size = pop, colour = Continente, fill = Continente), alpha = 0.4) +
+  facet_wrap(~ year) +
+  scale_colour_manual(values = c('yellow', 'red', 'black', 'cyan', 'green')) +
+  scale_fill_manual(values = c('yellow', 'red', 'black', 'cyan', 'green')) +
+  scale_size_area(guide = FALSE, max_size = 14) +
+  scale_x_log10() +
+  labs(x = 'PIB per cápita', y = 'Expectativa de vida al nacer') +
   theme_bw() +
   theme(
     axis.text = element_text(size = 12, face = 'bold'),
     axis.title = element_text(size = 14, face = 'bold'),
-    legend.position = 'none',
-    strip.background = element_rect(colour = 'gray64', fill = 'gray64'),
-    strip.text = element_text(size = 12, colour = 'black', face = 'bold')
+    plot.title = element_text(size = 14, face = 'bold'),
+    legend.position = 'top',
+    legend.title = element_text(size = 14, face = 'bold'),
+    legend.text = element_text(size = 12),
+    strip.text = element_text(size = 12, face = 'bold'),
+    strip.background = element_rect(colour = 'black', fill = 'gray64')
     ) +
-  transition_reveal(Temporada) #+
-  #exit_shrink()
-#anim_save('images/1ra_animacion.gif')
+  geom_text_repel(
+    data = gapminder_2,
+    aes(label = country),
+    size = 5,
+    box.padding = unit(2.8, 'lines'),
+    point.padding = unit(0.8, 'lines'),
+    segment.color = 'black'
+    )
 ```
 
-<!-- Hola leo Cambie este chunk para no tener problemas con el paquete , recuerda que llamar gganimate complicaria un poco las cosas en el paquete -->
+```{r datos_gapminder, exercise = TRUE}
+
+gapminder::gapminder
+```
+
++ Gráfico estático
+
+```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
+
+knitr::include_graphics("images/ejemplo_gapminder.png")  
+```
+
++ Gráfico animado
+
+```{r, echo = FALSE, eval = TRUE, out.width = "54%", fig.align = "center"}
+knitr::include_graphics("images/ejemplo_gapminder_animado.gif")
+```
+
+Para usar el paquete `gganimate` se debe instalar primero. Para esto, el paquete se pueden instalar de dos formas:
+
+```{r paquete_gganimate_1, exercise = TRUE}
+
+#install.packages('gganimate')
+#devtools::install_github('thomasp85/gganimate')
+```
+
+y luego se debe cargar una vez se necesite:
+
+```{r paquete_gganimate_2, exercise = TRUE}
+
+#library(gganimate)
+```
+
+#### 6.4.1.1 Definición de la animación: `transition_*()`
+
+Las funciones `transition_*()` son un conjunto de funciones encargadas de interpretar los datos y distribuirlos en subconjuntos de datos de acuerdo a una de sus variables, la variable de transición.
+
+:::example
+#### Ejemplo 6.4.1.1.1
+:::
+
+```{r ejemplo_6_4_1_1_1, exercise = TRUE, fig.align = "center", out.width='380'}
+
+gapminder %>%
+  rename(
+    'Continente' = continent
+    ) %>%
+  mutate(
+    Continente = recode(
+      .x = Continente,
+      'Africa' = 'África', 
+      'Americas' = 'América', 
+      'Asia' = 'Asia', 
+      'Europe' = 'Europa', 
+      'Oceania' = 'Oceanía'
+      )
+    ) %>%
+  ggplot(
+    data = .,
+    aes(x = gdpPercap, y = lifeExp)
+    ) +
+  geom_point(aes(colour = Continente, fill = Continente, size = pop), alpha = 0.4) +
+  scale_colour_manual(values = c('yellow', 'red', 'black', 'cyan', 'green')) +
+  scale_fill_manual(values = c('yellow', 'red', 'black', 'cyan', 'green')) +
+  scale_size_area(max_size = 14, guide = FALSE) +
+  scale_x_log10() +
+  labs(x = 'PIB per cápita', y = 'Expectativa de vida al nacer') +
+  theme_bw() +
+  theme(
+    axis.text = element_text(size = 12, face = 'bold'),
+    axis.title = element_text(size = 14, face = 'bold'),
+    legend.position = c(0.8, 0.2),
+    legend.title = element_text(size = 14, face = 'bold'),
+    legend.text = element_text(size = 12)
+    ) #+
+  #transition_time(year)
+```
 
 ```{r, echo = FALSE, eval = TRUE, out.width = "50%", fig.align = "center"}
 knitr::include_graphics("images/1ra_animacion.gif")
 ```
 
 :::caution
+Además de la función `transition_time()`, existen otras funciones `transition_` que permiten realizar ditintos gráficos animados. [Aquí](https://gganimate.com/reference/index.html) podrás encontrar una lista de estas funciones y de otras funciones implementadas en el paquete `gganimate`.
+:::
+
+#### 6.4.1.2 Crear estelas de sombra: `shadow_*()`
+
+Con el conjunto de funciones `shadow_*()` se pueden aplicar sombras que muestran los puntos de datos anteriores. Estas funciones son `shadow_wake()`, `shadow_trail()` y `shadow_mark()`.
+
+:::example
+#### Ejemplo 6.4.1.2.1
+:::
+
+```{r ejemplo_6_4_1_2_1, exercise = TRUE, fig.align = "center"}
+
+gapminder %>%
+  rename(
+    'Continente' = continent
+    ) %>%
+  mutate(
+    Continente = recode(
+      .x = Continente,
+      'Africa' = 'África', 
+      'Americas' = 'América', 
+      'Asia' = 'Asia', 
+      'Europe' = 'Europa', 
+      'Oceania' = 'Oceanía'
+      )
+    ) %>%
+  ggplot(
+    data = .,
+    aes(x = gdpPercap, y = lifeExp)
+    ) +
+  geom_point(aes(colour = Continente, fill = Continente, size = pop), alpha = 0.4) +
+  scale_colour_manual(values = c('yellow', 'red', 'black', 'cyan', 'green')) +
+  scale_fill_manual(values = c('yellow', 'red', 'black', 'cyan', 'green')) +
+  scale_size_area(max_size = 14, guide = FALSE) +
+  scale_x_log10() +
+  labs(x = 'PIB per cápita', y = 'Expectativa de vida al nacer') +
+  theme_bw() +
+  theme(
+    axis.text = element_text(size = 12, face = 'bold'),
+    axis.title = element_text(size = 14, face = 'bold'),
+    legend.position = c(0.8, 0.2),
+    legend.title = element_text(size = 14, face = 'bold'),
+    legend.text = element_text(size = 12)
+    )  #+
+  #transition_time(year) +
+  #shadow_trail()
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "50%", fig.align = "center"}
+knitr::include_graphics("images/2da_animacion.gif")
+```
+
+#### 6.4.1.3 Etiquetado dinámico: `{frame_time}`
+
+El paquete `gganimate` proporciona un etiquetado dinámico (`{frame_time}`) que facilita comprender a que transición se refiere cada punto de dato presentado en la gráfica.
+
+:::example
+#### Ejemplo 6.4.1.3.1
+:::
+
+```{r ejemplo_6_4_1_3_1, exercise = TRUE, fig.align = "center"}
+
+gapminder %>%
+  rename(
+    'Continente' = continent
+    ) %>%
+  mutate(
+    Continente = recode(
+      .x = Continente,
+      'Africa' = 'África', 
+      'Americas' = 'América', 
+      'Asia' = 'Asia', 
+      'Europe' = 'Europa', 
+      'Oceania' = 'Oceanía'
+      )
+    ) %>%
+  ggplot(
+    data = .,
+    aes(x = gdpPercap, y = lifeExp)
+    ) +
+  geom_point(aes(colour = Continente, fill = Continente, size = pop), alpha = 0.4) +
+  scale_colour_manual(values = c('yellow', 'red', 'black', 'cyan', 'green')) +
+  scale_fill_manual(values = c('yellow', 'red', 'black', 'cyan', 'green')) +
+  scale_size_area(max_size = 14, guide = FALSE) +
+  scale_x_log10() +
+  labs(x = 'PIB per cápita', y = 'Expectativa de vida al nacer', title = 'Año: {frame_time}') +
+  theme_bw() +
+  theme(
+    axis.text = element_text(size = 12, face = 'bold'),
+    axis.title = element_text(size = 14, face = 'bold'),
+    legend.position = c(0.8, 0.2),
+    legend.title = element_text(size = 14, face = 'bold'),
+    legend.text = element_text(size = 12),
+    plot.title = element_text(size = 14, face = 'bold')
+    ) #+
+  #transition_time(year) +
+  #shadow_trail()
+```
+
+```{r, echo = FALSE, eval = TRUE, out.width = "50%", fig.align = "center"}
+knitr::include_graphics("images/3ra_animacion.gif")
+```
+
+#### 6.4.1.4 Guardar como un GIF
+
+El paquete `gganimate` permite también guardar los gráficos animados como un GIF.
+
+:::example
+#### Ejemplo 6.4.1.4.1
+:::
+
+```{r ejemplo_6_4_1_4_1, exercise = TRUE, fig.align = "center"}
+
+Graf_animado <- gapminder %>%
+  rename(
+    'Continente' = continent
+    ) %>%
+  mutate(
+    Continente = recode(
+      .x = Continente,
+      'Africa' = 'África', 
+      'Americas' = 'América', 
+      'Asia' = 'Asia', 
+      'Europe' = 'Europa', 
+      'Oceania' = 'Oceanía'
+      )
+    ) %>%
+  ggplot(
+    data = .,
+    aes(x = gdpPercap, y = lifeExp)
+    ) +
+  geom_point(aes(colour = Continente, fill = Continente, size = pop), alpha = 0.4) +
+  scale_colour_manual(values = c('yellow', 'red', 'black', 'cyan', 'green')) +
+  scale_fill_manual(values = c('yellow', 'red', 'black', 'cyan', 'green')) +
+  scale_size_area(max_size = 14, guide = FALSE) +
+  scale_x_log10() +
+  labs(x = 'PIB per cápita', y = 'Expectativa de vida al nacer', title = 'Año: {frame_time}') +
+  theme_bw() +
+  theme(
+    axis.text = element_text(size = 12, face = 'bold'),
+    axis.title = element_text(size = 14, face = 'bold'),
+    legend.position = c(0.8, 0.2),
+    legend.title = element_text(size = 14, face = 'bold'),
+    legend.text = element_text(size = 12),
+    plot.title = element_text(size = 14, face = 'bold')
+    ) #+
+  #transition_time(year) +
+  #shadow_trail()
+
+#animate(Graf_animado, fps = 10, width = 950, height = 650)
+#anim_save('Graf_animado.gif')
+```
+
+:::caution
 Si deseas ver un resumen de las posibilidades que ofrece el paquete `ggplot2` y profundizar más en su uso, puedes mirar su hoja de trucos [aquí](https://github.com/Leo4Luffy/Un_curso_amigable_sobre_R/blob/master/Documentos/cheat_sheet_ggplot2.pdf). De igual forma, si deseas conocer más sobre el paquete `gganimate` puedes mirar su hoja de trucos [aquí](https://github.com/Leo4Luffy/Un_curso_amigable_sobre_R/blob/master/Documentos/cheat_sheet_gganimate.pdf).
 :::
+
+## 7. Modelación estadística básica
+
+<!--
+
+```{r, echo = FALSE, eval = FALSE, out.width = "30%", fig.align = "center"}
+knitr::include_graphics("images/broom.png")
+```
+
+<section style="text-align: center;"><small>Ilustracíon hecha por <font color = "black"><u>\@allison_horst</u></font>.</small></section>-->
 
 ## 8. Comunicación de resultados
 
@@ -6604,39 +6280,42 @@ La comunicación de resultados es un aspecto muy importante en cualquier campo d
 
 Aunque la sintaxis de Markdown es simple y admite muchos lenguajes incluyendo todos los inherentes a los formatos de salida, en R existe su propia versión en el paquete `rmarkdown` creado a principios de 2014. Esta versión en conjunto con `knitr` se han convertido en una de las herramientas más conocidas, divulgadas y avaluadas en toda la comunidad de programadores de `R`, por lo que conocerla y manejarla resulta apropiado para los usuarios de `R`.
 
-
 Como primer paso para el uso de `rmarkdown` es necesario instalarlo:
 
 ```{r addition_8_01, exercise = TRUE}
 #install.packages("rmarkdown",dependencies = T)
 ```
 
-No obstante si cuenta con la IDE de Rstudio no es explícitamente necesario que lo instale ya que el lo hace por usted. Tenga en cuenta que `rmarkdown` maneja la sintaxis de Markdown, para familiarizarse con ella puede realizar el [Tutorial Rmarkdown](https://www.markdowntutorial.com/).
+:::caution
+Si deseas ver un resumen de las posibilidades que ofrece el paquete `rmarkdown` puedes mirar su hoja de trucos [aquí](https://github.com/Leo4Luffy/Un_curso_amigable_sobre_R/blob/master/Documentos/rmarkdown-2.0_Spanish.pdf).
+:::
+
+
+<div class="row"><div class="col-md-7" markdown="1">
+
+```{r, echo = FALSE, out.width='500', eval = TRUE, fig.align = "center"}
+knitr::include_graphics("images/reproducibility_court.png")
+```
+
+<section style="text-align: center;"><small>Ilustracíon hecha por <font color = "black"><u>\@allison_horst</u></font>.</small></section>
+
+</div><div class="col-md-5" markdown="1">
+
+```{r, echo = FALSE, out.width='220', eval = TRUE, fig.align = "center"}
+knitr::include_graphics("images/rmarkdown.jpg")
+```
+
+</div></div>
+
+No obstante si cuenta con la IDE de Rstudio no es explícitamente necesario que lo instale ya que el lo hace por usted. Tenga en cuenta que `rmarkdown` maneja la sintaxis de Markdown, para familiarizarse con ella puede tomar el [Tutorial de Rmarkdown](https://www.markdowntutorial.com/).
 
 Como primer paso para aprender sobre las opciones de `rmarkdown` debemos conocer las plantillas que posee abriendo `Rstudio` y creando un nuevo Rmarkdown de la siguiente forma: 
 
+<p align="center"><img src="images/rmarkdown_1.gif" width=1050"/></p>
 
-```{r, echo = FALSE, eval = TRUE, out.width = "100%", fig.align = "center"}
-knitr::include_graphics("images/rmarkdown_1.gif")
-```
+En la siguiente imagen se ilustra el panel de opciones de Rmarkdown mostrando los formatos de salida que podemos usar para generar documentos ya sean HTML,PDF, Word, presentaciones, Shiny y otras plantillas.
 
-```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
-knitr::include_graphics("images/rmarkdown_2.png")
-```
-
-En la segunda imagen se ilustra el panel de opciones de Rmarkdown mostrando los formatos de salida que podemos usar para generar documentos ya sean HTML,PDF o Word. Los formatos disponibles para presentaciones, Shiny y plantillas se ven a continuación.
-
-```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
-knitr::include_graphics("images/rmarkdown_3.png")
-```
-
-```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
-knitr::include_graphics("images/rmarkdown_4.png")
-```
-
-```{r, echo = FALSE, eval = TRUE, out.width = "70%", fig.align = "center"}
-knitr::include_graphics("images/rmarkdown_5.png")
-```
+<p align="center"><img src="images/rmarkdown_2.gif" /></p>
 
 Generar cualquier tipo de documento, presentación, Shiny o plantilla es tan simple como seleccionar la opción que prefiera y dar click en **OK**. Después de pulsar OK se abrirá un archivo Rmd con instrucciones básicas correspondientes al formato seleccionado, para crear el archivo con el formato de interés debe buscar el icono de `knit` o ejecutar el comando `CTRL + SHIFT + K`.
 
@@ -6647,9 +6326,438 @@ knitr::include_graphics("images/rmarkdownflow.png")
 Cada uno de los archivos posee la extensión .Rmd y cuenta por lo menos con tres tipos de contenidos:
 
 * Un encabezado YAML (opcional) rodeado de `---`
-* Trozos de código R rodeados por ` ``` `
+* Trozos de código rodeados por ` ``` `
 * Texto mezclado con formato de texto simple
 
-El encabezado YAML denota las características del archivo, como título, autor, fecha, opciones de tabla de contenido, condiciones estéticas, opciones de referencias, opciones figuras, etc.
+### 8.1 Encabezado YAML
 
-## 9. Referencias
+El encabezado YAML se encuentra en la parte inicial del documento y denota características del archivo, como título, autor, fecha, descripción, opciones de tabla de contenido, condiciones estéticas, opciones de referencias, opciones de figuras, etc. Además este encabezado YAML establece las opciones de render para los distintos formatos, viéndose en su estado más básico para cada uno de ellos de la siguiente manera:
+
+```
+---
+title: "Untitled"
+output: ******
+---
+```
+
+Donde `******` puede ser reemplazado por los distintos formatos que podemos usar. Los formatos por defecto que podemos renderizar son los siguientes:
+
+* `html_document`
+* `pdf_document`
+* `word_document`
+* `ioslides_presentation`
+* `slidy_presentation`
+* `beamer_presentation`
+* `powerpoint_presentation`
+* `github_document`
+* `odt_document`
+* `md_document`
+* `latex_document`
+
+Para el formato **html** y para las presentaciones **ioslides**, podemos agregar un argumento extra que nos permita obtener un documento reactivo y dinámico como el curso que estás realizando en este momento. Veamos el YAML que corresponde a cada uno.
+
+<div class="row"><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output: html_document
+runtime: shiny
+---
+```
+</div><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output: ioslides_presentation
+runtime: shiny
+---
+```
+</div></div>
+
+Es importante mencionar que cambiar el `output` es el equivalente a seleccionar alguna de las opciones en el panel de Rmarkdown mostrado anteriormente en la animación. Estos dos últimos formatos interactivos los encuentras en la sección de `shiny` en el mismo panel. Además, podemos renderizar otros formatos provenientes de paquetes, como los siguientes:
+
+```{r addition_81_01, exercise = TRUE}
+#install.packages("learnr")
+#install.packages("rmdshower")
+#install.packages("flexdashboard")
+#install.packages("rmdformats")
+#install.packages("xaringan")
+#install.packages("prettydoc")
+#install.packages("tufte")
+#install.packages("rticles")
+#install.packages("revealjs")
+```
+
+Dando para cada caso como resultado un YAML del tipo:
+
+<div class="row"><div class="col-md-4" markdown="1">
+```
+---
+title: "Tutorial"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+```
+</div><div class="col-md-4" markdown="1">
+```
+---
+title: "Untitled"
+output: 
+  rmdshower::shower_presentation
+---
+```
+</div><div class="col-md-4" markdown="1">
+```
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard
+---
+```
+</div></div>
+
+<div class="row"><div class="col-md-4" markdown="1">
+```
+---
+title: "Untitled"
+output: rmdformats::material
+---
+```
+</div><div class="col-md-4" markdown="1">
+```
+---
+title: "Untitled"
+output: xaringan::moon_reader
+---
+```
+</div><div class="col-md-4" markdown="1">
+```
+---
+title: "Untitled"
+output: prettydoc::html_pretty
+---
+```
+</div></div>
+
+<div class="row"><div class="col-md-4" markdown="1">
+```
+---
+title: "Untitled"
+output: 
+  tufte::tufte_handout: default
+---
+```
+</div><div class="col-md-4" markdown="1">
+```
+---
+title: "Untitled"
+output: 
+  rticles::springer_article
+---
+```
+</div><div class="col-md-4" markdown="1">
+```
+---
+title: "Untitled"
+output: 
+  revealjs::revealjs_presentation
+---
+```
+</div></div>
+
+:::exercise
+#### Ejercicio 8.1
+:::
+
+Para este ejercicio debes volver a Rstudio y explorar cada uno de los formatos disponibles en el panel de Rmarkdown, abre y ejecuta con `knitr` cada uno de ellos viendo sus diferencias y las salidas obtenidas. No dudes en pedir ayuda si tienes problemas en la ejecución o si tienes dudas con respecto a los diferentes formatos.
+
+```{r, echo = FALSE, out.width = "65%", eval = TRUE, fig.align = "center"}
+knitr::include_graphics("images/rmarkdown_wizards.png")
+```
+
+R en conjunto con diversos paquetes ofrece múltiples alternativas de render, sin embargo debemos mencionar que Markdown fue diseñado originalmente para la salida html, por lo que este formato posee características más ricas en comparación con los demás formatos de salida. Las siguientes subsecciones están orientadas al manejo de estas características para los distintos formatos. Tenga presente que este curso ofrece solo un preámbulo de las posibilidades que brinda Rmarkdown, si desea profundizar en cada uno de los formatos, consulte [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+
+#### 8.1.1 Opciones de tabla de contenido 
+
+Estas opciones aplican para los formatos `html` y `pdf` y denotan el funcionamiento de la tabla de contenido con el argumento `toc: true`. Adicionalmente, para especificar la profundidad de los encabezados utilizamos el argumento `toc_depth`. Veamos el YAML que corresponde para estos dos formatos: 
+
+<div class="row"><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+```
+</div><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+---
+```
+</div></div>
+
+Como se observa el máximo encabezado que se mostrará en la tabla de contenido para el formato html será de título de segundo nivel, mientras que para el pdf será de tercer nivel. Un opción adicional que se puede incluir en el formato html corresponde a la tabla de contenido flotante con el argumento `toc_float:true`, el cual la mostrará permanentemente al lado izquierdo del contenido principal. Veamos el uso de este argumento en el YAML:
+
+```
+---
+title: "Untitled"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+```
+
+
+
+#### 8.1.2 Opciones de figuras
+
+Al igual que con la tabla de contenido las opciones para figuras solo están disponibles para los formatos `html` y `pdf`, su configuración solo incluye tres aspectos: 1) alto; 2) ancho y 3) subtítulo, los argumentos en los dos formatos son exactamente los mismos dando como resultado YAML del tipo:
+
+<div class="row"><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output: 
+  html_document:
+    fig_width: 5
+    fig_height: 5
+    fig_caption: true
+---
+```
+</div><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output:
+  pdf_document:
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+---
+```
+</div></div>
+
+Si combinados las opciones de tabla de contenido con las opciones de figura el resultado de los YAML seria el siguiente:
+
+<div class="row"><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    fig_width: 5
+    fig_height: 5
+    fig_caption: true
+---
+```
+</div><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+---
+```
+</div></div>
+
+
+
+#### 8.1.3 Opciones de impresión de dataframe
+
+Estas opciones son para los formatos pdf y html y determinan la estética de los marcos de datos en el documento de salida. Veamos la siguiente tabla que muestra las opciones disponibles.
+
++----------+----------------------------------------+----------------+-----------------+
+| Opción   | Descripción                            | pdf_document   | html_document   |
++==========+========================================+================+=================+
+| default  | Llama `print.data.frame`               | Disponible     | Disponible      |
++----------+----------------------------------------+----------------+-----------------+
+| kable    | Usa la función `knitr::kable`          | Disponible     | Disponible      |
++----------+----------------------------------------+----------------+-----------------+
+| tibble   | Usa la función `tibble::print.tbl_df`  | Disponible     | Disponible      |
++----------+----------------------------------------+----------------+-----------------+
+| paged    | Usa la función `rmarkdown::paged_table`| No disponible  | Disponible      |
++----------+----------------------------------------+----------------+-----------------+
+
+Supongamos que queremos usar la opción kable para un pdf y la opción paged para un html, sus YAML correspondientes haciendo uso de las opciones de tabla de contenido y de figuras tendrán el siguiente aspecto:
+
+<div class="row"><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    fig_width: 5
+    fig_height: 5
+    fig_caption: true
+    df_print: paged
+---
+```
+</div><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    df_print: kable
+---
+```
+</div></div>
+
+
+#### 8.1.4 Opciones de Referencias
+
+Las opciones de referencias bibliográficas son limitadas, sin embargo están disponibles para todos los formatos haciendo uso del lenguaje BibTeX. Lo primero es tener un archivo con la extensión correspondiente (.bib) que contenga las citaciones de interés, veamos un ejemplo del contenido de un archivo con esta extensión:
+
+```
+@Manual{rbase,
+  title = {R: A Language and Environment for Statistical Computing},
+  author = {{R Core Team}},
+  organization = {R Foundation for Statistical Computing},
+  address = {Vienna, Austria},
+  year = {2020},
+  url = {https://www.R-project.org/},
+}
+
+@Manual{curso_actual,
+  title = {CursoR: Un Curso Amigable Para R},
+  author = {Duvan Nieves and Leonardo Lopez},
+  year = {2020},
+  note = {R package version 0.1.0},
+  url = {https://github.com/Duvancho321/Curso_R},
+}
+```
+
+<div class="row"><div class="col-md-6" markdown="1">
+
+Ahora el enlace con el YAML es relativamente simple, solo debemos usar el argumento `bibliography:` y agregar el nombre de nuestro archivo, Veamos un ejemplo suponiendo que nuestro archivo lleva el nombre **“biblio.bib”**:
+
+</div><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output: ******
+bibliography: biblio.bib
+---
+```
+</div></div>
+
+
+<div class="row"><div class="col-md-6" markdown="1">
+
+Con un YAML como el anterior y citando en nuestro texto plano obtendremos las referencias bibliográficas la final de nuestro documento sin importar el formato seleccionado. En caso de que deseemos una bibliografía sin citar explícitamente en el texto plano podemos usar el argumento `nocite: '@*'` 
+
+</div><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+output: ******
+bibliography: biblio.bib
+nocite: '@*'
+---
+```
+</div></div>
+
+
+#### 8.1.5 Opciones de adicionales
+
+En nuestro YAML podemos agregar otras opciones como autores, fecha, subtítulos y otras que conciernen a formatos más específicos. Por el momento veamos las opciones nombradas anteriormente reuniendo todo lo que hemos aprendido del YAML.
+
+<div class="row"><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+subtitle: "Un subtitulo"
+author: 
+  - "Autor 1"
+  - "Autor 2"
+date: "`r Sys.Date()`"
+bibliography: biblio.bib
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    fig_width: 5
+    fig_height: 5
+    fig_caption: true
+    df_print: paged
+---
+```
+</div><div class="col-md-6" markdown="1">
+```
+---
+title: "Untitled"
+subtitle: "Un subtitulo"
+author: 
+  - "Autor 1"
+  - "Autor 2"
+date: "`r Sys.Date()`"
+nocite: '@*'
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    df_print: kable
+---
+```
+</div></div>
+
+
+### 8.2 Trozos de código
+
+Los trozos o fragmentos de código funcionan de forma similar a un Script y pueden producir salidas de texto, gráficos o tablas. La forma de insertarlos es usando el comando `CTRL + ALT + I`  o `Cmd + Option + I` en macOS. Un fragmento de código R luce de la siguiente forma: 
+
+<p align="center"><img src="images/Chunk.gif" /></p>
+
+Fijémonos en los tres botones que se ven en la parte derecha del chunk, el primero nos da opciones de configuración que trataremos con detalle más adelante, el segundo ejecuta todos los trozos de código de arriba y el último ejecuta el fragmento actual. 
+
+
+#### 8.2.1 Opciones globales de fragmentos de código
+#### 8.2.2 Opciones individuales de fragmentos de código
+#### 8.2.3 Otros lenguajes soportados
+
+
+
+
+### 8.3 Texto
+
+sintaxis Markdown 
+titulos 
+negrilla
+citaciones
+codigo html 
+ecuaciones
+importar imagenes
+hiperbinculos
+pie de pagina
+
+## 9. Lectura de datos
+
+
+
+## 10. Referencias
